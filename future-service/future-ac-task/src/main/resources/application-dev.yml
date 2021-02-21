@@ -1,0 +1,41 @@
+#服务器端口
+server:
+   port: 8088
+#数据源配置
+spring:
+   application:
+     name: future-ac-task
+
+   redis:
+##redis 单机环境配置
+      host: 172.16.10.36
+      port: 6379
+      password: zw.123
+      database: 8
+      ssl: false
+      timeout: 1000
+
+   datasource:
+      url: jdbc:mysql://172.68.0.176:3306/future_ac_task?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: future123456
+      driver-class-name: com.mysql.jdbc.Driver
+
+   mybatis:
+      mapper-locations: classpath:mapper/*.xml
+
+
+
+
+## xxl-job 调度系统配置
+xxl:
+  job:
+    admin-addresses: http://localhost:8080/xxl-job-admin
+    access-token:
+    executor:
+      appname: ${spring.application.name}
+      address:
+      ip:
+      port: 9999
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 7

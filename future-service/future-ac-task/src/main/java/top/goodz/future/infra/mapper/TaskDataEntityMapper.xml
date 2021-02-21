@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.goodz.future.infra.mapper.TaskDataEntityMapper">
+    <resultMap id="BaseResultMap" type="top.goodz.future.infra.entity.TaskDataEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_no" property="userNo" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="id_card" property="idCard" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area_road" property="areaRoad" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+        <result column="sys_create_time" property="sysCreateTime" jdbcType="TIMESTAMP"/>
+        <result column="sys_update_time" property="sysUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_no, name, sex, phone, age, email, id_card, province, city, area_road, status, 
+    is_delete, sys_create_time, sys_update_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_ac_task_data
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_ac_task_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="top.goodz.future.infra.entity.TaskDataEntity">
+    insert into t_ac_task_data (id, user_no, name, 
+      sex, phone, age, email, 
+      id_card, province, city, 
+      area_road, status, is_delete, 
+      sys_create_time, sys_update_time)
+    values (#{id,jdbcType=BIGINT}, #{userNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{areaRoad,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{isDelete,jdbcType=VARCHAR}, 
+      #{sysCreateTime,jdbcType=TIMESTAMP}, #{sysUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="top.goodz.future.infra.entity.TaskDataEntity">
+        insert into t_ac_task_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="userNo != null">
+                user_no,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="areaRoad != null">
+                area_road,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="sysCreateTime != null">
+                sys_create_time,
+            </if>
+            <if test="sysUpdateTime != null">
+                sys_update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="userNo != null">
+                #{userNo,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="areaRoad != null">
+                #{areaRoad,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=VARCHAR},
+            </if>
+            <if test="sysCreateTime != null">
+                #{sysCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sysUpdateTime != null">
+                #{sysUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.goodz.future.infra.entity.TaskDataEntity">
+        update t_ac_task_data
+        <set>
+            <if test="userNo != null">
+                user_no = #{userNo,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="areaRoad != null">
+                area_road = #{areaRoad,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=VARCHAR},
+            </if>
+            <if test="sysCreateTime != null">
+                sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sysUpdateTime != null">
+                sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.goodz.future.infra.entity.TaskDataEntity">
+    update t_ac_task_data
+    set user_no = #{userNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area_road = #{areaRoad,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP},
+      sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <update id="updateIdCardLenght">
+    UPDATE
+     t_ac_task_data
+    SET
+    sys_update_time = NOW(),
+    is_delete = 1
+    where
+     LENGTH(id_card)  &lt; 18
+     and
+      is_delete = 0
+
+  </update>
+
+    <update id="updateAge">
+  UPDATE
+     t_ac_task_data
+    SET
+    sys_update_time = NOW(),
+    is_delete = 1
+    where
+     age &lt;= #{minAge}
+     and
+     age &gt;= #{maxAge}
+     and
+      is_delete = 0
+
+  </update>
+
+    <delete id="deleteIdCardRepeat">
+     UPDATE
+       t_ac_task_data
+      SET
+       sys_update_time = NOW(),
+       is_delete = 1
+      where
+
+    is_delete = 0
+    and
+      id not in
+       (
+       select
+       t.max_id
+       from (
+       select
+       max(id) as max_id
+       from t_ac_task_data
+       group by id_card) as t
+       )
+
+
+  </delete>
+</mapper>

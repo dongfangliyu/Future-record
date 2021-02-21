@@ -1,0 +1,52 @@
+#服务器端口
+server:
+   port: 8083
+#数据源配置
+spring:
+   mail:
+      host: smtp.exmail.qq.com
+      username: zw_arbitration@fintecher.cn
+      password: Zzl123456
+      port: 465
+      properties:
+         mail:
+            smtp:
+               auth: true
+               timeout: 30000
+               ssl:
+                  enable: true
+               starttls:
+                  enable: true
+                  required: true
+   redis:
+##redis 单机环境配置
+      host: 172.16.10.36
+      port: 6379
+      password: zw.123
+      database: 8
+      ssl: false
+      timeout: 1000
+##redis 集群环境配置
+#cluster:
+#  nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003
+#  commandTimeout: 5000
+   datasource:
+      url: jdbc:mysql://116.236.220.215:16389/olap_platform_user?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+      username: zwuser
+      password: zwusermysql!
+service:
+   config:
+      url:
+         olapUrl: http://localhost:8102/
+         olapUrllogin: http://localhost:8081/olap/dist/index.html#/userLogin
+         pdfDownLoadIp: http://172.16.10.38/
+      message:
+         documentUrl: http://192.168.21.68:8081/olap/dist/index.html#/mobile/shortMsgLink
+         sendMessageRequestUrl: http://zcw-test.zzxxkj.cn/bhzcwinterface/sms/sendSms
+         sendMessageAccount: zhiwangjinke
+         messageInfoEncryptKey: 786F77744F5A67554E5A724138376662324250764952516B59324B706E4653376D6454756E524A664149733D
+# ----------------
+# Orphan comments:
+# ----------------
+# Was at end of line:42 :#/userLogin
+# Was at end of line:45 :#/mobile/shortMsgLink

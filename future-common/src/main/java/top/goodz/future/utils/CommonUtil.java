@@ -19,7 +19,7 @@ package top.goodz.future.utils;
 /**
  * 通用工具类
  *
- * @author Chill
+ * @author Yajun.Zhang
  */
 public class CommonUtil {
 

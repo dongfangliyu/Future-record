@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * 日期转成中文
- * @author zhuliang
+ * @author Yajun.Zhang
  */
 public class DateToUpperChinese {
 	

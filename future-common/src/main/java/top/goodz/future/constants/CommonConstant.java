@@ -12,7 +12,7 @@
  *  Neither the name of the dreamlu.net developer nor the names of its
  *  contributors may be used to endorse or promote products derived from
  *  this software without specific prior written permission.
- *  Author: Chill 庄骞 (smallchill@163.com)
+ *  Author: Yajun.Zhang
  */
 package top.goodz.future.constants;
 
@@ -20,7 +20,7 @@ package top.goodz.future.constants;
 /**
  * 通用常量
  *
- * @author Chill
+ * @author Yajun.Zhang
  */
 public interface CommonConstant {
 

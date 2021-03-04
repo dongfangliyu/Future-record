@@ -161,7 +161,7 @@ public class PdfUtil {
 	 *            上传成功返回 路径
 	 * @return
 	 * @throws @author
-	 *             zhuliang @createTime： 2017年12月28日 下午3:25:44
+	 *             Yajun.Zhang
 	 */
 	public static String uploadPdfFastDfs(String fileName, Map<String, Object> paramMap, String arbitralInfoId,
                                           String filePath) {
@@ -223,7 +223,7 @@ public class PdfUtil {
 	 * @param arbitralInfoId
 	 * @return
 	 * @throws @author
-	 *             zhuliang @createTime： 2018年7月2日 下午2:38:39
+	 *             Yajun.Zhang
 	 */
 	public  String uploadPdfHtml(String fileName, String htmlStr, Map<String, Object> paramMap,
                                        String arbitralInfoId) {
@@ -285,7 +285,7 @@ public class PdfUtil {
 	 *            pdf临时保存路径
 	 * @return
 	 * @throws @author
-	 *             renyike @createTime： 2017年12月28日 下午3:25:44
+	 *             Yajun.Zhang
 	 */
 	public static String uploadLocalPdf(String fileName, String templateName, Map<String, Object> paramMap,
                                         String arbitralInfoId, String directoryName) {

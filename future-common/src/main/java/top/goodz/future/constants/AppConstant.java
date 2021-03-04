@@ -3,7 +3,7 @@ package top.goodz.future.constants;
 /**
  *  * @Description: 
  *  * @throws 
- *  * @author $
+ *  * @author Yajun.Zhang
  *  * @createTime： $ $ 
  *  * @version： 2.1
  *  

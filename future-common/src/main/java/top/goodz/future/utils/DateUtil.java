@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * 功能说明：日期时间类
  * 
- * @author panye 修改人: 修改原因： 修改时间： 修改内容： 创建日期：2015-5-12 Copyright zzl-apt
+ * @author zhangyajun 修改人: 修改原因： 修改时间： 修改内容： 创建日期：2015-5-12 Copyright zzl-apt
  */
 public class DateUtil {
 
@@ -359,7 +359,7 @@ public class DateUtil {
 	 * @return
 	 * @throws ParseException 
 	 * @throws 
-	 * @author zhuliang 
+	 * @author zhangyajun
 	 * @createTime： 2018年10月11日 下午5:31:28
 	 */
 	public static String getBeforeTime(String nowTime, int day, String style) throws ParseException {
@@ -561,8 +561,8 @@ public class DateUtil {
 	 * @param style		指定格式
 	 * @return 
 	 * @throws 
-	 * @author zhuliang 
-	 * @createTime： 2018年5月25日 上午9:53:50
+	 * @author Yajun.Zhang
+	 * @createTime： 2020年5月25日 上午9:53:50
 	 */
 	public static boolean isValidDate(String str, String style) {
 		boolean convertSuccess = true;

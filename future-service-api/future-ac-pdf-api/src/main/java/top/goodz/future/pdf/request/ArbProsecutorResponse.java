@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 申请人信息
- * @author zhuliang
+ * @author Yajun.Zhang
  */
 public class ArbProsecutorResponse implements Serializable {
 	

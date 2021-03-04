@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * 根据ftl模板 生成 html 生成工具类
  *
- * @author zhuliang
+ * @author Yajun.Zhang
  */
 public class HtmlGenerator {
 
@@ -32,7 +32,7 @@ public class HtmlGenerator {
 	 * @param template	ftl模板文件名称
 	 * @param variables	参数
 	 * @return html内容
-	 * @author Seif Zheng
+	 * @author Yajun.Zhang
 	 * @createTime 2020/3/4 17:47
 	 * @version 2.1
 	 */
@@ -57,7 +57,7 @@ public class HtmlGenerator {
 	 * @param variables	参数
 	 * @param filePath	ftl文件地址
 	 * @return html内容
-	 * @author Seif Zheng
+	 * @author Yajun.Zhang
 	 * @createTime 2020/3/4 17:45
 	 * @version 2.1
 	 */

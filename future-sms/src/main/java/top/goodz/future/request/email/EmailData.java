@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 发送email请求参数
- * @author zhuliang
+ * @author Yajun.Zhang
  */
 public class EmailData implements Serializable {
 	

@@ -20,7 +20,7 @@ spring:
                   required: true
    redis:
 ##redis 单机环境配置
-      host: 172.16.10.36
+      host: 172.10.17.189
       port: 6379
       password: zw.123
       database: 8

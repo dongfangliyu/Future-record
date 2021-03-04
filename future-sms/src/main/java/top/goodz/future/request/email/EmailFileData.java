@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 发送email文件数据
- * @author zhuliang
+ * @author Yajun.Zhang
  *
  */
 public class EmailFileData implements Serializable {

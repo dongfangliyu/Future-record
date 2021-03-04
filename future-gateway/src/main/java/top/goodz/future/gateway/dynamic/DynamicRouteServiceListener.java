@@ -44,7 +44,7 @@ import java.util.concurrent.Executor;
 @Component
 public class DynamicRouteServiceListener implements CommandLineRunner {
 
-    private String DATA_ID = "gateway-router";
+    private String DATA_ID = "future-gateway-routes";
 
     private final DynamicRouteService dynamicRouteService;
     private final NacosDiscoveryProperties nacosDiscoveryProperties;
@@ -68,10 +68,10 @@ public class DynamicRouteServiceListener implements CommandLineRunner {
             String group = nacosConfigProperties.getGroup();
             String serverAddr = nacosDiscoveryProperties.getServerAddr();
             properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
-            properties.put(PropertyKeyConst.NAMESPACE, "3319944a-e526-4a65-b003-1af3e308ba63");
+            properties.put(PropertyKeyConst.NAMESPACE, "");
             ConfigService configService = NacosFactory.createConfigService(properties);
             String config = configService.getConfig(dataId, group, 5000);
-            System.out.println(config);
+             System.out.println(config);
             configService.addListener(dataId, group, new Listener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
@@ -85,9 +85,6 @@ public class DynamicRouteServiceListener implements CommandLineRunner {
                         e.printStackTrace();
                         System.out.println(e.getMessage());
                     }
-
-
-
                 }
 
                 @Override

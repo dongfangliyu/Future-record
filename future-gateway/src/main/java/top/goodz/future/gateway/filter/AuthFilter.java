@@ -16,10 +16,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.cloud.gateway.route.Route;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -29,6 +31,7 @@ import top.goodz.future.gateway.props.AuthProperties;
 import top.goodz.future.gateway.provider.AuthProvider;
 import top.goodz.future.gateway.provider.ResponseProvider;
 
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 
@@ -60,10 +63,10 @@ public class AuthFilter implements GlobalFilter, Ordered {
         ServerHttpResponse resp = exchange.getResponse();
         String headerToken = exchange.getRequest().getHeaders().getFirst(AuthProvider.AUTH_KEY);
         String paramToken = exchange.getRequest().getQueryParams().getFirst(AuthProvider.AUTH_KEY);
-      /*  if (StringUtils.isAllBlank(headerToken)) {
+        if (StringUtils.isAllBlank(headerToken)) {
             return unAuth(resp, "缺失令牌,鉴权失败");
         }
-		String auth = StringUtils.isBlank(headerToken) ? paramToken : headerToken;
+		/*String auth = StringUtils.isBlank(headerToken) ? paramToken : headerToken;
 		String token = JwtUtil.getToken(auth);
 		Claims claims = JwtUtil.parseJWT(token);
 		if (claims == null) {
@@ -92,7 +95,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
 
     private boolean isSkip(String path) {
         return AuthProvider.getDefaultSkipUrl().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(path::startsWith)
-                || authProperties.getSkipUrl().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(path::startsWith);
+                || authProperties.getSkipUrlList().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(path::startsWith);
     }
 
     private Mono<Void> unAuth(ServerHttpResponse resp, String msg) {
@@ -110,7 +113,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -100;
+        return -10;
     }
 
 }

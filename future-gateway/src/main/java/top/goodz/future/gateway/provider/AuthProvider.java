@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * 鉴权配置
  *
- * @author Chill
+ * @author zhangyajun
  */
 public class AuthProvider {
 
@@ -34,13 +34,23 @@ public class AuthProvider {
 
 	static {
 		defaultSkipUrl.add("/api/captcha/**");
-		defaultSkipUrl.add("/sgin_in/");
+		defaultSkipUrl.add("/api/exchange/sgin_in");
+		defaultSkipUrl.add("/swagger-ui.html");
+		defaultSkipUrl.add("/test/**");
+		defaultSkipUrl.add("/actuator/**");
+
+		defaultSkipUrl.add("/css/**");
+		defaultSkipUrl.add("/js/**");
+		defaultSkipUrl.add("/ruoyi/**");
+		defaultSkipUrl.add("/ajax/**");
 	}
 
 	/**
 	 * 默认无需鉴权的API
 	 */
 	public static List<String> getDefaultSkipUrl() {
+
+
 		return defaultSkipUrl;
 	}
 

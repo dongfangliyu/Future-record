@@ -1,12 +1,16 @@
 package top.goodz.future.gateway.filter;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 import top.goodz.future.gateway.endpoint.DiscoveryEndpointService;
 import top.goodz.future.gateway.props.AuthProperties;
 import top.goodz.future.gateway.provider.AuthProvider;
@@ -24,16 +28,12 @@ import java.net.URISyntaxException;
  * @author lengleng
  */
 @Component
-public abstract class PathFilter extends AbstractRouteFilter {
+public  class PathFilter extends AbstractRouteFilter {
 
     private static final Logger log = LoggerFactory.getLogger(PathFilter.class);
 
    @Autowired
    private DiscoveryEndpointService discoveryEndpointService;
-
-   @Autowired
-    private AuthProperties authProperties;
-
 
    private static final String DEF_PORT = "80";
 
@@ -67,11 +67,5 @@ public abstract class PathFilter extends AbstractRouteFilter {
 
         return uri;
     }
-
-    private boolean isSkip(String path) {
-        return AuthProvider.getDefaultSkipUrl().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(path::startsWith)
-                || authProperties.getSkipUrl().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(path::startsWith);
-    }
-
 
 }

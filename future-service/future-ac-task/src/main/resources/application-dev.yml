@@ -8,7 +8,7 @@ spring:
 
    redis:
 ##redis 单机环境配置
-      host: 172.16.10.36
+      host: 172.10.17.189
       port: 6379
       password: zw.123
       database: 8
@@ -16,9 +16,9 @@ spring:
       timeout: 1000
 
    datasource:
-      url: jdbc:mysql://172.68.0.176:3306/future_ac_task?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://172.10.17.189:3306/future_task_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
       username: root
-      password: future123456
+      password: 123456
       driver-class-name: com.mysql.jdbc.Driver
 
    mybatis:
@@ -30,7 +30,7 @@ spring:
 ## xxl-job 调度系统配置
 xxl:
   job:
-    admin-addresses: http://localhost:8080/xxl-job-admin
+    admin-addresses: http://127.0.0.1:7089/task
     access-token:
     executor:
       appname: ${spring.application.name}

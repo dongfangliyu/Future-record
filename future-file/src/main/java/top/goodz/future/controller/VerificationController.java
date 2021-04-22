@@ -1,28 +1,17 @@
 package top.goodz.future.controller;
 
-import com.google.code.kaptcha.Producer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.*;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-import top.goodz.future.constants.FutureConstant;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import top.goodz.future.controller.model.SlideAuthResponse;
+import top.goodz.future.controller.model.SlideCheckResult;
 import top.goodz.future.response.CommonResponse;
 import top.goodz.future.service.CaptchaService;
 import top.goodz.future.service.model.request.SlideAuthEntity;
-
-import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import top.goodz.future.service.model.response.SlideCheckResultVO;
 
 /**
  * @Description 验证码controller
@@ -63,5 +52,21 @@ public class VerificationController {
         return response;
     }
 
+
+    @ApiOperation(value = "验证", notes = "验证")
+    @RequestMapping(value = "/verification", method = {RequestMethod.GET,RequestMethod.POST})
+    public CommonResponse<SlideCheckResult> verification(String uuid, String x, String y) {
+        SlideCheckResultVO check = captchaService.check(uuid, Integer.valueOf(x), Integer.valueOf(y));
+
+       return CommonResponse.responseOf( convert2CheckResultResponse(check));
+    }
+
+    private SlideCheckResult convert2CheckResultResponse(SlideCheckResultVO check) {
+        SlideCheckResult checkResult = new SlideCheckResult();
+        checkResult.setAuthId(check.getAuthId());
+        checkResult.setResult(check.isResult());
+
+        return checkResult;
+    }
 
 }

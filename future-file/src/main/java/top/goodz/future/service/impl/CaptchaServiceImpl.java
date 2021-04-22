@@ -5,11 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import top.goodz.future.enums.ErrorCodeEnum;
 import top.goodz.future.enums.ExceptionCode;
 import top.goodz.future.exception.ServiceException;
 import top.goodz.future.service.CaptchaService;
+import top.goodz.future.service.model.enums.CaptchaAuthStatus;
 import top.goodz.future.service.model.request.SlideAuthEntity;
 import top.goodz.future.service.model.request.SlideCaptchaVerificationRequest;
+import top.goodz.future.service.model.response.SlideCheckResultVO;
 import top.goodz.future.service.repository.FileRepository;
 import top.goodz.future.service.repository.SlideCaptcheRepository;
 import top.goodz.future.service.utils.ImageVerificationUtil;
@@ -20,6 +23,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 
@@ -49,7 +53,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     private static final String BORDER_KEY = "border";
 
-    private static final String BUCKET_NAME="future";
+    private static final String BUCKET_NAME = "future";
 
     private static int threshold = 5;
 
@@ -68,6 +72,61 @@ public class CaptchaServiceImpl implements CaptchaService {
     @Override
     public SlideAuthEntity createSlideCaptchaVerification() {
         return createSlideAuth(buildCreateParam());
+    }
+
+    @Override
+    public SlideCheckResultVO check(String authId, Integer x, Integer y) {
+        SlideAuthEntity slideAuthEntity = captcheRepository.load(authId);
+
+        if (Objects.isNull(slideAuthEntity)) {
+            ErrorCodeEnum.SLIDE_CAPTCHA_ERROR.throwEcxeption();
+        }
+
+        boolean checkResult = checkResult(slideAuthEntity, x, y);
+
+        SlideCheckResultVO result = new SlideCheckResultVO();
+        result.setAuthId(slideAuthEntity.getId());
+        result.setResult(checkResult);
+
+        if (checkResult) {
+            captcheRepository.updateAuthStatus(authId, String.valueOf(CaptchaAuthStatus.AUTH.getCode()));
+
+            captcheRepository.updateExpireTime(authId, captchaAuthExpireSeconds * 1000l);
+
+            return result;
+        }
+
+        captcheRepository.deleteAuthEntity(authId);
+
+        return result;
+    }
+
+    @Override
+    public SlideCheckResultVO auth(String authId) {
+        SlideAuthEntity slideAuthEntity = captcheRepository.load(authId);
+
+        return convert2SlideCapthaVO(slideAuthEntity);
+
+    }
+
+    private SlideCheckResultVO convert2SlideCapthaVO(SlideAuthEntity slideAuthEntity) {
+        SlideCheckResultVO resultVO = new SlideCheckResultVO();
+
+        if (Objects.isNull(slideAuthEntity)) {
+            resultVO.setResult(false);
+            return resultVO;
+        }
+
+        if (!(slideAuthEntity.getStatus().equals(CaptchaAuthStatus.AUTH.getCode()))  || System.currentTimeMillis() > slideAuthEntity.getExpireTimestemp() ){
+            resultVO.setResult(false);
+            return resultVO;
+        }
+        resultVO.setResult(true);
+        return resultVO;
+    }
+
+    private boolean checkResult(SlideAuthEntity slideAuthEntity, Integer x, Integer y) {
+        return (Math.abs(x - slideAuthEntity.getX()) <= threshold) && y == slideAuthEntity.getY();
     }
 
     private SlideAuthEntity createSlideAuth(SlideCaptchaVerificationRequest request) {
@@ -142,7 +201,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         SlideAuthEntity entity = new SlideAuthEntity();
 
         entity.setId(UUID.randomUUID().toString());
-        entity.setShadeImage("1"); // 1 初始化 2 已使用
+        entity.setShadeImage(String.valueOf(CaptchaAuthStatus.INIT.getCode())); // 1 初始化 2 已使用
         entity.setExpireTimestemp(System.currentTimeMillis() + captchaAuthExpireSeconds * 1000L);
         entity.setX(x);
         entity.setY(y);
@@ -182,7 +241,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         if (no == 0) {
             no++;
         }
-        return BUCKET_NAME + "-" + no ;
+        return BUCKET_NAME + "-" + no;
     }
 
 

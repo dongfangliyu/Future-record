@@ -14,4 +14,12 @@ import java.io.InputStream;
  */
 public interface SlideCaptcheRepository {
     void save(SlideAuthEntity entity);
+
+    SlideAuthEntity load(String authId);
+
+    void updateAuthStatus(String authId, String code);
+
+    void updateExpireTime(String authId, long l);
+
+    void deleteAuthEntity(String authId);
 }

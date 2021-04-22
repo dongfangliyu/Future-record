@@ -16,8 +16,11 @@ public enum ErrorCodeEnum  {
     SUCCESS("0","成功"),
     ERROR("-1","失败"),
 
+    SLIDE_CAPTCHA_ERROR("F2020112","图形验证码异常"),
 
     EMAIL_SEND_PASSAGEWAY_CLOSED("107001", "邮箱发送通道关闭");
+
+
 
 
     private String code;

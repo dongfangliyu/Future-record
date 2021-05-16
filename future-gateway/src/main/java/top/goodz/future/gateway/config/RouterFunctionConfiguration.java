@@ -52,62 +52,62 @@ import top.goodz.future.gateway.props.RouteProperties;
 @EnableConfigurationProperties({RouteProperties.class, AuthProperties.class})
 public class RouterFunctionConfiguration {
 
-	private final SwaggerResourceHandler swaggerResourceHandler;
+    private final SwaggerResourceHandler swaggerResourceHandler;
 
-	/**
-	 * 这里为支持的请求头，如果有自定义的header字段请自己添加
-	 */
-	private static final String ALLOWED_HEADERS = "X-Requested-With, Blade-Auth, Content-Type, Authorization, credential, X-XSRF-TOKEN, token, username, client";
-	private static final String ALLOWED_METHODS = "*";
-	private static final String ALLOWED_ORIGIN = "*";
-	private static final String ALLOWED_EXPOSE = "*";
-	private static final String MAX_AGE = "18000L";
+    /**
+     * 这里为支持的请求头，如果有自定义的header字段请自己添加
+     */
+    private static final String ALLOWED_HEADERS = "X-Requested-With, Blade-Auth, Content-Type, Authorization, credential, X-XSRF-TOKEN, token, username, client";
+    private static final String ALLOWED_METHODS = "*";
+    private static final String ALLOWED_ORIGIN = "*";
+    private static final String ALLOWED_EXPOSE = "*";
+    private static final String MAX_AGE = "18000L";
 
-	/**
-	 * 跨域配置
-	 */
-	@Bean
-	public WebFilter corsFilter() {
-		return (ServerWebExchange ctx, WebFilterChain chain) -> {
-			ServerHttpRequest request = ctx.getRequest();
-			if (CorsUtils.isCorsRequest(request)) {
-				ServerHttpResponse response = ctx.getResponse();
-				HttpHeaders headers = response.getHeaders();
-				headers.add("Access-Control-Allow-Headers", ALLOWED_HEADERS);
-				headers.add("Access-Control-Allow-Methods", ALLOWED_METHODS);
-				headers.add("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
-				headers.add("Access-Control-Expose-Headers", ALLOWED_EXPOSE);
-				headers.add("Access-Control-Max-Age", MAX_AGE);
-				headers.add("Access-Control-Allow-Credentials", "true");
-				if (request.getMethod() == HttpMethod.OPTIONS) {
-					response.setStatusCode(HttpStatus.OK);
-					return Mono.empty();
-				}
-			}
-			return chain.filter(ctx);
-		};
-	}
+    /**
+     * 跨域配置
+     */
+    @Bean
+    public WebFilter corsFilter() {
+        return (ServerWebExchange ctx, WebFilterChain chain) -> {
+            ServerHttpRequest request = ctx.getRequest();
+            if (CorsUtils.isCorsRequest(request)) {
+                ServerHttpResponse response = ctx.getResponse();
+                HttpHeaders headers = response.getHeaders();
+                headers.add("Access-Control-Allow-Headers", ALLOWED_HEADERS);
+                headers.add("Access-Control-Allow-Methods", ALLOWED_METHODS);
+                headers.add("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
+                headers.add("Access-Control-Expose-Headers", ALLOWED_EXPOSE);
+                headers.add("Access-Control-Max-Age", MAX_AGE);
+                headers.add("Access-Control-Allow-Credentials", "true");
+                if (request.getMethod() == HttpMethod.OPTIONS) {
+                    response.setStatusCode(HttpStatus.OK);
+                    return Mono.empty();
+                }
+            }
+            return chain.filter(ctx);
+        };
+    }
 
 
-	@Bean
-	public RouterFunction routerFunction() {
-		return RouterFunctions.route(RequestPredicates.GET("/swagger-resources")
-			.and(RequestPredicates.accept(MediaType.ALL)), swaggerResourceHandler);
+    @Bean
+    public RouterFunction routerFunction() {
+        return RouterFunctions.route(RequestPredicates.GET("/swagger-resources")
+                .and(RequestPredicates.accept(MediaType.ALL)), swaggerResourceHandler);
 
-	}
+    }
 
-	/**
-	 * 解决 Only one connection receive subscriber allowed.
-	 * 参考：https://github.com/spring-cloud/spring-cloud-gateway/issues/541
-	 */
-	@Bean
-	public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
-		return new HiddenHttpMethodFilter() {
-			@Override
-			public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-				return chain.filter(exchange);
-			}
-		};
-	}
+    /**
+     * 解决 Only one connection receive subscriber allowed.
+     * 参考：https://github.com/spring-cloud/spring-cloud-gateway/issues/541
+     */
+    @Bean
+    public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
+        return new HiddenHttpMethodFilter() {
+            @Override
+            public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+                return chain.filter(exchange);
+            }
+        };
+    }
 
 }

@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 
 public class FeignConfig {
-	
-	@Autowired
+
+    @Autowired
     private ObjectFactory<HttpMessageConverters> messageConverters;
 
     @Bean

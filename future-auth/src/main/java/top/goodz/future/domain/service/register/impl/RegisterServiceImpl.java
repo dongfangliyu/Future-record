@@ -11,21 +11,21 @@ import java.util.Map;
 import java.util.TimerTask;
 
 /**
- *  @Description TODO
- *  @Author Yajun.Zhang
- *  @Date 2020/6/7 22:17
+ * @Description TODO
+ * @Author Yajun.Zhang
+ * @Date 2020/6/7 22:17
  */
 @Service
-public class RegisterServiceImpl  implements RegisterService {
+public class RegisterServiceImpl implements RegisterService {
 
-    private static final  Logger LOGGER =  LoggerFactory.getLogger(RegisterServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterServiceImpl.class);
     @Resource
-    private RegisterRepository  registerRepository;
+    private RegisterRepository registerRepository;
 
     @Override
     public void setRedisKey(Map map) {
 
-        LOGGER.info("register test redis set  key {}",map);
+        LOGGER.info("register test redis set  key {}", map);
         registerRepository.setRedisKey(map);
     }
 }

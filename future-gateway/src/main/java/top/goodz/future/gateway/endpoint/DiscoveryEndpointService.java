@@ -44,62 +44,63 @@ import java.util.Map;
 @Component
 public class DiscoveryEndpointService {
 
-	private final DiscoveryClient discoveryClient;
+    private final DiscoveryClient discoveryClient;
 
-	/**
-	 * 获取服务实例
-	 */
-	public  ServiceEndpoint instances(URI uri) {
+    /**
+     * 获取服务实例
+     */
+    public ServiceEndpoint instances(URI uri) {
 
-		if (null == uri){
-			return null;
-		}
+        if (null == uri) {
+            return null;
+        }
 
-		String host = uri.getHost();
+        String host = uri.getHost();
 
-		String[] segments = host.split("/");
+        String[] segments = host.split("/");
 
-		String newHost = segments[0];
-
-
-		List<List<ServiceInstance>> instancesList = getInstancesList();
-
-		for (List<ServiceInstance> li: instancesList){
-			ServiceInstance serviceInstance = li.get(0);
-
-			if (newHost.equals(serviceInstance.getServiceId())){
-				ServiceEndpoint endpoint = new ServiceEndpoint();
-				endpoint.setServiceId(serviceInstance.getServiceId());
-				endpoint.setHost(serviceInstance.getHost());
-				endpoint.setPort(serviceInstance.getPort());
-
-				return endpoint;
-			}
-		}
-		return null;
-	}
+        String newHost = segments[0];
 
 
-	private List<List<ServiceInstance>> getInstancesList() {
-		List<List<ServiceInstance>> instances = new ArrayList<>();;
-		List<String> services = discoveryClient.getServices();
-		services.forEach(s -> {
-			List<ServiceInstance> list = discoveryClient.getInstances(s);
-			instances.add(list);
-		});
-		return instances;
-	}
+        List<List<ServiceInstance>> instancesList = getInstancesList();
+
+        for (List<ServiceInstance> li : instancesList) {
+            ServiceInstance serviceInstance = li.get(0);
+
+            if (newHost.equals(serviceInstance.getServiceId())) {
+                ServiceEndpoint endpoint = new ServiceEndpoint();
+                endpoint.setServiceId(serviceInstance.getServiceId());
+                endpoint.setHost(serviceInstance.getHost());
+                endpoint.setPort(serviceInstance.getPort());
+
+                return endpoint;
+            }
+        }
+        return null;
+    }
 
 
-	@Data
-	@AllArgsConstructor
-	@NoArgsConstructor
-	public class ServiceEndpoint{
-		private String serviceId;
+    private List<List<ServiceInstance>> getInstancesList() {
+        List<List<ServiceInstance>> instances = new ArrayList<>();
+        ;
+        List<String> services = discoveryClient.getServices();
+        services.forEach(s -> {
+            List<ServiceInstance> list = discoveryClient.getInstances(s);
+            instances.add(list);
+        });
+        return instances;
+    }
 
-		private String host;
 
-		private int port;
-	}
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class ServiceEndpoint {
+        private String serviceId;
+
+        private String host;
+
+        private int port;
+    }
 
 }

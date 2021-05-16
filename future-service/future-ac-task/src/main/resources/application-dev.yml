@@ -1,28 +1,28 @@
 #服务器端口
 server:
-   port: 8088
+  port: 8088
 #数据源配置
 spring:
-   application:
-     name: future-ac-task
+  application:
+    name: future-ac-task
 
-   redis:
-##redis 单机环境配置
-      host: 172.10.17.189
-      port: 6379
-      password: zw.123
-      database: 8
-      ssl: false
-      timeout: 1000
+  redis:
+    ##redis 单机环境配置
+    host: 172.10.17.189
+    port: 6379
+    password: zw.123
+    database: 8
+    ssl: false
+    timeout: 1000
 
-   datasource:
-      url: jdbc:mysql://172.10.17.189:3306/future_task_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
-      username: root
-      password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
+  datasource:
+    url: jdbc:mysql://172.10.17.189:3306/future_task_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
 
-   mybatis:
-      mapper-locations: classpath:mapper/*.xml
+  mybatis:
+    mapper-locations: classpath:mapper/*.xml
 
 
 

@@ -8,15 +8,15 @@
     如果不知道maven本地仓库地址，可以使用EveryThing工具全局搜索mysql-connector-java，找到jar包位置；
     也可以手动下载一个jar放在指定位置，进行引用。
     -->
-<!--
-    <classPathEntry location="F:/prijects/files/mysql-connector-java-5.1.47.jar"/>
--->
+    <!--
+        <classPathEntry location="F:/prijects/files/mysql-connector-java-5.1.47.jar"/>
+    -->
 
     <context id="futureTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释,true：是,false:否 -->
             <property name="suppressAllComments" value="true"/>
-            <property name="supperDate"  value="true"/>
+            <property name="supperDate" value="true"/>
         </commentGenerator>
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
@@ -62,6 +62,6 @@
         <table tableName="t_ac_task_data" domainObjectName="TaskDataEntity"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"> </table>
+               selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

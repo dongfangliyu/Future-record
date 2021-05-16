@@ -30,28 +30,28 @@ import java.util.List;
 @Data
 public class GatewayRoute {
 
-	/**
-	 * 路由的id
-	 */
-	private String id;
+    /**
+     * 路由的id
+     */
+    private String id;
 
-	/**
-	 * 路由断言集合配置
-	 */
-	private List<GatewayPredicate> predicates = new ArrayList<>();
+    /**
+     * 路由断言集合配置
+     */
+    private List<GatewayPredicate> predicates = new ArrayList<>();
 
-	/**
-	 * 路由过滤器集合配置
-	 */
-	private List<GatewayFilter> filters = new ArrayList<>();
+    /**
+     * 路由过滤器集合配置
+     */
+    private List<GatewayFilter> filters = new ArrayList<>();
 
-	/**
-	 * 路由规则转发的目标uri
-	 */
-	private String uri;
+    /**
+     * 路由规则转发的目标uri
+     */
+    private String uri;
 
-	/**
-	 * 路由执行的顺序
-	 */
-	private int order = 0;
+    /**
+     * 路由执行的顺序
+     */
+    private int order = 0;
 }

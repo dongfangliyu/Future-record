@@ -54,11 +54,11 @@ public class VerificationController {
 
 
     @ApiOperation(value = "验证", notes = "验证")
-    @RequestMapping(value = "/verification", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/verification", method = {RequestMethod.GET, RequestMethod.POST})
     public CommonResponse<SlideCheckResult> verification(String uuid, String x, String y) {
         SlideCheckResultVO check = captchaService.check(uuid, Integer.valueOf(x), Integer.valueOf(y));
 
-       return CommonResponse.responseOf( convert2CheckResultResponse(check));
+        return CommonResponse.responseOf(convert2CheckResultResponse(check));
     }
 
     private SlideCheckResult convert2CheckResultResponse(SlideCheckResultVO check) {

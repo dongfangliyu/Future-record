@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface MinioService {
     /**
-     *   上传
+     * 上传
+     *
      * @param request
      * @return
      */
@@ -19,6 +20,7 @@ public interface MinioService {
 
     /**
      * 图片预览
+     *
      * @param key
      * @param response
      */

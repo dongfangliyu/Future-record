@@ -4,9 +4,9 @@ import io.minio.PutObjectOptions;
 import lombok.Data;
 
 /**
- *  @Description TODO
- *  @Author Yajun.Zhang
- *  @Date 2020/5/2 21:49
+ * @Description TODO
+ * @Author Yajun.Zhang
+ * @Date 2020/5/2 21:49
  */
 @Data
 public class UploadMateData {

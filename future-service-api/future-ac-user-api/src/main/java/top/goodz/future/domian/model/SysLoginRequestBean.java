@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- *  @Description
- *  @Author Yajun.Zhang
- *  @Date 2020/9/6 0:37
+ * @Description
+ * @Author Yajun.Zhang
+ * @Date 2020/9/6 0:37
  */
 @Data
 @NoArgsConstructor

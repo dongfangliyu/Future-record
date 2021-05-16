@@ -35,10 +35,10 @@ import java.util.List;
 @ConfigurationProperties("future.secure")
 public class AuthProperties {
 
-	/**
-	 * 放行API集合
-	 */
-	private  List<String> skipUrlList = new ArrayList<>();
+    /**
+     * 放行API集合
+     */
+    private List<String> skipUrlList = new ArrayList<>();
 
 
 }

@@ -21,7 +21,7 @@ public class S3Prooerties {
 
     private String accessKey;
 
-    private  String secretKey;
+    private String secretKey;
 
 
 }

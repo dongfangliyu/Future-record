@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
  * @author zhangyajun
  */
 @Component
-public  class HostFilter extends AbstractRouteFilter {
+public class HostFilter extends AbstractRouteFilter {
 
     private static final Logger log = LoggerFactory.getLogger(HostFilter.class);
 
@@ -32,7 +32,7 @@ public  class HostFilter extends AbstractRouteFilter {
     @Override
     URI buildUri(ServerHttpRequest request, Route route) {
 
-        if (!route.getId().contains("host")){
+        if (!route.getId().contains("host")) {
             return null;
         }
 
@@ -45,13 +45,13 @@ public  class HostFilter extends AbstractRouteFilter {
 
         String[] segments = oldUriHost.split("\\.");
 
-        int index =   getKeyWordIndex(segments,KEY_WORD);
+        int index = getKeyWordIndex(segments, KEY_WORD);
 
-         if (index <= 0){
-             return null;
-          }
+        if (index <= 0) {
+            return null;
+        }
 
-        String newHost = segments[index -1];
+        String newHost = segments[index - 1];
 
         String newPort = "80";
         URI uri = null;
@@ -67,16 +67,16 @@ public  class HostFilter extends AbstractRouteFilter {
     }
 
     private int getKeyWordIndex(String[] segments, String keyWord) {
-        for (int i=0; i<segments.length;i++){
-            if (KEY_WORD.equals(segments[i])){
-                    return i;
+        for (int i = 0; i < segments.length; i++) {
+            if (KEY_WORD.equals(segments[i])) {
+                return i;
             }
         }
         return -1;
     }
 
     @Override
-    public int getOrder(){
+    public int getOrder() {
         return 0;
     }
 }

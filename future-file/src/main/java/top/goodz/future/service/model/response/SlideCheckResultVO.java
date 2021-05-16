@@ -10,9 +10,9 @@ package top.goodz.future.service.model.response;/**
 import lombok.Data;
 
 /**
- *  @Description TODO
- *  @Author Yajun.Zhang
- *  @Date 2021/4/22 18:13
+ * @Description TODO
+ * @Author Yajun.Zhang
+ * @Date 2021/4/22 18:13
  */
 @Data
 public class SlideCheckResultVO {

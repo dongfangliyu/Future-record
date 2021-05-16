@@ -29,7 +29,7 @@ public class FileRepositoryImpl implements FileRepository {
         InputStream inputStream = null;
         ByteArrayOutputStream byteArrayOutputStream = null;
         try {
-            inputStream = minioClient.getObject(key.substring(0,key.indexOf("-")), key);
+            inputStream = minioClient.getObject(key.substring(0, key.indexOf("-")), key);
 
             int b = -1;
             byteArrayOutputStream = new ByteArrayOutputStream();

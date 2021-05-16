@@ -37,7 +37,7 @@ public class AutoCreateDataRepositoryImpl implements AutoCreateDataRepository {
 
     @Override
     public void updateAge(int minAge, int maxAge) {
-        taskDataEntityMapper.updateAge(minAge,maxAge);
+        taskDataEntityMapper.updateAge(minAge, maxAge);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class AutoCreateDataRepositoryImpl implements AutoCreateDataRepository {
         TaskDataEntity entity = new TaskDataEntity();
         entity.setName(req.getUserName());
         entity.setAge(req.getAge());
-        entity.setUserNo("U_" + UUID.randomUUID().toString().replaceAll("-",""));
+        entity.setUserNo("U_" + UUID.randomUUID().toString().replaceAll("-", ""));
         entity.setEmail(req.getEmail());
         entity.setPhone(req.getPhone());
         entity.setIdCard(req.getIdCard());

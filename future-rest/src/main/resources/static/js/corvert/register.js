@@ -1,4 +1,3 @@
-
 var PHI = (1 + Math.sqrt(5)) / 2, // 1.618033988749895
     maxGeneration = (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) ? 5 : 6,
     frameDuration = 1000 / 60,
@@ -52,7 +51,7 @@ function Shape(gen, x, y, size, rotation) {
     this.init();
 }
 
-Shape.prototype.init = function() {
+Shape.prototype.init = function () {
     if (this.generation < maxGeneration) {
         var gen = this.generation + 1,
             newSize = this.size * sizeVariation,
@@ -71,7 +70,7 @@ Shape.prototype.init = function() {
     this.draw();
 };
 
-Shape.prototype.draw = function() {
+Shape.prototype.draw = function () {
     ctx.beginPath();
     ctx.moveTo(this.start.x, this.start.y);
     ctx.lineTo(this.end.x_1, this.end.y_1);
@@ -144,7 +143,7 @@ function changeColor() {
 ctx.globalCompositeOperation = "lighter";
 animate();
 
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
     canvasWidth = document.documentElement.clientWidth;
     canvasHeight = document.documentElement.clientHeight;
 

@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: future-gateway
@@ -16,10 +15,10 @@ spring:
         server-addr: 172.10.17.189:8848
         file-extension: yaml
         namespace: 21c528e9-c1e6-4384-b680-231490f60550
-#        ext-config[0]:
-#          data-id: future-gateway.yaml
-#          group: DEFAULT_GROUP
-#          refresh: true
+      #        ext-config[0]:
+      #          data-id: future-gateway.yaml
+      #          group: DEFAULT_GROUP
+      #          refresh: true
       discovery:
         server-addr: 172.10.17.189:8848
         namespace: 21c528e9-c1e6-4384-b680-231490f60550

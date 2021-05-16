@@ -29,13 +29,13 @@ import java.util.Map;
 @Data
 public class GatewayFilter {
 
-	/**
-	 * 过滤器对应的Name
-	 */
-	private String name;
+    /**
+     * 过滤器对应的Name
+     */
+    private String name;
 
-	/**
-	 * 对应的路由规则
-	 */
-	private Map<String, String> args = new LinkedHashMap<>();
+    /**
+     * 对应的路由规则
+     */
+    private Map<String, String> args = new LinkedHashMap<>();
 }

@@ -20,10 +20,10 @@ public class RegisterRepository {
     private RedisTemplate redisTemplate;
 
     public void setRedisKey(Map map) {
-        if (map.isEmpty()){
+        if (map.isEmpty()) {
             ErrorCodeEnum.ERROR.throwEcxeption();
         }
-        String zyj = (String)map.get("zyj");
-        redisTemplate.opsForValue().set("zyj",zyj);
+        String zyj = (String) map.get("zyj");
+        redisTemplate.opsForValue().set("zyj", zyj);
     }
 }

@@ -41,46 +41,46 @@ import java.util.List;
 @RequestMapping("/route")
 public class RouteEndpoint {
 
-	private DynamicRouteService dynamicRouteService;
-	private RouteDefinitionLocator routeDefinitionLocator;
+    private DynamicRouteService dynamicRouteService;
+    private RouteDefinitionLocator routeDefinitionLocator;
 
-	@GetMapping("/list")
-	public Flux<RouteDefinition> list() {
-		return routeDefinitionLocator.getRouteDefinitions();
-	}
+    @GetMapping("/list")
+    public Flux<RouteDefinition> list() {
+        return routeDefinitionLocator.getRouteDefinitions();
+    }
 
-	@PostMapping("/save")
-	public String save(@RequestBody GatewayRoute gatewayRoute) {
-		RouteDefinition definition = assembleRouteDefinition(gatewayRoute);
-		return this.dynamicRouteService.save(definition);
-	}
+    @PostMapping("/save")
+    public String save(@RequestBody GatewayRoute gatewayRoute) {
+        RouteDefinition definition = assembleRouteDefinition(gatewayRoute);
+        return this.dynamicRouteService.save(definition);
+    }
 
-	@PostMapping("/update")
-	public String update(@RequestBody GatewayRoute gatewayRoute) {
-		RouteDefinition definition = assembleRouteDefinition(gatewayRoute);
-		return this.dynamicRouteService.update(definition);
-	}
+    @PostMapping("/update")
+    public String update(@RequestBody GatewayRoute gatewayRoute) {
+        RouteDefinition definition = assembleRouteDefinition(gatewayRoute);
+        return this.dynamicRouteService.update(definition);
+    }
 
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable String id) {
-		return this.dynamicRouteService.delete(id);
-	}
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable String id) {
+        return this.dynamicRouteService.delete(id);
+    }
 
-	private RouteDefinition assembleRouteDefinition(GatewayRoute gatewayRoute) {
-		RouteDefinition definition = new RouteDefinition();
-		List<PredicateDefinition> pdList = new ArrayList<>();
-		definition.setId(gatewayRoute.getId());
-		List<GatewayPredicate> gatewayPredicateDefinitionList = gatewayRoute.getPredicates();
-		for (GatewayPredicate gpDefinition : gatewayPredicateDefinitionList) {
-			PredicateDefinition predicate = new PredicateDefinition();
-			predicate.setArgs(gpDefinition.getArgs());
-			predicate.setName(gpDefinition.getName());
-			pdList.add(predicate);
-		}
-		definition.setPredicates(pdList);
-		URI uri = UriComponentsBuilder.fromHttpUrl(gatewayRoute.getUri()).build().toUri();
-		definition.setUri(uri);
-		return definition;
-	}
+    private RouteDefinition assembleRouteDefinition(GatewayRoute gatewayRoute) {
+        RouteDefinition definition = new RouteDefinition();
+        List<PredicateDefinition> pdList = new ArrayList<>();
+        definition.setId(gatewayRoute.getId());
+        List<GatewayPredicate> gatewayPredicateDefinitionList = gatewayRoute.getPredicates();
+        for (GatewayPredicate gpDefinition : gatewayPredicateDefinitionList) {
+            PredicateDefinition predicate = new PredicateDefinition();
+            predicate.setArgs(gpDefinition.getArgs());
+            predicate.setName(gpDefinition.getName());
+            pdList.add(predicate);
+        }
+        definition.setPredicates(pdList);
+        URI uri = UriComponentsBuilder.fromHttpUrl(gatewayRoute.getUri()).build().toUri();
+        definition.setUri(uri);
+        return definition;
+    }
 
 }

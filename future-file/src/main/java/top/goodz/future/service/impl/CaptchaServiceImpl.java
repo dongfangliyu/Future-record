@@ -117,7 +117,7 @@ public class CaptchaServiceImpl implements CaptchaService {
             return resultVO;
         }
 
-        if (!(slideAuthEntity.getStatus().equals(CaptchaAuthStatus.AUTH.getCode()))  || System.currentTimeMillis() > slideAuthEntity.getExpireTimestemp() ){
+        if (!(slideAuthEntity.getStatus().equals(CaptchaAuthStatus.AUTH.getCode())) || System.currentTimeMillis() > slideAuthEntity.getExpireTimestemp()) {
             resultVO.setResult(false);
             return resultVO;
         }

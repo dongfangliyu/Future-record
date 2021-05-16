@@ -5,9 +5,9 @@ import lombok.Data;
 import java.io.InputStream;
 
 /**
- *  @Description TODO
- *  @Author Yajun.Zhang
- *  @Date 2020/5/2 21:23
+ * @Description TODO
+ * @Author Yajun.Zhang
+ * @Date 2020/5/2 21:23
  */
 @Data
 public class UploadObjectRequest {
@@ -17,7 +17,7 @@ public class UploadObjectRequest {
 
     private String key;
 
-    private InputStream  inputStream;
+    private InputStream inputStream;
 
     private UploadMateData mateDate;
 

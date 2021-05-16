@@ -26,7 +26,6 @@ public class XxlJobConfig {
     private String appname;
 
 
-
     @Value("${xxl.job.executor.ip}")
     private String ip;
 

@@ -12,7 +12,7 @@ import java.io.*;
 public class FileUtils {
 
     public static byte[] toByteArray(InputStream input) throws IOException {
-        Assert.notNull(input,"input can not be null");
+        Assert.notNull(input, "input can not be null");
         byte[] buffer = new byte[input.available()];
         input.read(buffer);
         return buffer;

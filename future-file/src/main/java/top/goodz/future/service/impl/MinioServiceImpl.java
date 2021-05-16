@@ -47,7 +47,7 @@ public class MinioServiceImpl implements MinioService {
         } catch (Exception e) {
             //catch (NoSuchAlgorithmException | InvalidKeyException | InternalException | IOException | XmlParserException e) {
             e.printStackTrace();
-           throw new ServiceException(ExceptionCode.DEF_ERROR);
+            throw new ServiceException(ExceptionCode.DEF_ERROR);
         }
 
         return request.getKey();
@@ -61,17 +61,17 @@ public class MinioServiceImpl implements MinioService {
         ServletOutputStream outputStream = null;
         try {
             String aCase = key.substring(key.lastIndexOf("-") + 1, key.length()).toLowerCase();
-            if("jpg,jepg,gif,png".contains(aCase)){//图片类型
-                response.setContentType("image/"+aCase + ";charset=utf-8");
-            }else if("pdf".contains(aCase)){//pdf类型
-                response.setContentType("application/" +aCase );
-            }else if ("mp4".contains(aCase)){//MP4
+            if ("jpg,jepg,gif,png".contains(aCase)) {//图片类型
+                response.setContentType("image/" + aCase + ";charset=utf-8");
+            } else if ("pdf".contains(aCase)) {//pdf类型
+                response.setContentType("application/" + aCase);
+            } else if ("mp4".contains(aCase)) {//MP4
                 response.setContentType("video/mp4");
-             }else {//自动判断下载文件类型
+            } else {//自动判断下载文件类型
 
             }
 
-            inputStream = minioClient.getObject( key.substring(0,key.indexOf("-")), key);
+            inputStream = minioClient.getObject(key.substring(0, key.indexOf("-")), key);
             outputStream = response.getOutputStream();
             //定义缓冲区
             byte[] buf = new byte[1024 * 1024 * 50];

@@ -22,14 +22,14 @@ import java.util.HashMap;
 public class RegisterController {
 
     @Resource
-    private RegisterProcessService  registerProcessService;
+    private RegisterProcessService registerProcessService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ApiOperation("注册")
     public CommonResponse register() {
 
         HashMap<Object, String> map = new HashMap<>();
-        map.put("zyj","我是开发工程师张亚军；");
+        map.put("zyj", "我是开发工程师张亚军；");
         registerProcessService.setRedisKey(map);
         return CommonResponse.isSuccess();
     }

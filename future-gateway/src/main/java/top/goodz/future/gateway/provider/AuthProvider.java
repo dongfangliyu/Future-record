@@ -26,32 +26,32 @@ import java.util.List;
  */
 public class AuthProvider {
 
-	public static String TARGET = "/**";
-	public static String REPLACEMENT = "";
-	public static String OLAP_AUTH_KEY = "olap-Auth";
-	public static String AUTH_KEY = "Authorization";
-	private static List<String> defaultSkipUrl = new ArrayList<>();
+    public static String TARGET = "/**";
+    public static String REPLACEMENT = "";
+    public static String OLAP_AUTH_KEY = "olap-Auth";
+    public static String AUTH_KEY = "Authorization";
+    private static List<String> defaultSkipUrl = new ArrayList<>();
 
-	static {
-		defaultSkipUrl.add("/api/captcha/**");
-		defaultSkipUrl.add("/api/exchange/sgin_in");
-		defaultSkipUrl.add("/swagger-ui.html");
-		defaultSkipUrl.add("/test/**");
-		defaultSkipUrl.add("/actuator/**");
+    static {
+        defaultSkipUrl.add("/api/captcha/**");
+        defaultSkipUrl.add("/api/exchange/sgin_in");
+        defaultSkipUrl.add("/swagger-ui.html");
+        defaultSkipUrl.add("/test/**");
+        defaultSkipUrl.add("/actuator/**");
 
-		defaultSkipUrl.add("/css/**");
-		defaultSkipUrl.add("/js/**");
-		defaultSkipUrl.add("/ruoyi/**");
-		defaultSkipUrl.add("/ajax/**");
-	}
+        defaultSkipUrl.add("/css/**");
+        defaultSkipUrl.add("/js/**");
+        defaultSkipUrl.add("/ruoyi/**");
+        defaultSkipUrl.add("/ajax/**");
+    }
 
-	/**
-	 * 默认无需鉴权的API
-	 */
-	public static List<String> getDefaultSkipUrl() {
+    /**
+     * 默认无需鉴权的API
+     */
+    public static List<String> getDefaultSkipUrl() {
 
 
-		return defaultSkipUrl;
-	}
+        return defaultSkipUrl;
+    }
 
 }

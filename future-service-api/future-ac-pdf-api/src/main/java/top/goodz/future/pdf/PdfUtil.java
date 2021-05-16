@@ -24,98 +24,87 @@ import java.util.Map;
  * 生成pdf
  *
  * @author yajun.zhang
- *
  */
 public class PdfUtil {
 
-	@Autowired
-	private IFutureFileClient  futureFileClient;
+    @Autowired
+    private IFutureFileClient futureFileClient;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PdfUtil.class);
-	private static final String USERDIR = "user.dir";
-	private static final String SLASH = "/";
+    private static final Logger LOGGER = LoggerFactory.getLogger(PdfUtil.class);
+    private static final String USERDIR = "user.dir";
+    private static final String SLASH = "/";
 
-	/**
-	 * @Description: 生成pdf前，先生成html
-	 * @param savePath							保存路径
-	 * @param templateName						模板名称
-	 * @param variables							模板需要的参数
-	 * @throws IOException
-	 * @throws TemplateException
-	 * @throws @author
-	 *             zhuliang @createTime： 2018年1月26日 上午11:48:49
-	 */
-	public static boolean generator(String savePath, String templateName, Map<String, Object> variables)
-			throws Exception {
-		// 生成html
-		String htmlStr = HtmlGenerator.htmlGenerate(templateName, variables);
-		// System.out.println(htmlStr);
-		//给 数字〇  加宋体的样式
-		htmlStr = htmlStr.replaceAll("二〇", "<span class='sim'>二〇</span>");
-		OutputStream out = new FileOutputStream(savePath);
-		return PdfGenerator.generate(htmlStr, out);
-	}
+    /**
+     * @param savePath     保存路径
+     * @param templateName 模板名称
+     * @param variables    模板需要的参数
+     * @throws IOException
+     * @throws TemplateException
+     * @throws @author           zhuliang @createTime： 2018年1月26日 上午11:48:49
+     * @Description: 生成pdf前，先生成html
+     */
+    public static boolean generator(String savePath, String templateName, Map<String, Object> variables)
+            throws Exception {
+        // 生成html
+        String htmlStr = HtmlGenerator.htmlGenerate(templateName, variables);
+        // System.out.println(htmlStr);
+        //给 数字〇  加宋体的样式
+        htmlStr = htmlStr.replaceAll("二〇", "<span class='sim'>二〇</span>");
+        OutputStream out = new FileOutputStream(savePath);
+        return PdfGenerator.generate(htmlStr, out);
+    }
 
-	/**
-	 * @Description: 生成pdf前，先生成html (从FastDfs 下载ftl文件 然后在 读取 ftl )
-	 * @param savePath
-	 *            保存路径
-	 * @param variables
-	 *            模板需要的参数
-	 * @param filePath
-	 *            文件路径
-	 * @throws IOException
-	 * @throws TemplateException
-	 * @throws @author
-	 *             zhangding @createTime： 2018年7月05日 上午11:48:49
-	 */
-	public static boolean generatorFastDfs(String savePath, Map<String, Object> variables, String filePath)
-			throws Exception {
-		// 生成html
-		String htmlStr = HtmlGenerator.htmlGenerateFastDfs(variables, filePath);
-		OutputStream out = new FileOutputStream(savePath);
-		return PdfGenerator.generate(htmlStr, out);
-	}
+    /**
+     * @param savePath  保存路径
+     * @param variables 模板需要的参数
+     * @param filePath  文件路径
+     * @throws IOException
+     * @throws TemplateException
+     * @throws @author           zhangding @createTime： 2018年7月05日 上午11:48:49
+     * @Description: 生成pdf前，先生成html (从FastDfs 下载ftl文件 然后在 读取 ftl )
+     */
+    public static boolean generatorFastDfs(String savePath, Map<String, Object> variables, String filePath)
+            throws Exception {
+        // 生成html
+        String htmlStr = HtmlGenerator.htmlGenerateFastDfs(variables, filePath);
+        OutputStream out = new FileOutputStream(savePath);
+        return PdfGenerator.generate(htmlStr, out);
+    }
 
-	public static boolean generatorHtml(String savePath, String htmlStr, Map<String, Object> variables)
-			throws Exception {
-		// 生成html
-		OutputStream out = new FileOutputStream(savePath);
-		return PdfGenerator.generate(htmlStr, out);
-	}
+    public static boolean generatorHtml(String savePath, String htmlStr, Map<String, Object> variables)
+            throws Exception {
+        // 生成html
+        OutputStream out = new FileOutputStream(savePath);
+        return PdfGenerator.generate(htmlStr, out);
+    }
 
-	/**
-	 * @Description: 生成pdf通知书并上传到minio
-	 * @param fileName
-	 *            文件名
-	 * @param templateName
-	 *            ftl模版名称
-	 * @param paramMap
-	 *            ftl需要参数
-	 * @param arbitralInfoId
-	 *            案件id
-	 * @return
-	 * @throws @author
-	 *             zhuliang @createTime： 2017年12月28日 下午3:25:44
-	 */
-	public static String uploadPdf(String fileName, String templateName, Map<String, Object> paramMap,
+    /**
+     * @param fileName       文件名
+     * @param templateName   ftl模版名称
+     * @param paramMap       ftl需要参数
+     * @param arbitralInfoId 案件id
+     * @return
+     * @throws @author zhuliang @createTime： 2017年12月28日 下午3:25:44
+     * @Description: 生成pdf通知书并上传到minio
+     */
+    public static String uploadPdf(String fileName, String templateName, Map<String, Object> paramMap,
                                    String arbitralInfoId) {
-		// 项目根目录
-		String systemPath = System.getProperty(USERDIR) + SLASH;
-		// pdf临时保存路径
-		String directoryName = systemPath + "pdf" + SLASH + arbitralInfoId + SLASH + DateUtil.getCurrentTime(DateUtil.STYLE_3) + SLASH; // 临时保存路径
-		// 找到文件夹目录，如不存在就创建
-		File directory = new File(directoryName);
-		if (!directory.exists()) {
-			directory.mkdirs();
-		}
-		File deleteFile = null;
-		try {
-			// 生成PDF成功
-			if (PdfUtil.generator(directoryName + fileName, templateName, paramMap)) {
-				// 找到生成好的PDF文件
-				FileInputStream inputStream = new FileInputStream(directoryName + fileName);
-				// 上传至fastDFS文件服务器
+        // 项目根目录
+        String systemPath = System.getProperty(USERDIR) + SLASH;
+        // pdf临时保存路径
+        String directoryName = systemPath + "pdf" + SLASH + arbitralInfoId + SLASH + DateUtil.getCurrentTime(DateUtil.STYLE_3) + SLASH; // 临时保存路径
+        // 找到文件夹目录，如不存在就创建
+        File directory = new File(directoryName);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File deleteFile = null;
+        try {
+            // 生成PDF成功
+            if (PdfUtil.generator(directoryName + fileName, templateName, paramMap)) {
+                // 找到生成好的PDF文件
+                FileInputStream inputStream = new FileInputStream(directoryName + fileName);
+                // 上传至fastDFS文件服务器
 //				String filePath = FastdfsFileUtil.fastDFSClient.upload(inputStream, fileName, null);
 //				// 关闭流
 //				inputStream.close();
@@ -124,64 +113,59 @@ public class PdfUtil {
 //				if (ChkUtil.isNotEmpty(filePath)) {
 //					return filePath;
 //				}
-				MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
-				// 上传到服务器
-				CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF,file);
-				// 关闭流
-				inputStream.close();
-				deleteFile = new File(directoryName + fileName);
-				// 上传成功 返回路径
-				if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
-					return filePathResponse.getData();
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.error("生成pdf异常" + e.getMessage() + "：{}" + e);
-		} finally {
-			if (ChkUtil.isNotEmpty(deleteFile) && deleteFile.exists()) {
-				deleteFile.delete();
-			}
-			// 删除目录
-			if (ChkUtil.isNotEmpty(directory) && directory.exists()) {
-				directory.deleteOnExit();
-			}
-		}
-		return "";
-	}
+                MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
+                // 上传到服务器
+                CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF, file);
+                // 关闭流
+                inputStream.close();
+                deleteFile = new File(directoryName + fileName);
+                // 上传成功 返回路径
+                if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
+                    return filePathResponse.getData();
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("生成pdf异常" + e.getMessage() + "：{}" + e);
+        } finally {
+            if (ChkUtil.isNotEmpty(deleteFile) && deleteFile.exists()) {
+                deleteFile.delete();
+            }
+            // 删除目录
+            if (ChkUtil.isNotEmpty(directory) && directory.exists()) {
+                directory.deleteOnExit();
+            }
+        }
+        return "";
+    }
 
-	/**
-	 * @Description: 生成pdf通知书并上传到FastDfs (FastDfs 下载 ftl文件然后 生成 pdf)
-	 * @param fileName
-	 *            文件名
-	 * @param paramMap
-	 *            ftl需要参数
-	 * @param arbitralInfoId
-	 *            案件id
-	 * @param filePath
-	 *            上传成功返回 路径
-	 * @return
-	 * @throws @author
-	 *             Yajun.Zhang
-	 */
-	public static String uploadPdfFastDfs(String fileName, Map<String, Object> paramMap, String arbitralInfoId,
+    /**
+     * @param fileName       文件名
+     * @param paramMap       ftl需要参数
+     * @param arbitralInfoId 案件id
+     * @param filePath       上传成功返回 路径
+     * @return
+     * @throws @author Yajun.Zhang
+     * @Description: 生成pdf通知书并上传到FastDfs (FastDfs 下载 ftl文件然后 生成 pdf)
+     */
+    public static String uploadPdfFastDfs(String fileName, Map<String, Object> paramMap, String arbitralInfoId,
                                           String filePath) {
-		// 项目根目录
-		String systemPath = System.getProperty(USERDIR) + SLASH;
-		// pdf临时保存路径
-		String directoryName = systemPath + "pdf" + SLASH + arbitralInfoId + SLASH
-				+ DateUtil.getCurrentTime(DateUtil.STYLE_3) + SLASH; // 临时保存路径
-		// 找到文件夹目录，如不存在就创建
-		File directory = new File(directoryName);
-		if (!directory.exists()) {
-			directory.mkdirs();
-		}
-		File deleteFile = null;
-		try {
-			// 生成PDF
-			if (PdfUtil.generatorFastDfs(directoryName + fileName, paramMap, filePath)) {
-				// 找到生成好的PDF文件
-				FileInputStream inputStream = new FileInputStream(directoryName + fileName);
-				// 上传至FTP
+        // 项目根目录
+        String systemPath = System.getProperty(USERDIR) + SLASH;
+        // pdf临时保存路径
+        String directoryName = systemPath + "pdf" + SLASH + arbitralInfoId + SLASH
+                + DateUtil.getCurrentTime(DateUtil.STYLE_3) + SLASH; // 临时保存路径
+        // 找到文件夹目录，如不存在就创建
+        File directory = new File(directoryName);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File deleteFile = null;
+        try {
+            // 生成PDF
+            if (PdfUtil.generatorFastDfs(directoryName + fileName, paramMap, filePath)) {
+                // 找到生成好的PDF文件
+                FileInputStream inputStream = new FileInputStream(directoryName + fileName);
+                // 上传至FTP
 //				String filePathFast = FastDFSUtil.fastDFSClient.upload(inputStream, fileName, null);
 //				// 关闭流
 //				inputStream.close();
@@ -190,117 +174,110 @@ public class PdfUtil {
 //				if (ChkUtil.isNotEmpty(filePathFast)) {
 //					return filePathFast;
 //				}
-				MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
-				// 上传到服务器
-				CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF,file);
-				// 关闭流
-				inputStream.close();
-				deleteFile = new File(directoryName + fileName);
-				// 上传成功 返回路径
-				if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
-					return filePathResponse.getData();
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.error("生成pdf异常:{}", e.getMessage() + "：{}", e);
-		} finally {
-			if (ChkUtil.isNotEmpty(deleteFile) && deleteFile.exists()) {
-				deleteFile.delete();
-			}
-			// 删除目录
-			if (ChkUtil.isNotEmpty(directory) && directory.exists()) {
-				directory.deleteOnExit();
-			}
-		}
-		return "";
-	}
+                MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
+                // 上传到服务器
+                CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF, file);
+                // 关闭流
+                inputStream.close();
+                deleteFile = new File(directoryName + fileName);
+                // 上传成功 返回路径
+                if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
+                    return filePathResponse.getData();
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("生成pdf异常:{}", e.getMessage() + "：{}", e);
+        } finally {
+            if (ChkUtil.isNotEmpty(deleteFile) && deleteFile.exists()) {
+                deleteFile.delete();
+            }
+            // 删除目录
+            if (ChkUtil.isNotEmpty(directory) && directory.exists()) {
+                directory.deleteOnExit();
+            }
+        }
+        return "";
+    }
 
-	/**
-	 * @Description: 生成pdf 上传到 ftp上
-	 * @param fileName
-	 * @param htmlStr
-	 * @param paramMap
-	 * @param arbitralInfoId
-	 * @return
-	 * @throws @author
-	 *             Yajun.Zhang
-	 */
-	public  String uploadPdfHtml(String fileName, String htmlStr, Map<String, Object> paramMap,
-                                       String arbitralInfoId) {
-		// 项目根目录
-		String systemPath = System.getProperty(USERDIR) + SLASH;
-		// pdf临时保存路径
-		String directoryName = systemPath + "pdf" + SLASH; // 临时保存路径
-		// 找到文件夹目录，如不存在就创建
-		File directory = new File(directoryName);
-		if (!directory.exists()) {
-			directory.mkdirs();
-		}
-		File deleteFile = null;
-		try {
-			// 生成PDF
-			if (PdfUtil.generatorHtml(directoryName + fileName, htmlStr, paramMap)) {
-				// ftp保存路径
-				// 找到生成好的PDF文件
-				FileInputStream inputStream = new FileInputStream(directoryName + fileName);
-				// 上传至fastDFS文件服务器
+    /**
+     * @param fileName
+     * @param htmlStr
+     * @param paramMap
+     * @param arbitralInfoId
+     * @return
+     * @throws @author Yajun.Zhang
+     * @Description: 生成pdf 上传到 ftp上
+     */
+    public String uploadPdfHtml(String fileName, String htmlStr, Map<String, Object> paramMap,
+                                String arbitralInfoId) {
+        // 项目根目录
+        String systemPath = System.getProperty(USERDIR) + SLASH;
+        // pdf临时保存路径
+        String directoryName = systemPath + "pdf" + SLASH; // 临时保存路径
+        // 找到文件夹目录，如不存在就创建
+        File directory = new File(directoryName);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File deleteFile = null;
+        try {
+            // 生成PDF
+            if (PdfUtil.generatorHtml(directoryName + fileName, htmlStr, paramMap)) {
+                // ftp保存路径
+                // 找到生成好的PDF文件
+                FileInputStream inputStream = new FileInputStream(directoryName + fileName);
+                // 上传至fastDFS文件服务器
 //				String filePath = FastDFSUtil.fastDFSClient.upload(inputStream, fileName, null);
-				MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
-				// 上传到服务器
-				CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF,file);
-				// 关闭流
-				inputStream.close();
-				deleteFile = new File(directoryName + fileName);
-				// 上传成功 返回路径
-				if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
-					return filePathResponse.getData();
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			LOGGER.error("生成pdf异常：{}" + e);
-		} finally {
-			if (ChkUtil.isNotEmpty(deleteFile) && deleteFile.exists()) {
-				deleteFile.delete();
-			}
-			// 删除目录
-			if (ChkUtil.isNotEmpty(directory) && directory.exists()) {
-				directory.deleteOnExit();
-			}
-		}
-		return "";
-	}
+                MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
+                // 上传到服务器
+                CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF, file);
+                // 关闭流
+                inputStream.close();
+                deleteFile = new File(directoryName + fileName);
+                // 上传成功 返回路径
+                if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
+                    return filePathResponse.getData();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("生成pdf异常：{}" + e);
+        } finally {
+            if (ChkUtil.isNotEmpty(deleteFile) && deleteFile.exists()) {
+                deleteFile.delete();
+            }
+            // 删除目录
+            if (ChkUtil.isNotEmpty(directory) && directory.exists()) {
+                directory.deleteOnExit();
+            }
+        }
+        return "";
+    }
 
-	/**
-	 * @Description: 生成pdf通知书并上传到ftp pdf临时保存路径不会删除
-	 * @param fileName
-	 *            文件名
-	 * @param templateName
-	 *            ftl模版名称
-	 * @param paramMap
-	 *            ftl需要参数
-	 * @param arbitralInfoId
-	 *            案件id
-	 * @param directoryName
-	 *            pdf临时保存路径
-	 * @return
-	 * @throws @author
-	 *             Yajun.Zhang
-	 */
-	public static String uploadLocalPdf(String fileName, String templateName, Map<String, Object> paramMap,
+    /**
+     * @param fileName       文件名
+     * @param templateName   ftl模版名称
+     * @param paramMap       ftl需要参数
+     * @param arbitralInfoId 案件id
+     * @param directoryName  pdf临时保存路径
+     * @return
+     * @throws @author Yajun.Zhang
+     * @Description: 生成pdf通知书并上传到ftp pdf临时保存路径不会删除
+     */
+    public static String uploadLocalPdf(String fileName, String templateName, Map<String, Object> paramMap,
                                         String arbitralInfoId, String directoryName) {
-		try {
-			// 找到文件夹目录，如不存在就创建
-			File directory = new File(directoryName);
-			if (!directory.exists()) {
-				directory.mkdirs();
-			}
-			// 生成PDF
-			if (PdfUtil.generator(directoryName + fileName, templateName, paramMap)) {
-				// ftp保存路径
-				// 找到生成好的PDF文件
-				FileInputStream inputStream = new FileInputStream(directoryName + fileName);
-				// 上传至fastDFS
+        try {
+            // 找到文件夹目录，如不存在就创建
+            File directory = new File(directoryName);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+            // 生成PDF
+            if (PdfUtil.generator(directoryName + fileName, templateName, paramMap)) {
+                // ftp保存路径
+                // 找到生成好的PDF文件
+                FileInputStream inputStream = new FileInputStream(directoryName + fileName);
+                // 上传至fastDFS
 //				String filePath = FastDFSUtil.fastDFSClient.upload(inputStream, fileName, null);
 //				// 关闭流
 //				inputStream.close();
@@ -308,24 +285,24 @@ public class PdfUtil {
 //				if (ChkUtil.isNotEmpty(filePath)) {
 //					return filePath;
 //				}
-				MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
-				// 上传到服务器
-				CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF,file);
-				// 关闭流
-				inputStream.close();
-				// 上传成功 返回ftp路径
-				if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
-					return filePathResponse.getData();
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.error("生成pdf异常");
-			LOGGER.error(e.getMessage(), e);
-		}
-		return "";
-	}
+                MultipartFile file = new MockMultipartFile("file", fileName, "multipart/form-data", inputStream);
+                // 上传到服务器
+                CommonResponse<String> filePathResponse = MinioFileUtil.fileClient.upLoad(FutureConstant.MINIO_BUCKET_NAME_PDF, file);
+                // 关闭流
+                inputStream.close();
+                // 上传成功 返回ftp路径
+                if (ChkUtil.isNotEmpty(filePathResponse) && ChkUtil.isNotEmpty(filePathResponse.getData())) {
+                    return filePathResponse.getData();
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("生成pdf异常");
+            LOGGER.error(e.getMessage(), e);
+        }
+        return "";
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 //		String  htmlStr= "<html>"+
 //				"<head>"+
 //				"<meta charset ='utf-8'></meta>"+
@@ -374,58 +351,58 @@ public class PdfUtil {
 //				"</div>"+
 //				"</body>"+
 //				"</html>";
-		List<ArbProsecutorResponse> arbProsecutors = new ArrayList<>();
-		ArbProsecutorResponse pro = new ArbProsecutorResponse();
-		pro.setName("name");
-		pro.setSex("1");
-		pro.setType(1);
-		pro.setIdNum("idNum");
-		pro.setAdress("adress");
-		pro.setNation("nation");
-		pro.setBirthday("birthday");
-		pro.setAgentRealname("agentRealname");
-		arbProsecutors.add(pro);
-		pro = new ArbProsecutorResponse();
-		pro.setName("name");
-		pro.setCoLegalPerson("setCoLegalPerson");
-		pro.setIdNum("idnum");
-		pro.setAdress("adress");
-		pro.setType(2);
-		arbProsecutors.add(pro);
-		List<ArbDefendantResponse> arbDefendants = new ArrayList<>();
-		ArbDefendantResponse def = new ArbDefendantResponse();
-		def.setName("ZYJ");
-		def.setCoLegalPerson("123");
-		def.setIdNum("DFLY001");
-		def.setAdress("adress");
-		def.setType(2);
-		def.setAgentRealname("agentRealname");
-		arbDefendants.add(def);
-		def = new ArbDefendantResponse();
-		def.setName("zhangyajun");
-		def.setSex("1");
-		def.setType(1);
-		def.setIdNum("DFLY0001");
-		def.setAdress("中国 上海");
-		def.setNation("nation");
-		def.setBirthday("birthday");
-		def.setAgentRealname("agentRealname");
-		arbDefendants.add(def);
-		Map<String, Object> map = new HashMap<>();
-		map.put("arbNumber", "DFLY0000001");
-		map.put("arbProsecutors", arbProsecutors);
-		map.put("defendants", arbDefendants);
-		map.put("arbName", "arbName");
-		map.put("arbProsecutorName", "东方鲤鱼团队");
-		map.put("arbDefendantName", "广大用户");
-		map.put("arbApplyTime", "2020-05-05");
-		map.put("procedureName", "zhangyajun");
-		map.put("arbProsecutorArbitratorName", "张亚军");
-		map.put("arbDefendantArbitratorName", "张亚军");
-		map.put("arbArbitratorName", "张亚军");
-		map.put("arbApplication", "张亚军");
-		map.put("arbSecretaryName", "张亚军");
-		map.put("finalTime", "2020-05-05");
+        List<ArbProsecutorResponse> arbProsecutors = new ArrayList<>();
+        ArbProsecutorResponse pro = new ArbProsecutorResponse();
+        pro.setName("name");
+        pro.setSex("1");
+        pro.setType(1);
+        pro.setIdNum("idNum");
+        pro.setAdress("adress");
+        pro.setNation("nation");
+        pro.setBirthday("birthday");
+        pro.setAgentRealname("agentRealname");
+        arbProsecutors.add(pro);
+        pro = new ArbProsecutorResponse();
+        pro.setName("name");
+        pro.setCoLegalPerson("setCoLegalPerson");
+        pro.setIdNum("idnum");
+        pro.setAdress("adress");
+        pro.setType(2);
+        arbProsecutors.add(pro);
+        List<ArbDefendantResponse> arbDefendants = new ArrayList<>();
+        ArbDefendantResponse def = new ArbDefendantResponse();
+        def.setName("ZYJ");
+        def.setCoLegalPerson("123");
+        def.setIdNum("DFLY001");
+        def.setAdress("adress");
+        def.setType(2);
+        def.setAgentRealname("agentRealname");
+        arbDefendants.add(def);
+        def = new ArbDefendantResponse();
+        def.setName("zhangyajun");
+        def.setSex("1");
+        def.setType(1);
+        def.setIdNum("DFLY0001");
+        def.setAdress("中国 上海");
+        def.setNation("nation");
+        def.setBirthday("birthday");
+        def.setAgentRealname("agentRealname");
+        arbDefendants.add(def);
+        Map<String, Object> map = new HashMap<>();
+        map.put("arbNumber", "DFLY0000001");
+        map.put("arbProsecutors", arbProsecutors);
+        map.put("defendants", arbDefendants);
+        map.put("arbName", "arbName");
+        map.put("arbProsecutorName", "东方鲤鱼团队");
+        map.put("arbDefendantName", "广大用户");
+        map.put("arbApplyTime", "2020-05-05");
+        map.put("procedureName", "zhangyajun");
+        map.put("arbProsecutorArbitratorName", "张亚军");
+        map.put("arbDefendantArbitratorName", "张亚军");
+        map.put("arbArbitratorName", "张亚军");
+        map.put("arbApplication", "张亚军");
+        map.put("arbSecretaryName", "张亚军");
+        map.put("finalTime", "2020-05-05");
 
 //		Map<String, Object> variables = new HashMap<>();
 //		variables.put("arbProsecutorName", "申请人");
@@ -460,7 +437,7 @@ public class PdfUtil {
 //		PdfUtil.uploadPdf("组庭通知书（独任）—申请人.pdf", "soleProsecutorDiscussionTribunalNotice.ftl", variables, "879798987");
 //		PdfUtil.uploadPdf("组庭通知书（独任）—被申请人.pdf", "soleDefendantDiscussionTribunalNotice.ftl", variables, "879798987");
 //		PdfUtil.up("仲裁风险提示书.pdf", "arbitrationRiskReminder.ftl", variables, "879798987");
-		PdfUtil.up("项目须知.pdf", "mediationDocumentsPanel.ftl", map, "879798987");
+        PdfUtil.up("项目须知.pdf", "mediationDocumentsPanel.ftl", map, "879798987");
 //		PdfUtil.up("选定仲裁员及仲裁庭组成方式的函申请人.pdf", "selectionProsecutorArbitratorsAndArbitralTribunals.ftl", variables, "879798987");
 //		PdfUtil.up("选定仲裁员及仲裁庭组成方式的函被申请人.pdf", "selectionDefendantArbitratorsAndArbitralTribunals.ftl", variables, "879798987");
 //		PdfUtil.uploadPdf("开庭通知申请人.pdf", "openCourtNoticeProsecutor.ftl", variables, "879798987");
@@ -468,26 +445,26 @@ public class PdfUtil {
 //		PdfUtil.uploadPdf("当事人仲裁权利和义务告知书被申请人.pdf", "defendantRightsAndObligationsArbitration.ftl", variables, "879798987");
 //		PdfUtil.uploadPdf("开  庭  笔  录（简易）.pdf", "courtRecordSimple.ftl", variables, "879798987");
 //		PdfUtil.uploadPdf("开  庭  笔  录（简易 缺席审理）.pdf", "courtRecordSimpleAbsent.ftl", variables, "879798987");
-	}
+    }
 
-	public static String up(String fileName, String templateName, Map<String, Object> paramMap,
+    public static String up(String fileName, String templateName, Map<String, Object> paramMap,
                             String arbitralInfoId) {
-		try {
-			// 项目根目录
-			String systemPath = System.getProperty(USERDIR) + SLASH;
-			// pdf临时保存路径
-			String directoryName = systemPath + "pdf" + SLASH + arbitralInfoId + SLASH + DateUtil.getCurrentTime(DateUtil.STYLE_3) + SLASH; // 临时保存路径
-			// 找到文件夹目录，如不存在就创建
-			File directory = new File(directoryName);
-			if (!directory.exists()) {
-				directory.mkdirs();
-			}
-			// 生成PDF成功
-			if (PdfUtil.generator(directoryName + fileName, templateName, paramMap)) {
-			}
-		} catch (Exception e) {
-			LOGGER.error("生成pdf异常" + e.getMessage() + "：{}" + e);
-		}
-		return "";
-	}
+        try {
+            // 项目根目录
+            String systemPath = System.getProperty(USERDIR) + SLASH;
+            // pdf临时保存路径
+            String directoryName = systemPath + "pdf" + SLASH + arbitralInfoId + SLASH + DateUtil.getCurrentTime(DateUtil.STYLE_3) + SLASH; // 临时保存路径
+            // 找到文件夹目录，如不存在就创建
+            File directory = new File(directoryName);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+            // 生成PDF成功
+            if (PdfUtil.generator(directoryName + fileName, templateName, paramMap)) {
+            }
+        } catch (Exception e) {
+            LOGGER.error("生成pdf异常" + e.getMessage() + "：{}" + e);
+        }
+        return "";
+    }
 }

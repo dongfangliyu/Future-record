@@ -19,9 +19,9 @@
         <result column="sys_update_time" property="sysUpdateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_no, name, sex, phone, age, email, id_card, province, city, area_road, status, 
-    is_delete, sys_create_time, sys_update_time
-  </sql>
+        id, user_no, name, sex, phone, age, email, id_card, province, city, area_road, status,
+        is_delete, sys_create_time, sys_update_time
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
@@ -29,21 +29,21 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_ac_task_data
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete from t_ac_task_data
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <insert id="insert" parameterType="top.goodz.future.infra.entity.TaskDataEntity">
-    insert into t_ac_task_data (id, user_no, name, 
-      sex, phone, age, email, 
-      id_card, province, city, 
-      area_road, status, is_delete, 
-      sys_create_time, sys_update_time)
-    values (#{id,jdbcType=BIGINT}, #{userNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
-      #{idCard,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
-      #{areaRoad,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{isDelete,jdbcType=VARCHAR}, 
-      #{sysCreateTime,jdbcType=TIMESTAMP}, #{sysUpdateTime,jdbcType=TIMESTAMP})
-  </insert>
+        insert into t_ac_task_data (id, user_no, name,
+        sex, phone, age, email,
+        id_card, province, city,
+        area_road, status, is_delete,
+        sys_create_time, sys_update_time)
+        values (#{id,jdbcType=BIGINT}, #{userNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
+        #{idCard,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+        #{areaRoad,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{isDelete,jdbcType=VARCHAR},
+        #{sysCreateTime,jdbcType=TIMESTAMP}, #{sysUpdateTime,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" parameterType="top.goodz.future.infra.entity.TaskDataEntity">
         insert into t_ac_task_data
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -186,73 +186,73 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="top.goodz.future.infra.entity.TaskDataEntity">
-    update t_ac_task_data
-    set user_no = #{userNo,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER},
-      email = #{email,jdbcType=VARCHAR},
-      id_card = #{idCard,jdbcType=VARCHAR},
-      province = #{province,jdbcType=VARCHAR},
-      city = #{city,jdbcType=VARCHAR},
-      area_road = #{areaRoad,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      is_delete = #{isDelete,jdbcType=VARCHAR},
-      sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP},
-      sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        update t_ac_task_data
+        set user_no = #{userNo,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        age = #{age,jdbcType=INTEGER},
+        email = #{email,jdbcType=VARCHAR},
+        id_card = #{idCard,jdbcType=VARCHAR},
+        province = #{province,jdbcType=VARCHAR},
+        city = #{city,jdbcType=VARCHAR},
+        area_road = #{areaRoad,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+        sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP},
+        sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 
     <update id="updateIdCardLenght">
-    UPDATE
-     t_ac_task_data
-    SET
-    sys_update_time = NOW(),
-    is_delete = 1
-    where
-     LENGTH(id_card)  &lt; 18
-     and
-      is_delete = 0
+        UPDATE
+        t_ac_task_data
+        SET
+        sys_update_time = NOW(),
+        is_delete = 1
+        where
+        LENGTH(id_card) &lt; 18
+        and
+        is_delete = 0
 
-  </update>
+    </update>
 
     <update id="updateAge">
-  UPDATE
-     t_ac_task_data
-    SET
-    sys_update_time = NOW(),
-    is_delete = 1
-    where
-     age &lt;= #{minAge}
-     and
-     age &gt;= #{maxAge}
-     and
-      is_delete = 0
+        UPDATE
+        t_ac_task_data
+        SET
+        sys_update_time = NOW(),
+        is_delete = 1
+        where
+        age &lt;= #{minAge}
+        and
+        age &gt;= #{maxAge}
+        and
+        is_delete = 0
 
-  </update>
+    </update>
 
     <delete id="deleteIdCardRepeat">
-     UPDATE
-       t_ac_task_data
-      SET
-       sys_update_time = NOW(),
-       is_delete = 1
-      where
+        UPDATE
+        t_ac_task_data
+        SET
+        sys_update_time = NOW(),
+        is_delete = 1
+        where
 
-    is_delete = 0
-    and
-      id not in
-       (
-       select
-       t.max_id
-       from (
-       select
-       max(id) as max_id
-       from t_ac_task_data
-       group by id_card) as t
-       )
+        is_delete = 0
+        and
+        id not in
+        (
+        select
+        t.max_id
+        from (
+        select
+        max(id) as max_id
+        from t_ac_task_data
+        group by id_card) as t
+        )
 
 
-  </delete>
+    </delete>
 </mapper>

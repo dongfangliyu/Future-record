@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SysLoginController {
 
     @Resource
-    private SysLoginProcessService  sysLoginProcessService;
+    private SysLoginProcessService sysLoginProcessService;
 
     @RequestMapping(value = "/sgin_in", method = RequestMethod.GET)
     public String login(HttpServletRequest request, HttpServletResponse response) {
@@ -32,13 +32,12 @@ public class SysLoginController {
 
     @PostMapping("/login")
     @ResponseBody
-    public CommonResponse ajaxLogin(String username, String password, String validateCode,Boolean rememberMe)
-    {
-        System.out.println("par" + username + "" + password  + ""  + validateCode +"" +rememberMe);
+    public CommonResponse ajaxLogin(String username, String password, String validateCode, Boolean rememberMe) {
+        System.out.println("par" + username + "" + password + "" + validateCode + "" + rememberMe);
 
 
-        sysLoginProcessService.login(convert2SysLogin(username,password,validateCode,rememberMe));
-        return  CommonResponse.isSuccess();
+        sysLoginProcessService.login(convert2SysLogin(username, password, validateCode, rememberMe));
+        return CommonResponse.isSuccess();
     }
 
     private SysLogin convert2SysLogin(String username, String password, String validateCode, Boolean rememberMe) {

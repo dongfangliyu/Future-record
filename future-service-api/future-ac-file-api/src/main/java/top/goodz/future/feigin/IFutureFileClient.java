@@ -23,24 +23,24 @@ import top.goodz.future.response.CommonResponse;
  */
 
 @FeignClient(value = "future-file",
-        url = "127.0.0.1:8081",configuration = FeignConfig.class)
+        url = "127.0.0.1:8081", configuration = FeignConfig.class)
 public interface IFutureFileClient {
 
 
     /**
-     * @description：图片上传通用接口
-     * @throws 
-     * @author zhangyajun
-     * @createTime：2020/5/5
-     * @version：  1.0
-     * @return
-     */
-    @RequestMapping(value = "/minio/upLoad", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    CommonResponse upLoad(@RequestParam("key") String key, @RequestPart(value = "file",required = false) MultipartFile file);
+     *  * @description：图片上传通用接口
+     *  * @throws 
+     *  * @author zhangyajun
+     *  * @createTime：2020/5/5
+     *  * @version：  1.0
+     *
+     * @return  
+     */
+    @RequestMapping(value = "/minio/upLoad", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    CommonResponse upLoad(@RequestParam("key") String key, @RequestPart(value = "file", required = false) MultipartFile file);
 
     @GetMapping("/minio/list")
-    CommonResponse  list (@RequestParam String param);
-
+    CommonResponse list(@RequestParam String param);
 
 
 }

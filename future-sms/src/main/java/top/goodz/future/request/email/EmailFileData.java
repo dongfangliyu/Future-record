@@ -4,56 +4,57 @@ import java.io.Serializable;
 
 /**
  * 发送email文件数据
- * @author Yajun.Zhang
  *
+ * @author Yajun.Zhang
  */
 public class EmailFileData implements Serializable {
-	
-	/**
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 附件地址 必须是物理地址
-	 */
-	private String filPath;
-	
-	/**
-	 * 文件名称
-	 */
-	private String fileName;
-	
-	/**
-	 * 待删除的文件名称
-	 */
-	private String delFileName;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public String getFilPath() {
-		return filPath;
-	}
+    /**
+     * 附件地址 必须是物理地址
+     */
+    private String filPath;
 
-	public void setFilPath(String filPath) {
-		this.filPath = filPath;
-	}
+    /**
+     * 文件名称
+     */
+    private String fileName;
 
-	public String getFileName() {
-		return fileName;
-	}
+    /**
+     * 待删除的文件名称
+     */
+    private String delFileName;
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    public String getFilPath() {
+        return filPath;
+    }
 
-	public String getDelFileName() {
-		return delFileName;
-	}
+    public void setFilPath(String filPath) {
+        this.filPath = filPath;
+    }
 
-	public void setDelFileName(String delFileName) {
-		this.delFileName = delFileName;
-	}
+    public String getFileName() {
+        return fileName;
+    }
 
-	@Override
-	public String toString() {
-		return "EmailFileData [filPath=" + filPath + ", fileName=" + fileName + ", delFileName=" + delFileName + "]";
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getDelFileName() {
+        return delFileName;
+    }
+
+    public void setDelFileName(String delFileName) {
+        this.delFileName = delFileName;
+    }
+
+    @Override
+    public String toString() {
+        return "EmailFileData [filPath=" + filPath + ", fileName=" + fileName + ", delFileName=" + delFileName + "]";
+    }
 }

@@ -12,9 +12,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- *  @Description swagger 配置
- *  @Author Yajun.Zhang
- *  @Date 2020/5/2 14:51
+ * @Description swagger 配置
+ * @Author Yajun.Zhang
+ * @Date 2020/5/2 14:51
  */
 
 @Configuration
@@ -59,9 +59,6 @@ public class SwaggerConfig {
                 //.paths(PathSelectors.regex("/"))
                 .build();
     }
-
-
-
 
 
     private ApiInfo apiInfo() {

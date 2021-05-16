@@ -71,7 +71,7 @@ public class DynamicRouteServiceListener implements CommandLineRunner {
             properties.put(PropertyKeyConst.NAMESPACE, "");
             ConfigService configService = NacosFactory.createConfigService(properties);
             String config = configService.getConfig(dataId, group, 5000);
-             System.out.println(config);
+            System.out.println(config);
             configService.addListener(dataId, group, new Listener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
@@ -81,7 +81,7 @@ public class DynamicRouteServiceListener implements CommandLineRunner {
                         for (RouteDefinition rote : routeDefinitions) {
                             dynamicRouteService.save(rote);
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println(e.getMessage());
                     }

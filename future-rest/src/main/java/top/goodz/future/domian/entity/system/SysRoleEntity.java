@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
  *
  * @author ruoyi
  */
-public class SysRoleEntity  extends BaseEntity {
+public class SysRoleEntity extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**

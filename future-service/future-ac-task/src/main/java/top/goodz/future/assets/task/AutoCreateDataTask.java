@@ -23,7 +23,7 @@ import java.util.Objects;
 import java.util.concurrent.*;
 
 /**
- * @Description 数据生成,清洗 task
+ * @Description 数据生成, 清洗 task
  * @Author Yajun.Zhang
  * @Date 2020/7/7 22:31
  */
@@ -32,7 +32,6 @@ public class AutoCreateDataTask extends IJobHandler {
 
     @Resource
     private DataClearProcessService dataClearProcessService;
-
 
 
     @Override
@@ -44,7 +43,7 @@ public class AutoCreateDataTask extends IJobHandler {
 
 
     @XxlJob("dataCleaningTask")
-    public ReturnT<String> dataCleaningTask(String s){
+    public ReturnT<String> dataCleaningTask(String s) {
         dataClearProcessService.dataCleaning();
         return ReturnT.SUCCESS;
     }

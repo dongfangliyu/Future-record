@@ -13,7 +13,7 @@ import top.goodz.future.response.CommonResponse;
 public class LoginController {
 
 
-    @RequestMapping(value = "/login/auth",method = RequestMethod.POST)
+    @RequestMapping(value = "/login/auth", method = RequestMethod.POST)
     public CommonResponse auth(@RequestBody LoginAuthBean request) {
         System.out.println("par--------------" + request);
 

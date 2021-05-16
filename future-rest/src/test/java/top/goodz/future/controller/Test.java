@@ -52,11 +52,40 @@ public class Test {
     @org.junit.Test
     public void setRedisKey() {
         // redisTemplate.opsForValue().set("zz","qw");
-        System.out.println(redisTemplate.opsForValue().get("zz"));
+        //  System.out.println(redisTemplate.opsForValue().get("zz"));
 
-        redisTemplate.opsForList().leftPush("zyj", "123", 12);
-        redisTemplate.expire("zyj", 10, TimeUnit.SECONDS);
+        // redisTemplate.opsForList().leftPush("zyj", "123", 12);
+        //  redisTemplate.expire("zyj", 10, TimeUnit.SECONDS);
 
-        System.out.printf("" + redisTemplate.opsForList().range("zyj", 0, -1));
+        //   System.out.printf("" + redisTemplate.opsForList().range("zyj", 0, -1));
+
+        A a1 = new A();
+        A A2 = new B();
+        B b = new B();
+        System.out.printf(A2.show(b));
+    }
+
+
+    public static void main(String[] args) {
+
+        String s = "a" + new String("b");
+
+        System.out.printf(s);
+    }
+
+    class A {
+        public String show(A obj) {
+            return ("A and A");
+        }
+    }
+
+    class B extends A {
+        public String show(B obj) {
+            return ("B and B");
+        }
+
+        public String show(A obj) {
+            return ("B and A");
+        }
     }
 }

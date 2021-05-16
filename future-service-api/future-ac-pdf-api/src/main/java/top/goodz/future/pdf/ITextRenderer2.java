@@ -56,8 +56,8 @@ public class ITextRenderer2 {
     // use one of the values in PDFWriter.VERSION...
     private Character _pdfVersion;
 
-    private char[] validPdfVersions = new char[] { PdfWriter.VERSION_1_2, PdfWriter.VERSION_1_3, PdfWriter.VERSION_1_4,
-            PdfWriter.VERSION_1_5, PdfWriter.VERSION_1_6, PdfWriter.VERSION_1_7 };
+    private char[] validPdfVersions = new char[]{PdfWriter.VERSION_1_2, PdfWriter.VERSION_1_3, PdfWriter.VERSION_1_4,
+            PdfWriter.VERSION_1_5, PdfWriter.VERSION_1_6, PdfWriter.VERSION_1_7};
 
     private PDFCreationListener _listener;
 

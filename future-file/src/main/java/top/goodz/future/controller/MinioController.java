@@ -37,17 +37,16 @@ public class MinioController {
     private final Long FILESIZE = 1024L * 1024 * 5;
 
 
-
     @GetMapping("/list")
-    public CommonResponse list(@RequestParam("a") String a){
+    public CommonResponse list(@RequestParam("a") String a) {
         System.out.println(a);
-        return CommonResponse.responseOf(ErrorCodeEnum.SUCCESS.getCode(),a);
+        return CommonResponse.responseOf(ErrorCodeEnum.SUCCESS.getCode(), a);
     }
 
     @ApiOperation(value = "图片上传通用接口", notes = "图片上传通用接口")
     @RequestMapping(value = "/upLoad", method = RequestMethod.PUT,
-            produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public CommonResponse upLoad(@RequestParam("key") String key,  @RequestPart(value = "file",required = false) MultipartFile file) {
+            produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public CommonResponse upLoad(@RequestParam("key") String key, @RequestPart(value = "file", required = false) MultipartFile file) {
         CommonResponse<Object> response = new CommonResponse<>();
         try {
             //验证文件名称
@@ -67,8 +66,8 @@ public class MinioController {
             }
             // 生成指定格式的文件名
             String randString = RandomUtil.randomCharString(6);
-            String fileMinioName = key + "-" + randString + "-" + filename.substring(0, filename.lastIndexOf(".")) + "-" + fileSize +"-" + ext;
-          //     String fileMinioName = key+ "-"+  filename.substring(0, filename.lastIndexOf(".")) + "-" + ext;
+            String fileMinioName = key + "-" + randString + "-" + filename.substring(0, filename.lastIndexOf(".")) + "-" + fileSize + "-" + ext;
+            //     String fileMinioName = key+ "-"+  filename.substring(0, filename.lastIndexOf(".")) + "-" + ext;
             String minioKey = uploadToMinio(key, file, fileMinioName);
             return CommonResponse.responseOf(ErrorCodeEnum.SUCCESS.getCode(), ErrorCodeEnum.SUCCESS.getMessage(), minioKey);
         } catch (Exception e) {

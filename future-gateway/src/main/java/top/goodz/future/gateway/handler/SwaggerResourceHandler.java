@@ -38,18 +38,18 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 @Component
 @AllArgsConstructor
 public class SwaggerResourceHandler implements HandlerFunction<ServerResponse> {
-	private final SwaggerResourcesProvider swaggerResources;
+    private final SwaggerResourcesProvider swaggerResources;
 
-	/**
-	 * Handle the given request.
-	 *
-	 * @param request the request to handler
-	 * @return the response
-	 */
-	@Override
-	public Mono<ServerResponse> handle(ServerRequest request) {
-		return ServerResponse.status(HttpStatus.OK)
-			.contentType(MediaType.APPLICATION_JSON_UTF8)
-			.body(BodyInserters.fromObject(swaggerResources.get()));
-	}
+    /**
+     * Handle the given request.
+     *
+     * @param request the request to handler
+     * @return the response
+     */
+    @Override
+    public Mono<ServerResponse> handle(ServerRequest request) {
+        return ServerResponse.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .body(BodyInserters.fromObject(swaggerResources.get()));
+    }
 }

@@ -17,48 +17,47 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.G
 /**
  * <p>
  * 全局拦截器，作用所有的微服务
-
  *
  * @author zhangyajun
  */
 @Component
-public  abstract class AbstractRouteFilter implements GlobalFilter, Ordered {
+public abstract class AbstractRouteFilter implements GlobalFilter, Ordered {
 
-	@Override
-	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-		Route route = (Route) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR);
+        Route route = (Route) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR);
 
-		if (null == route){
-			return chain.filter(exchange);
-		}
-		ServerHttpRequest request = exchange.getRequest();
+        if (null == route) {
+            return chain.filter(exchange);
+        }
+        ServerHttpRequest request = exchange.getRequest();
 
-		URI newUri = buildUri(request,route);
+        URI newUri = buildUri(request, route);
 
-		if (null == newUri){
-				return chain.filter(exchange);
-		}
+        if (null == newUri) {
+            return chain.filter(exchange);
+        }
 
-		Route.AsyncBuilder asyncBuilder = Route.async();
-		Route routes = asyncBuilder.asyncPredicate(route.getPredicate())
-				.filters(route.getFilters())
-				.id(route.getId())
-				.uri(newUri)
-				.order(route.getOrder())
-				.build();
+        Route.AsyncBuilder asyncBuilder = Route.async();
+        Route routes = asyncBuilder.asyncPredicate(route.getPredicate())
+                .filters(route.getFilters())
+                .id(route.getId())
+                .uri(newUri)
+                .order(route.getOrder())
+                .build();
 
 
-		exchange.getAttributes().put(GATEWAY_ROUTE_ATTR, routes);
+        exchange.getAttributes().put(GATEWAY_ROUTE_ATTR, routes);
 
-		return chain.filter(exchange);
-	}
+        return chain.filter(exchange);
+    }
 
-	abstract URI buildUri(ServerHttpRequest request, Route route) ;
+    abstract URI buildUri(ServerHttpRequest request, Route route);
 
-	@Override
-	public int getOrder() {
-		return -1;
-	}
+    @Override
+    public int getOrder() {
+        return -1;
+    }
 
 }

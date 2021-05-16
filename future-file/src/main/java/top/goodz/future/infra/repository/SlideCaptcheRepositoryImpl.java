@@ -39,18 +39,18 @@ public class SlideCaptcheRepositoryImpl implements SlideCaptcheRepository {
     public SlideAuthEntity load(String authId) {
         String s = (String) redisTemplate.opsForValue().get(SLIDE_PREFIX + authId);
 
-        if (null == s){
+        if (null == s) {
             return null;
         }
 
-        return JSON.parseObject(s,SlideAuthEntity.class);
+        return JSON.parseObject(s, SlideAuthEntity.class);
     }
 
     @Override
     public void updateAuthStatus(String authId, String code) {
         SlideAuthEntity load = load(authId);
 
-        if (null == load){
+        if (null == load) {
             return;
         }
 
@@ -58,7 +58,7 @@ public class SlideCaptcheRepositoryImpl implements SlideCaptcheRepository {
 
         String string = JSON.toJSONString(load);
 
-        redisTemplate.opsForValue().set(SLIDE_PREFIX + load.getId(),string);
+        redisTemplate.opsForValue().set(SLIDE_PREFIX + load.getId(), string);
     }
 
     @Override
@@ -66,15 +66,15 @@ public class SlideCaptcheRepositoryImpl implements SlideCaptcheRepository {
 
         SlideAuthEntity load = load(authId);
 
-        if (null == load){
+        if (null == load) {
             return;
         }
 
         load.setExpireTimestemp(l);
 
         String string = JSON.toJSONString(load);
-        redisTemplate.opsForValue().set(SLIDE_PREFIX + load.getId(),string);
-        redisTemplate.expire(SLIDE_PREFIX + load.getId(),l,TimeUnit.MILLISECONDS);
+        redisTemplate.opsForValue().set(SLIDE_PREFIX + load.getId(), string);
+        redisTemplate.expire(SLIDE_PREFIX + load.getId(), l, TimeUnit.MILLISECONDS);
 
     }
 

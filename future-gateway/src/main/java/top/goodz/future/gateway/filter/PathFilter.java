@@ -28,19 +28,19 @@ import java.net.URISyntaxException;
  * @author lengleng
  */
 @Component
-public  class PathFilter extends AbstractRouteFilter {
+public class PathFilter extends AbstractRouteFilter {
 
     private static final Logger log = LoggerFactory.getLogger(PathFilter.class);
 
-   @Autowired
-   private DiscoveryEndpointService discoveryEndpointService;
+    @Autowired
+    private DiscoveryEndpointService discoveryEndpointService;
 
-   private static final String DEF_PORT = "80";
+    private static final String DEF_PORT = "80";
 
     @Override
     URI buildUri(ServerHttpRequest request, Route route) {
 
-        if(!route.getId().contains("path")){
+        if (!route.getId().contains("path")) {
             return null;
         }
 
@@ -55,7 +55,7 @@ public  class PathFilter extends AbstractRouteFilter {
             return null;
         }
 
-        String newPort = null == DEF_PORT ? DEF_PORT :String.valueOf(instances.getPort());
+        String newPort = null == DEF_PORT ? DEF_PORT : String.valueOf(instances.getPort());
         URI uri = null;
         try {
             uri = new URI(oldUri.getScheme(), oldUri.getUserInfo(), instances.getHost(), Integer.valueOf(newPort), oldUri.getPath(), oldUri.getQuery(), oldUri.getFragment());

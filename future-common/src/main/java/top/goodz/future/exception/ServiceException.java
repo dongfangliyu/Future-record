@@ -4,18 +4,18 @@ import top.goodz.future.enums.ErrorCodeEnum;
 import top.goodz.future.enums.ExceptionCode;
 
 /**
- * @description：业务全局异常处理类
- * @throws 
- * @createTime：2020/5/20
-  * @return
- */
+ *  * @description：业务全局异常处理类
+ *  * @throws 
+ *  * @createTime：2020/5/20
+ *
+ * @return  
+ */
 public class ServiceException extends RuntimeException {
 
 
+    private String errorCode;
 
-    private  String errorCode;
-
-    private  String errorMessage;
+    private String errorMessage;
 
 
     public ServiceException(String errorCode, String errorMessage) {
@@ -51,8 +51,8 @@ public class ServiceException extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-  @Override
-    public String toString(){
+    @Override
+    public String toString() {
         return "";
-  }
+    }
 }

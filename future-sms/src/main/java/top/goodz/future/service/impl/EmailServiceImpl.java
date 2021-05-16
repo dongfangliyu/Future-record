@@ -57,7 +57,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, true);
             FileSystemResource file = new FileSystemResource(FutureConstant.OLAP_BH_EMAIL_PICTURE_TITLE);
-            mimeMessageHelper.addAttachment("future3.png",file);
+            mimeMessageHelper.addAttachment("future3.png", file);
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

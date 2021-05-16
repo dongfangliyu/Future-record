@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpLoadFileFeignReq  implements Serializable {
+public class UpLoadFileFeignReq implements Serializable {
 
 
     private String key;

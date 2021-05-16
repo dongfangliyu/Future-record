@@ -4,296 +4,297 @@ import java.io.Serializable;
 
 /**
  * 被申请人信息
+ *
  * @author zhuliang
  */
 public class ArbDefendantResponse implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * 姓名
-	 */
-	private String name;
-	
-	/**
-	 * 身份证
-	 */
-	private String idNum;
-	
-	/**
-	 * 地址
-	 */
-	private String adress;
-	
-	/**
-	 * 送达地址
-	 */
-	private String arrivedAdress;
-	
-	/**
-	 * 手机号
-	 */
-	private String phone;
 
-	/**
-	 * 电子邮箱
-	 */
-	private String email;
-	
-	/**
-	 * 邮政编码
-	 */
-	private String postalCode;
-	
-	/**
-	 * 传真
-	 */
-	private String fax;
-	
-	/**
-	 * 公司法人名称
-	 */
-	private String coLegalPerson;
-	
-	/**
-	 * 法人职务
-	 */
-	private String coJob;
-	/**
-	 * 民族 
-	 */
-	private String nation;
-	/**
-	 *  身份证地址
-	 */
-	private String pIdNumAddress;
-	
-	/**
-	 * 法人电话
-	 */
-	private String coPhone;
-	
-	/**
-	 * 公司邮箱
-	 */
-	private String coEmail;
-	
-	/**
-	 * 邮编
-	 */
-	private String coZipcode;
-	
-	/**
-	 * 传真
-	 */
-	private String coFax;
-	
-	/**
-	 * 个人类型：1.个人，2.公司
-	 */
-	private Integer type;
-	/**
-	 * 案件查看密码
-	 */
-	private String arbitralPwd;
-	
-	//性别
-	private String sex;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 生日
-	 */
-	private String birthday;
-	
-	
-	//代理人姓名
-	private String agentRealname;
-	//代理人职业
-	private String agentJob;
+    /**
+     * 姓名
+     */
+    private String name;
 
-	public String getpIdNumAddress() {
-		return pIdNumAddress;
-	}
+    /**
+     * 身份证
+     */
+    private String idNum;
 
-	public void setpIdNumAddress(String pIdNumAddress) {
-		this.pIdNumAddress = pIdNumAddress;
-	}
+    /**
+     * 地址
+     */
+    private String adress;
 
-	public String getNation() {
-		return nation;
-	}
+    /**
+     * 送达地址
+     */
+    private String arrivedAdress;
 
-	public void setNation(String nation) {
-		this.nation = nation;
-	}
+    /**
+     * 手机号
+     */
+    private String phone;
 
-	public String getSex() {
-		return sex;
-	}
+    /**
+     * 电子邮箱
+     */
+    private String email;
 
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+    /**
+     * 邮政编码
+     */
+    private String postalCode;
 
-	public String getArbitralPwd() {
-		return arbitralPwd;
-	}
+    /**
+     * 传真
+     */
+    private String fax;
 
-	public void setArbitralPwd(String arbitralPwd) {
-		this.arbitralPwd = arbitralPwd;
-	}
+    /**
+     * 公司法人名称
+     */
+    private String coLegalPerson;
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * 法人职务
+     */
+    private String coJob;
+    /**
+     * 民族
+     */
+    private String nation;
+    /**
+     * 身份证地址
+     */
+    private String pIdNumAddress;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * 法人电话
+     */
+    private String coPhone;
 
-	public String getIdNum() {
-		return idNum;
-	}
+    /**
+     * 公司邮箱
+     */
+    private String coEmail;
 
-	public void setIdNum(String idNum) {
-		this.idNum = idNum;
-	}
+    /**
+     * 邮编
+     */
+    private String coZipcode;
 
-	public String getAdress() {
-		return adress;
-	}
+    /**
+     * 传真
+     */
+    private String coFax;
 
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
+    /**
+     * 个人类型：1.个人，2.公司
+     */
+    private Integer type;
+    /**
+     * 案件查看密码
+     */
+    private String arbitralPwd;
 
-	public String getPhone() {
-		return phone;
-	}
+    //性别
+    private String sex;
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * 生日
+     */
+    private String birthday;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getPostalCode() {
-		return postalCode;
-	}
 
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
+    //代理人姓名
+    private String agentRealname;
+    //代理人职业
+    private String agentJob;
 
-	public String getFax() {
-		return fax;
-	}
+    public String getpIdNumAddress() {
+        return pIdNumAddress;
+    }
 
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
+    public void setpIdNumAddress(String pIdNumAddress) {
+        this.pIdNumAddress = pIdNumAddress;
+    }
 
-	public String getCoLegalPerson() {
-		return coLegalPerson;
-	}
+    public String getNation() {
+        return nation;
+    }
 
-	public void setCoLegalPerson(String coLegalPerson) {
-		this.coLegalPerson = coLegalPerson;
-	}
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
 
-	public String getCoJob() {
-		return coJob;
-	}
+    public String getSex() {
+        return sex;
+    }
 
-	public void setCoJob(String coJob) {
-		this.coJob = coJob;
-	}
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
-	public String getCoPhone() {
-		return coPhone;
-	}
+    public String getArbitralPwd() {
+        return arbitralPwd;
+    }
 
-	public void setCoPhone(String coPhone) {
-		this.coPhone = coPhone;
-	}
+    public void setArbitralPwd(String arbitralPwd) {
+        this.arbitralPwd = arbitralPwd;
+    }
 
-	public String getCoEmail() {
-		return coEmail;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setCoEmail(String coEmail) {
-		this.coEmail = coEmail;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getCoZipcode() {
-		return coZipcode;
-	}
+    public String getIdNum() {
+        return idNum;
+    }
 
-	public void setCoZipcode(String coZipcode) {
-		this.coZipcode = coZipcode;
-	}
+    public void setIdNum(String idNum) {
+        this.idNum = idNum;
+    }
 
-	public String getCoFax() {
-		return coFax;
-	}
+    public String getAdress() {
+        return adress;
+    }
 
-	public void setCoFax(String coFax) {
-		this.coFax = coFax;
-	}
-	
-	public Integer getType() {
-		return type;
-	}
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
-	
-	public String getBirthday() {
-		return birthday;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public String getAgentRealname() {
-		return agentRealname;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setAgentRealname(String agentRealname) {
-		this.agentRealname = agentRealname;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getAgentJob() {
-		return agentJob;
-	}
+    public String getPostalCode() {
+        return postalCode;
+    }
 
-	public void setAgentJob(String agentJob) {
-		this.agentJob = agentJob;
-	}
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
 
-	public String getArrivedAdress() {
-		return arrivedAdress;
-	}
+    public String getFax() {
+        return fax;
+    }
 
-	public void setArrivedAdress(String arrivedAdress) {
-		this.arrivedAdress = arrivedAdress;
-	}
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
 
-	@Override
-	public String toString() {
-		return "ArbDefendantResponse [name=" + name + ", idNum=" + idNum + ", adress=" + adress + ", arrivedAdress="
-				+ arrivedAdress + ", phone=" + phone + ", email=" + email + ", postalCode=" + postalCode + ", fax="
-				+ fax + ", coLegalPerson=" + coLegalPerson + ", coJob=" + coJob + ", nation=" + nation
-				+ ", pIdNumAddress=" + pIdNumAddress + ", coPhone=" + coPhone + ", coEmail=" + coEmail + ", coZipcode="
-				+ coZipcode + ", coFax=" + coFax + ", type=" + type + ", arbitralPwd=" + arbitralPwd + ", sex=" + sex
-				+ ", birthday=" + birthday + ", agentRealname=" + agentRealname + ", agentJob=" + agentJob + "]";
-	}
+    public String getCoLegalPerson() {
+        return coLegalPerson;
+    }
+
+    public void setCoLegalPerson(String coLegalPerson) {
+        this.coLegalPerson = coLegalPerson;
+    }
+
+    public String getCoJob() {
+        return coJob;
+    }
+
+    public void setCoJob(String coJob) {
+        this.coJob = coJob;
+    }
+
+    public String getCoPhone() {
+        return coPhone;
+    }
+
+    public void setCoPhone(String coPhone) {
+        this.coPhone = coPhone;
+    }
+
+    public String getCoEmail() {
+        return coEmail;
+    }
+
+    public void setCoEmail(String coEmail) {
+        this.coEmail = coEmail;
+    }
+
+    public String getCoZipcode() {
+        return coZipcode;
+    }
+
+    public void setCoZipcode(String coZipcode) {
+        this.coZipcode = coZipcode;
+    }
+
+    public String getCoFax() {
+        return coFax;
+    }
+
+    public void setCoFax(String coFax) {
+        this.coFax = coFax;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAgentRealname() {
+        return agentRealname;
+    }
+
+    public void setAgentRealname(String agentRealname) {
+        this.agentRealname = agentRealname;
+    }
+
+    public String getAgentJob() {
+        return agentJob;
+    }
+
+    public void setAgentJob(String agentJob) {
+        this.agentJob = agentJob;
+    }
+
+    public String getArrivedAdress() {
+        return arrivedAdress;
+    }
+
+    public void setArrivedAdress(String arrivedAdress) {
+        this.arrivedAdress = arrivedAdress;
+    }
+
+    @Override
+    public String toString() {
+        return "ArbDefendantResponse [name=" + name + ", idNum=" + idNum + ", adress=" + adress + ", arrivedAdress="
+                + arrivedAdress + ", phone=" + phone + ", email=" + email + ", postalCode=" + postalCode + ", fax="
+                + fax + ", coLegalPerson=" + coLegalPerson + ", coJob=" + coJob + ", nation=" + nation
+                + ", pIdNumAddress=" + pIdNumAddress + ", coPhone=" + coPhone + ", coEmail=" + coEmail + ", coZipcode="
+                + coZipcode + ", coFax=" + coFax + ", type=" + type + ", arbitralPwd=" + arbitralPwd + ", sex=" + sex
+                + ", birthday=" + birthday + ", agentRealname=" + agentRealname + ", agentJob=" + agentJob + "]";
+    }
 }

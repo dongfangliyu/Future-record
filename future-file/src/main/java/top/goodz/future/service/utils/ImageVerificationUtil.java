@@ -91,31 +91,31 @@ public class ImageVerificationUtil {
 
     }
 
-    public static  String cutoutImageEdge(String cutoutImageString,BufferedImage  borderImage,String  borderImageFileType) throws   ServiceException{
+    public static String cutoutImageEdge(String cutoutImageString, BufferedImage borderImage, String borderImageFileType) throws ServiceException {
 
         ByteArrayInputStream byteArrayInputStream = null;
         ByteArrayOutputStream byteArrayOutputStream = null;
         try {
             byte[] bytes = Base64Utils.decodeFromString(cutoutImageString);
-             byteArrayInputStream = new ByteArrayInputStream(bytes);
+            byteArrayInputStream = new ByteArrayInputStream(bytes);
 
-             // 读取图片
+            // 读取图片
             BufferedImage cutoutImage = ImageIO.read(byteArrayInputStream);
 
             //获取模板颜色矩阵 对颜色处理
             int[][] borderImageMatrix = getMatrix(borderImage);
-            for (int i = 0; i< borderImageMatrix.length;i ++){
-                for (int j=0; j < borderImageMatrix[0].length; j ++){
-                   int rgb = borderImage.getRGB(i,j);
-                    if (rgb < 0){
-                        cutoutImage.setRGB(i,j,-7237488);
+            for (int i = 0; i < borderImageMatrix.length; i++) {
+                for (int j = 0; j < borderImageMatrix[0].length; j++) {
+                    int rgb = borderImage.getRGB(i, j);
+                    if (rgb < 0) {
+                        cutoutImage.setRGB(i, j, -7237488);
                     }
                 }
             }
 
-             byteArrayOutputStream = new ByteArrayOutputStream();
+            byteArrayOutputStream = new ByteArrayOutputStream();
 
-            ImageIO.write(cutoutImage,borderImageFileType,byteArrayOutputStream);
+            ImageIO.write(cutoutImage, borderImageFileType, byteArrayOutputStream);
 
             // 新模板图描边处理后转为二进制字符串
             byte[] cutoutImageBytes = byteArrayOutputStream.toByteArray();
@@ -125,17 +125,17 @@ public class ImageVerificationUtil {
             return cutoutImageStr;
 
 
-        }catch (IOException e){
-            LOGGER.error(e.getMessage(),e);
-            throw new  ServiceException(ExceptionCode.IO_IMAGE_ERROR);
-        }finally {
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+            throw new ServiceException(ExceptionCode.IO_IMAGE_ERROR);
+        } finally {
             try {
                 byteArrayInputStream.close();
                 byteArrayOutputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                LOGGER.error(e.getMessage(),e);
-                throw new  ServiceException(ExceptionCode.IO_IMAGE_ERROR);
+                LOGGER.error(e.getMessage(), e);
+                throw new ServiceException(ExceptionCode.IO_IMAGE_ERROR);
             }
         }
 
@@ -151,7 +151,7 @@ public class ImageVerificationUtil {
      * @return  
      */
     public static String[] pitctureTemplateCutout(File originImageFile, String originImageType, File templateImageFile, String templeateImageType, int x, int y) throws ServiceException {
-        ByteArrayOutputStream byteArrayOutputStream =null;
+        ByteArrayOutputStream byteArrayOutputStream = null;
 
         try {
             BufferedImage templateImage = ImageIO.read(templateImageFile);
@@ -185,9 +185,9 @@ public class ImageVerificationUtil {
             //原图生成这遮罩层
             BufferedImage shadeImage = generateShadeByTemplateImage(originImage, templateImage, x, y);
 
-             byteArrayOutputStream = new ByteArrayOutputStream();
-             //图片转为二进制
-            ImageIO.write(originImage,originImageType,byteArrayOutputStream);
+            byteArrayOutputStream = new ByteArrayOutputStream();
+            //图片转为二进制
+            ImageIO.write(originImage, originImageType, byteArrayOutputStream);
             byte[] originImageBytes = byteArrayOutputStream.toByteArray();
             byteArrayOutputStream.flush();
             byteArrayOutputStream.reset();
@@ -195,7 +195,7 @@ public class ImageVerificationUtil {
             //图片加密为BASE64
             String originImageString = Base64Utils.encodeToString(originImageBytes);
 
-            ImageIO.write(shadeImage,templeateImageType,byteArrayOutputStream);
+            ImageIO.write(shadeImage, templeateImageType, byteArrayOutputStream);
 
             //转为二进制字符串
             byte[] shadeImageBytes = byteArrayOutputStream.toByteArray();
@@ -204,7 +204,7 @@ public class ImageVerificationUtil {
 
             String shadeImageString = Base64Utils.encodeToString(shadeImageBytes);
 
-            ImageIO.write(cutoutImage,templeateImageType,byteArrayOutputStream);
+            ImageIO.write(cutoutImage, templeateImageType, byteArrayOutputStream);
 
             //转为二进制
             byte[] cutoutImageBytes = byteArrayOutputStream.toByteArray();
@@ -214,19 +214,18 @@ public class ImageVerificationUtil {
             //加密为base64
             String cutoutImageString = Base64Utils.encodeToString(cutoutImageBytes);
 
-            return new String[] {originImageString,shadeImageString,cutoutImageString};
+            return new String[]{originImageString, shadeImageString, cutoutImageString};
 
 
         } catch (Exception e) {
-           LOGGER.error(e.getMessage(),e);
-            throw new  ServiceException(ExceptionCode.IO_IMAGE_ERROR);
-        }
-        finally {
+            LOGGER.error(e.getMessage(), e);
+            throw new ServiceException(ExceptionCode.IO_IMAGE_ERROR);
+        } finally {
             try {
                 byteArrayOutputStream.close();
             } catch (IOException e) {
-                LOGGER.error(e.getMessage(),e);
-                throw new  ServiceException(ExceptionCode.IO_IMAGE_ERROR);
+                LOGGER.error(e.getMessage(), e);
+                throw new ServiceException(ExceptionCode.IO_IMAGE_ERROR);
             }
         }
     }
@@ -256,31 +255,31 @@ public class ImageVerificationUtil {
             }
         }
         //对遮罩层根据模板进行处理
-        for (int i = 0;i< templateImageMatix.length;i++){
-            for (int j=0; j< templateImageMatix[0].length; j++){
+        for (int i = 0; i < templateImageMatix.length; i++) {
+            for (int j = 0; j < templateImageMatix[0].length; j++) {
                 int rgb = templateImage.getRGB(i, j);
 
                 //对源文件进行（x+i,y+j） 坐标透明处理
-                if(rgb != 16777215 && rgb < 0){
+                if (rgb != 16777215 && rgb < 0) {
                     int originRGB = shadeImage.getRGB(x + i, y + j);
 
                     int r = (0xff & originRGB);
-                    int g = (0xff & (originRGB>> 8));
-                    int b = (0xff & (originRGB>> 16));
+                    int g = (0xff & (originRGB >> 8));
+                    int b = (0xff & (originRGB >> 16));
 
-                    r = r/2;
-                    g = g/2;
+                    r = r / 2;
+                    g = g / 2;
 
                     b = 1;
 
 
-                   originRGB = r + (g<< 8) + (b <<16) + (1000 << 24);
+                    originRGB = r + (g << 8) + (b << 16) + (1000 << 24);
 
-                   //对遮罩层透明处理
-                    shadeImage.setRGB(x+i,y+j,originRGB);
+                    //对遮罩层透明处理
+                    shadeImage.setRGB(x + i, y + j, originRGB);
 
                     //对遮罩层上颜色
-              //      shadeImage.setRGB();
+                    //      shadeImage.setRGB();
                 }
             }
         }
@@ -352,13 +351,13 @@ public class ImageVerificationUtil {
 
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
-            throw new  ServiceException(ExceptionCode.IO_IMAGE_ERROR);
+            throw new ServiceException(ExceptionCode.IO_IMAGE_ERROR);
         } finally {
             try {
                 imageInputStream.close();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
-                throw new  ServiceException(ExceptionCode.IO_IMAGE_ERROR);
+                throw new ServiceException(ExceptionCode.IO_IMAGE_ERROR);
             }
         }
 

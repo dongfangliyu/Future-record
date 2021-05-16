@@ -8,16 +8,16 @@ import top.goodz.future.domain.service.entity.AutoTaskDataEntity;
 import javax.annotation.Resource;
 
 /**
- *  @Description
- *  @Author Yajun.Zhang
- *  @Date 2020/7/8 14:12
+ * @Description
+ * @Author Yajun.Zhang
+ * @Date 2020/7/8 14:12
  */
 @Service
 public class AutoCreateDataServiceImpl implements AutoCreateDataService {
 
 
     @Resource
-    private AutoCreateDataRepository  autoCreateDataRepository;
+    private AutoCreateDataRepository autoCreateDataRepository;
 
     @Override
     public void insertData(AutoTaskDataEntity req) {
@@ -31,7 +31,7 @@ public class AutoCreateDataServiceImpl implements AutoCreateDataService {
 
     @Override
     public void ageClean(int minAge, int maxAge) {
-        autoCreateDataRepository.updateAge(minAge,maxAge);
+        autoCreateDataRepository.updateAge(minAge, maxAge);
     }
 
     @Override

@@ -10,9 +10,9 @@ package top.goodz.future.domain.service.register;/**
 import java.util.Map;
 
 /**
- *  @Description TODO
- *  @Author Yajun.Zhang
- *  @Date 2020/6/7 22:17
+ * @Description TODO
+ * @Author Yajun.Zhang
+ * @Date 2020/6/7 22:17
  */
 public interface RegisterService {
 

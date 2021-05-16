@@ -1,4 +1,4 @@
-/*
+
 package top.goodz.future.gateway.filter;
 
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR;
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.addOriginalRequestUrl;
 
-*/
+
 /**
  * <p>
  * 全局拦截器，作用所有的微服务
@@ -25,12 +25,12 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.a
  * 2. 重写StripPrefix = 1,支持全局
  *
  * @author lengleng
- *//*
+ */
 
 @Component
 public class RequestFilter implements GlobalFilter, Ordered {
 
-	*/
+
 /**
 	 * Process the Web request and (optionally) delegate to the next
 	 * {@code WebFilter} through the given {@link GatewayFilterChain}.
@@ -38,7 +38,7 @@ public class RequestFilter implements GlobalFilter, Ordered {
 	 * @param exchange the current server exchange
 	 * @param chain    provides a way to delegate to the next filter
 	 * @return {@code Mono<Void>} to indicate when request processing is complete
-	 *//*
+	 */
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -47,11 +47,11 @@ public class RequestFilter implements GlobalFilter, Ordered {
 			.headers(httpHeaders -> httpHeaders.remove("X"))
 			.build();
 
-		// 2. 重写StripPrefix
+		// 2. 重写StripPrefix  对请求路径做指定过滤
 		addOriginalRequestUrl(exchange, request.getURI());
 		String rawPath = request.getURI().getRawPath();
 		String newPath = "/" + Arrays.stream(StringUtils.tokenizeToStringArray(rawPath, "/"))
-			.skip(1L).collect(Collectors.joining("/"));
+			.skip(0L).collect(Collectors.joining("/"));
 		ServerHttpRequest newRequest = request.mutate()
 			.path(newPath)
 			.build();
@@ -66,4 +66,3 @@ public class RequestFilter implements GlobalFilter, Ordered {
 	}
 
 }
-*/

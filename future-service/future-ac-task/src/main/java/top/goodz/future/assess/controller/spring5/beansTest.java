@@ -1,11 +1,10 @@
-package top.goodz.future.assets.controller.spring5;
+package top.goodz.future.assess.controller.spring5;
 
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
-import top.goodz.future.assets.controller.spring5.model.User;
+import top.goodz.future.assess.controller.spring5.model.User;
 
 /**
  * @Description TODO

@@ -30,7 +30,7 @@ spring:
 ## xxl-job 调度系统配置
 xxl:
   job:
-    admin-addresses: http://127.0.0.1:7089/task
+    admin-addresses: http://172.10.17.189:7089/task
     access-token:
     executor:
       appname: ${spring.application.name}

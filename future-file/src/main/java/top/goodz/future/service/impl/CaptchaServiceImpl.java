@@ -217,9 +217,9 @@ public class CaptchaServiceImpl implements CaptchaService {
     private SlideCaptchaVerificationRequest buildCreateParam() {
         String chooseImgId = chooseImgId();
 
-        InputStream img = fileRepository.loadStream(chooseImgId + "-" + originImageFileType);
-        InputStream templateImage = fileRepository.loadStream(BUCKET_NAME + "-" + TEMPLATE_KEY + "-" + templateImageFileType);
-        InputStream borderImage = fileRepository.loadStream(BUCKET_NAME + "-" + BORDER_KEY + "-" + borderImageFileType);
+        InputStream img = fileRepository.loadStream(chooseImgId + "." + originImageFileType);
+        InputStream templateImage = fileRepository.loadStream(BUCKET_NAME + "-" + TEMPLATE_KEY + "." + templateImageFileType);
+        InputStream borderImage = fileRepository.loadStream(BUCKET_NAME + "-" + BORDER_KEY + "." + borderImageFileType);
 
         SlideCaptchaVerificationRequest req = new SlideCaptchaVerificationRequest();
         req.setOriginImg(img);

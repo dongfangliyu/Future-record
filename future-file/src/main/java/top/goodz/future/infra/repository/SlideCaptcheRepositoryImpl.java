@@ -2,6 +2,7 @@ package top.goodz.future.infra.repository;
 
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import top.goodz.future.service.model.request.SlideAuthEntity;
@@ -21,7 +22,7 @@ public class SlideCaptcheRepositoryImpl implements SlideCaptcheRepository {
 
     private static final String SLIDE_PREFIX = "SlideCaptchaAuth_";
 
-    @Resource
+    @Autowired
     private RedisTemplate redisTemplate;
 
     @Override

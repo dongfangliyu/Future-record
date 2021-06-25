@@ -51,8 +51,8 @@ public class Test {
 
     @org.junit.Test
     public void setRedisKey() {
-        // redisTemplate.opsForValue().set("zz","qw");
-        //  System.out.println(redisTemplate.opsForValue().get("zz"));
+         redisTemplate.opsForValue().set("zz","qw");
+          System.out.println(redisTemplate.opsForValue().get("zz"));
 
         // redisTemplate.opsForList().leftPush("zyj", "123", 12);
         //  redisTemplate.expire("zyj", 10, TimeUnit.SECONDS);

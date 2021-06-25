@@ -10,7 +10,7 @@ public class CommonResponse<T> implements Serializable {
     // 是否成功
     private boolean success = true;
     // 返回消息
-    private String msg;
+    private String msg = "success";
     // 返回编码
     private String code = "0";
     // 返回内容

@@ -34,7 +34,8 @@ public class AuthProvider {
 
     static {
         defaultSkipUrl.add("/api/captcha/**");
-        defaultSkipUrl.add("/api/exchange/sgin_in");
+        defaultSkipUrl.add("api/auth/api/login");
+        defaultSkipUrl.add("api/file/api/verifyImage");
         defaultSkipUrl.add("/swagger-ui.html");
         defaultSkipUrl.add("/test/**");
         defaultSkipUrl.add("/actuator/**");

@@ -32,11 +32,16 @@
             <version>${nacos.version}</version>
         </dependency>
 
-       <!-- <dependency>
-            <groupId>com.bfd.facade</groupId>
-            <artifactId>mechantserver</artifactId>
-            <version>10.1</version>
-        </dependency>-->
+<!--       <dependency>-->
+<!--            <groupId>com.bfd.facade</groupId>-->
+<!--            <artifactId>mechantserver</artifactId>-->
+<!--            <version>10.1</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.wso2.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.1.wso2v1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.shiro</groupId>

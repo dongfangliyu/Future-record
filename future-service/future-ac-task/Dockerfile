@@ -3,7 +3,7 @@ MAINTAINER zhangyajun <dongfangliyu@gmail.com>
 
 VOLUME /tmp
 
-ADD /target/future-ac-user-*.jar /app.jar
+ADD /target/future-ac-task-*.jar /app.jar
 
 RUN bash -c 'touch /app.jar'
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]

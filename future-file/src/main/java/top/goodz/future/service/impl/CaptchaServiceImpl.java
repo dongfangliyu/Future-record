@@ -55,7 +55,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     private static final String BUCKET_NAME = "future";
 
-    private static int threshold = 5;
+    private static int threshold = 60;
 
     private int captchaInitExpireSeconds = 60;
 

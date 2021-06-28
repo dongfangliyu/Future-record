@@ -20,25 +20,35 @@ import java.util.concurrent.TimeUnit;
 public class SlideCaptcheRepositoryImpl implements SlideCaptcheRepository {
 
 
-    private static final String SLIDE_PREFIX = "SlideCaptchaAuth_";
+    private static final String SLIDE_PREFIX = "captchaAuth_";
 
     @Autowired
     private RedisTemplate redisTemplate;
 
     @Override
     public void save(SlideAuthEntity entity) {
-        String json = JSON.toJSONString(entity);
-        redisTemplate.opsForValue().set(SLIDE_PREFIX + entity.getId(), json);
+
+        SlideAuthEntity authEntity = new SlideAuthEntity();
+        authEntity.setX(entity.getX());
+        authEntity.setY(entity.getY());
+        authEntity.setId(entity.getId());
+
+        String json = JSON.toJSONString(authEntity);
+        redisTemplate.opsForValue().set(getKey(authEntity.getId()), json);
 
         long millis = entity.getExpireTimestemp() - System.currentTimeMillis();
 
-        redisTemplate.expire(SLIDE_PREFIX + entity.getId(), millis, TimeUnit.MICROSECONDS);
+        redisTemplate.expire(getKey(authEntity.getId()), millis, TimeUnit.MILLISECONDS);
 
+    }
+
+    private String getKey(String uuidOne) {
+       return SLIDE_PREFIX+ uuidOne;
     }
 
     @Override
     public SlideAuthEntity load(String authId) {
-        String s = (String) redisTemplate.opsForValue().get(SLIDE_PREFIX + authId);
+        String s = (String) redisTemplate.opsForValue().get(getKey(authId));
 
         if (null == s) {
             return null;
@@ -59,7 +69,7 @@ public class SlideCaptcheRepositoryImpl implements SlideCaptcheRepository {
 
         String string = JSON.toJSONString(load);
 
-        redisTemplate.opsForValue().set(SLIDE_PREFIX + load.getId(), string);
+        redisTemplate.opsForValue().set(getKey(authId), string);
     }
 
     @Override
@@ -74,8 +84,8 @@ public class SlideCaptcheRepositoryImpl implements SlideCaptcheRepository {
         load.setExpireTimestemp(l);
 
         String string = JSON.toJSONString(load);
-        redisTemplate.opsForValue().set(SLIDE_PREFIX + load.getId(), string);
-        redisTemplate.expire(SLIDE_PREFIX + load.getId(), l, TimeUnit.MILLISECONDS);
+        redisTemplate.opsForValue().set(getKey(authId), string);
+        redisTemplate.expire(getKey(authId), l, TimeUnit.MILLISECONDS);
 
     }
 

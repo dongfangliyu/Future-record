@@ -43,7 +43,7 @@ public class VerificationController {
         SlideAuthResponse response = new SlideAuthResponse();
 
         response.setCutoutImage(entitiy.getCutoutImage());
-        response.setOriginImage(entitiy.getCutoutImage());
+        response.setOriginImage(entitiy.getOriginImage());
         response.setShadeImage(entitiy.getShadeImage());
         response.setX(entitiy.getX());
         response.setY(entitiy.getY());

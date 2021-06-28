@@ -58,6 +58,7 @@ public class VerificationController {
     @ApiOperation(value = "验证", notes = "验证")
     @RequestMapping(value = "/verification", method = { RequestMethod.POST})
     public CommonResponse<SlideCheckResult> verification(@RequestBody VerificationRequest  verificationRequest) {
+        System.out.printf("111"+ verificationRequest.toString());
         SlideCheckResultVO check = captchaService.check(verificationRequest.getUuid(), Integer.valueOf(verificationRequest.getX()), Integer.valueOf(verificationRequest.getY()));
 
         return CommonResponse.responseOf(convert2CheckResultResponse(check));

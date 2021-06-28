@@ -3,11 +3,13 @@ package top.goodz.future.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import top.goodz.future.controller.model.SlideAuthResponse;
 import top.goodz.future.controller.model.SlideCheckResult;
+import top.goodz.future.controller.model.VerificationRequest;
 import top.goodz.future.response.CommonResponse;
 import top.goodz.future.service.CaptchaService;
 import top.goodz.future.service.model.request.SlideAuthEntity;
@@ -54,9 +56,9 @@ public class VerificationController {
 
 
     @ApiOperation(value = "验证", notes = "验证")
-    @RequestMapping(value = "/verification", method = {RequestMethod.GET, RequestMethod.POST})
-    public CommonResponse<SlideCheckResult> verification(String uuid, String x, String y) {
-        SlideCheckResultVO check = captchaService.check(uuid, Integer.valueOf(x), Integer.valueOf(y));
+    @RequestMapping(value = "/verification", method = { RequestMethod.POST})
+    public CommonResponse<SlideCheckResult> verification(@RequestBody VerificationRequest  verificationRequest) {
+        SlideCheckResultVO check = captchaService.check(verificationRequest.getUuid(), Integer.valueOf(verificationRequest.getX()), Integer.valueOf(verificationRequest.getY()));
 
         return CommonResponse.responseOf(convert2CheckResultResponse(check));
     }

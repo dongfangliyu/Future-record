@@ -37,9 +37,9 @@ public class ImageVerificationUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageVerificationUtil.class);
 
 
-    private static final int DEFAULT_IMAGE_WIDTH = 410;
+    private static final int DEFAULT_IMAGE_WIDTH = 339;
 
-    private static final int DEFAULT_IMAGE_HEIGHT = 200;
+    private static final int DEFAULT_IMAGE_HEIGHT = 210;
 
 
     /**

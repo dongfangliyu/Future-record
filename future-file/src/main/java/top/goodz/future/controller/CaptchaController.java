@@ -6,11 +6,12 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.Base64Utils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import top.goodz.future.constants.FutureConstant;
+import top.goodz.future.controller.model.CaptchaResponse;
+import top.goodz.future.response.CommonResponse;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -19,6 +20,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
@@ -27,7 +29,7 @@ import java.io.IOException;
  * @Date 2020/8/9 18:00
  */
 
-@Controller
+@RestController
 @RequestMapping("/api/captcha")
 public class CaptchaController {
 
@@ -41,18 +43,12 @@ public class CaptchaController {
     private RedisTemplate redisTemplate;
 
 
-    @GetMapping(value = "/captchaImage/{type}")
+    @GetMapping(value = "/captchaImage")
     @ApiOperation(value = "获取验证码图片", notes = "获取验证码图片")
-    public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response,
-                                        @PathVariable("type") String type) {
-
-        //  String type = request.getParameter("type");
-
-        response.setHeader("Cache-Control", "no-store, no-cache");
-        response.setContentType("image/jpeg");
+    public CommonResponse<CaptchaResponse> kaptchaImage(@RequestParam("type") String type) {
 
         BufferedImage image = null;
-        ServletOutputStream out = null;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 
         String code = null;
@@ -72,7 +68,6 @@ public class CaptchaController {
         // 保存验证码 redis 3分钟
         redisTemplate.opsForValue().set(FutureConstant.KAPTCHA_SESSION_KEY + "|", code, 60 * 3);
         try {
-            out = response.getOutputStream();
             ImageIO.write(image, "jpg", out);
             out.flush();
         } catch (Exception e) {
@@ -87,7 +82,11 @@ public class CaptchaController {
             }
         }
 
-        return null;
+        CaptchaResponse captchaResponse= new CaptchaResponse();
+
+        captchaResponse.setCaptchaImage(Base64Utils.encodeToString(out.toByteArray()));
+
+        return CommonResponse.responseOf(captchaResponse);
     }
 
 

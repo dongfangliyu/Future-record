@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.goodz.future.infra.dao.UserDao">
+    <resultMap id="BaseResultMap" type="top.goodz.future.domian.model.user.UserEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_no" property="userNo" jdbcType="VARCHAR"/>
+        <result column="account_Name" property="accountName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="referees" property="referees" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="sys_create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+
+    </sql>
+
+
+    <insert id="insert" parameterType="top.goodz.future.domian.model.user.UserEntity">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="userNo != null">
+                user_no,
+            </if>
+            <if test="accountName != null">
+                account_Name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="referees != null">
+                referees,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="status != null">
+                status
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="userNo != null">
+                #{userNo,jdbcType=VARCHAR},
+            </if>
+            <if test="accountName != null">
+                #{accountName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="referees != null">
+                #{referees,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+
+        </trim>
+    </insert>
+
+</mapper>

@@ -52,14 +52,14 @@ public class EmailController {
             email.setChannelsName("batchDeliveryDocuments" + i);
             // 为邮件发送请求对象 设置 操作人i
             email.setCreator("工号 001");
-            data.setContent("<h2 bach>申明:</h2> " + "<span sytle = 'font-size:30px;'>此邮件为 future 项目开发阶段测试使用！</span>");
+            data.setContent("<h2 bach>申明:</h2> " + "<span style = 'font-size:30px; color: red;'>此邮件为 future 项目开发阶段测试使用！123345</span>");
             // 收件人的邮箱
             data.setToMail("1339811979@qq.com");
             // 为邮件数据对象 设置 案件idi
             data.setArbitralInfoId("案件id" + i);
             // 为邮件数据对象 设置 静态资源id
             //异常测试
-            data.setSubject("future 团队");
+            data.setSubject("东方鲤鱼团队");
             MimeBodyPart bodyPart = new MimeBodyPart();
             DataHandler dh = new DataHandler(new FileDataSource(FutureConstant.OLAP_BH_EMAIL_PICTURE_TITLE));
             data.setRscId(FutureConstant.OLAP_BH_EMAIL_PICTURE_ID);

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: future-ac-user
+  cloud:
+    nacos:
+      config:
+        server-addr: 172.10.17.189:8848
+        file-extension: yaml
+        namespace: 21c528e9-c1e6-4384-b680-231490f60550
+      discovery:
+        server-addr: 172.10.17.189:8848
+        namespace: 21c528e9-c1e6-4384-b680-231490f60550
+

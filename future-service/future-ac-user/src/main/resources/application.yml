@@ -23,7 +23,8 @@ spring:
       druid:
         validation-query: select 1
 #connection-test-query: select 1 from dual
-
+  mybatis:
+    mapper-locations: classpath:mapper/*.xml
 swagger:
   base-packages: cn.fintecher
 olap:

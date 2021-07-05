@@ -1,4 +1,4 @@
-package top.goodz.future.infra.mapper;
+package top.goodz.future.infra.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -6,7 +6,7 @@ import top.goodz.future.domain.service.entity.AutoTaskDataEntity;
 import top.goodz.future.enums.ExceptionCode;
 import top.goodz.future.exception.ServiceException;
 import top.goodz.future.infra.entity.TaskDataEntity;
-import top.goodz.future.infra.mapper.TaskDataEntityMapper;
+import top.goodz.future.infra.dao.TaskDataEntityMapper;
 
 import javax.annotation.Resource;
 import java.util.Objects;

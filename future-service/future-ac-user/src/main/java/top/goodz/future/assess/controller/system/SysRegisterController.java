@@ -1,9 +1,11 @@
 package top.goodz.future.assess.controller.system;
 
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import top.goodz.future.response.CommonResponse;
 
 /**
@@ -12,7 +14,8 @@ import top.goodz.future.response.CommonResponse;
  * @Date 2020/8/10 22:10
  */
 
-@Controller
+@RestController
+@Api(tags = "后管用户注册功能api")
 public class SysRegisterController {
 
 

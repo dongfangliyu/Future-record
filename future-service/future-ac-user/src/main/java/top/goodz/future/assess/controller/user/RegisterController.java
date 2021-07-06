@@ -27,7 +27,7 @@ public class RegisterController {
 
         registerUserService.register(convert2UserEntity(registerRequest));
 
-        return CommonResponse.isSuccess();
+        return CommonResponse.responseOf("24234244444444444444444");
     }
 
 

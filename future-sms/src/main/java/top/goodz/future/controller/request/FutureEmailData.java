@@ -1,4 +1,4 @@
-package top.goodz.future.request;
+package top.goodz.future.controller.request;
 
 import lombok.Data;
 
@@ -16,7 +16,6 @@ public class FutureEmailData {
     private String username;
 
     private String password;
-
 
     private String port;
 }

@@ -99,6 +99,11 @@ public class CommonResponse<T> implements Serializable {
         return response;
     }
 
+    public static boolean success(CommonResponse response) {
+
+        return response.getCode().equals("0");
+    }
+
     public void setSuccess(boolean success) {
         this.success = success;
     }

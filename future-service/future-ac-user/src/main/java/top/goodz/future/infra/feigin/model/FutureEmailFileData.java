@@ -1,4 +1,4 @@
-package top.goodz.future.request.email;
+package top.goodz.future.infra.feigin.model;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @author Yajun.Zhang
  */
-public class EmailFileData implements Serializable {
+public class FutureEmailFileData implements Serializable {
 
     /**
      *

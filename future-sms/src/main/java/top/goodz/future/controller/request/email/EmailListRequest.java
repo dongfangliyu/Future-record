@@ -1,7 +1,7 @@
-package top.goodz.future.request.email;
+package top.goodz.future.controller.request.email;
 
 import lombok.Data;
-import top.goodz.future.request.FutureEmailData;
+import top.goodz.future.controller.request.FutureEmailData;
 
 import java.util.List;
 

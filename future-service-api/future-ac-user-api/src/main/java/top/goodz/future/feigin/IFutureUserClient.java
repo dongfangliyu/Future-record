@@ -19,4 +19,5 @@ public interface IFutureUserClient {
 
     @RequestMapping(value = "/login/auth", method = RequestMethod.POST)
     CommonResponse login(@RequestBody SysLoginRequestBean request);
+
 }

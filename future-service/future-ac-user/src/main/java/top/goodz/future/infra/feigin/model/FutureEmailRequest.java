@@ -1,7 +1,6 @@
-package top.goodz.future.request.email;
+package top.goodz.future.infra.feigin.model;
 
 import lombok.Data;
-import top.goodz.future.request.FutureEmailData;
 
 /**
  * 邮箱请求参数
@@ -9,7 +8,7 @@ import top.goodz.future.request.FutureEmailData;
  * @author zhangyajun
  */
 @Data
-public class EmailRequest {
+public class FutureEmailRequest {
 
 
     private static final long serialVersionUID = 1L;
@@ -17,7 +16,7 @@ public class EmailRequest {
     /**
      * 发送email请求参数
      */
-    private EmailData data;
+    private FutureEmailData data;
 
     /**
      * 接口名
@@ -33,10 +32,5 @@ public class EmailRequest {
      * 邮件ID, 用来多线程发送邮件时作为区分标识
      */
     private String emailId;
-
-    /**
-     * 仲裁邮箱数据
-     */
-    private FutureEmailData futureEmailData;
 
 }

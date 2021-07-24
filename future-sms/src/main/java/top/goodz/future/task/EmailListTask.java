@@ -8,10 +8,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import top.goodz.future.constants.FutureConstant;
 import top.goodz.future.enums.ErrorCodeEnum;
-import top.goodz.future.request.email.EmailData;
-import top.goodz.future.request.email.EmailFileData;
-import top.goodz.future.request.email.EmailRequest;
-import top.goodz.future.response.EmailResponse;
+import top.goodz.future.controller.request.email.EmailData;
+import top.goodz.future.controller.request.email.EmailFileData;
+import top.goodz.future.controller.request.email.EmailRequest;
+import top.goodz.future.controller.response.EmailResponse;
 import top.goodz.future.utils.ChkUtil;
 import top.goodz.future.utils.DateUtil;
 
@@ -42,7 +42,7 @@ public class EmailListTask implements Callable<EmailResponse> {
     private EmailRequest emailRequest;
 
     /**
-     * 所属仲裁委
+     * 所属
      */
     private String olapName;
 
@@ -103,7 +103,7 @@ public class EmailListTask implements Callable<EmailResponse> {
         // 发送通道 打开
         if (ChkUtil.isNotEmpty(email) && ChkUtil.isNotEmpty(email.getData())) {
             try {
-                response.setArbitralInfoId(email.getData().getArbitralInfoId());
+                response.setServiceId(email.getData().getServiceId());
                 EmailData data = email.getData();
 
                 javax.mail.internet.MimeMessage mimeMessage = sender.createMimeMessage();

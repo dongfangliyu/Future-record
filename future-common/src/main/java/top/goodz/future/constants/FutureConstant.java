@@ -31,23 +31,23 @@ public class FutureConstant {
     public static final int COMMONT_IS_DELETE_NO_SUCCESS = 2;
 
     /**
-     * 北海邮箱/公章图片ID
+     * 公章图片ID
      */
     public static final String OLAP_BH_EMAIL_PICTURE_ID = "image";
 
     /**
-     * 南平邮箱/公章图片ID
+     * 公章图片ID
      */
     public static final String OLAP_NP_EMAIL_PICTURE_ID = "image";
 
 
-    public static final String OLAP_BH_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") + "/future1.png";
+    public static final String OLAP_BH_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") + "\\future1.png";
 
-    public static final String OLAP_BH_EMAIL_PICTURE_FILE = System.getProperty("user.dir") + "/future2.png";
-    public static final String OLAP_BH_EMAIL_PICTURE_TITLE = System.getProperty("user.dir") + "/future3.png";
+    public static final String OLAP_BH_EMAIL_PICTURE_FILE = System.getProperty("user.dir") + "\\future2.png";
+    public static final String OLAP_BH_EMAIL_PICTURE_TITLE = System.getProperty("user.dir") + "\\future3.png";
 
 
-    public static final String OLAP_NP_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") + "/future1.png";
+    public static final String OLAP_NP_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") + "\\future1.png";
 
 
     public static final String OLAP_FTP_PATH = "FUTURE/";
@@ -57,9 +57,9 @@ public class FutureConstant {
     /**
      * 标识
      */
-    public static final String NP_ARBITRATION_COMMISSION = "FUTURE";
+    public static final String FUTURE_COMMISSION = "FUTURE";
     /**
-     *
+     *邮件签名
      */
     public static final String FUTURE_AC_NAME = "东方鲤鱼团队";
 

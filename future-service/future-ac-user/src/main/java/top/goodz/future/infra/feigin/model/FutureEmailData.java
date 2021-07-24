@@ -1,4 +1,4 @@
-package top.goodz.future.request.email;
+package top.goodz.future.infra.feigin.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Yajun.Zhang
  */
-public class EmailData implements Serializable {
+public class FutureEmailData implements Serializable {
 
     /**
      *
@@ -41,14 +41,14 @@ public class EmailData implements Serializable {
     private String rscPath;
 
     /**
-     * 案件ID
+     * 业务ID
      */
-    private String arbitralInfoId;
+    private String serviceId;
 
     /**
      * 发送email文件数据
      */
-    private List<EmailFileData> files;
+    private List<FutureEmailFileData> files;
 
     public String getToMail() {
         return toMail;
@@ -90,25 +90,29 @@ public class EmailData implements Serializable {
         this.rscPath = rscPath;
     }
 
-    public String getArbitralInfoId() {
-        return arbitralInfoId;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setArbitralInfoId(String arbitralInfoId) {
-        this.arbitralInfoId = arbitralInfoId;
+    public String getServiceId() {
+        return serviceId;
     }
 
-    public List<EmailFileData> getFiles() {
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public List<FutureEmailFileData> getFiles() {
         return files;
     }
 
-    public void setFiles(List<EmailFileData> files) {
+    public void setFiles(List<FutureEmailFileData> files) {
         this.files = files;
     }
 
     @Override
     public String toString() {
         return "EmailData [toMail=" + toMail + ", content=" + content + ", subject=" + subject + ", rscId=" + rscId
-                + ", rscPath=" + rscPath + ", arbitralInfoId=" + arbitralInfoId + ", files=" + files + "]";
+                + ", rscPath=" + rscPath + ", arbitralInfoId=" + serviceId + ", files=" + files + "]";
     }
 }

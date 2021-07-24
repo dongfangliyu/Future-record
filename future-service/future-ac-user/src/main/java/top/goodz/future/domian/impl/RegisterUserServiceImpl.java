@@ -1,9 +1,11 @@
 package top.goodz.future.domian.impl;
 
-import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import top.goodz.future.constants.FutureConstant;
 import top.goodz.future.domian.RegisterUserService;
+import top.goodz.future.domian.model.enums.UserRegisterType;
 import top.goodz.future.domian.model.user.UserEntity;
 import top.goodz.future.domian.repository.RegisterUserRepository;
 import top.goodz.future.utils.Md5Utils;
@@ -21,14 +23,17 @@ public class RegisterUserServiceImpl  implements RegisterUserService {
     @Autowired
     private RegisterUserRepository  registerUserRepository;
     @Override
-    public void register(UserEntity userEntity) {
+    @Transactional
+    public UserEntity register(UserEntity userEntity) {
 
         // 二次加密
         userEntity.setPassword( Md5Utils.EncoderByMd5(userEntity.getPassword()));
         userEntity.setUserNo(RandomUtil.randomCharString(32));
-        userEntity.setStatus(0);
-        userEntity.setType(1);
+        userEntity.setStatus(FutureConstant.COMMONT_STATUS_SUCCESS);
+        userEntity.setType(UserRegisterType.EMAIL.getCode());
 
         registerUserRepository.insert(userEntity);
+
+        return userEntity;
     }
 }

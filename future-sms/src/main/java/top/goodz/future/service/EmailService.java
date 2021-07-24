@@ -1,7 +1,7 @@
 package top.goodz.future.service;
 
-import top.goodz.future.request.email.EmailListRequest;
-import top.goodz.future.response.EmailResponse;
+import top.goodz.future.controller.request.email.EmailListRequest;
+import top.goodz.future.controller.response.EmailResponse;
 
 import java.util.List;
 

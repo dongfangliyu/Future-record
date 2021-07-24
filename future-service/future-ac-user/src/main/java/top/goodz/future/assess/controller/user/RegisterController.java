@@ -3,6 +3,7 @@ package top.goodz.future.assess.controller.user;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import top.goodz.future.application.process.RegisterUserProcessService;
 import top.goodz.future.assess.controller.model.request.user.RegisterRequest;
 import top.goodz.future.domian.RegisterUserService;
 import top.goodz.future.domian.model.user.UserEntity;
@@ -16,16 +17,16 @@ import top.goodz.future.response.CommonResponse;
 
 @RestController
 @Api(tags = "用户注册功能api")
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class RegisterController {
 
     @Autowired
-    private RegisterUserService registerUserService;
+    private RegisterUserProcessService registerUserProcessService;
 
     @PostMapping("/register")
     public CommonResponse register(@RequestBody RegisterRequest  registerRequest) {
 
-        registerUserService.register(convert2UserEntity(registerRequest));
+        registerUserProcessService.register(convert2UserEntity(registerRequest));
 
         return CommonResponse.responseOf("24234244444444444444444");
     }

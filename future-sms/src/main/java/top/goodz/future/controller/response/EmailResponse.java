@@ -1,6 +1,7 @@
-package top.goodz.future.response;
+package top.goodz.future.controller.response;
 
 import lombok.Data;
+import top.goodz.future.response.CommonResponse;
 
 /**
  * @author : Yajun.Zhang
@@ -48,5 +49,5 @@ public class EmailResponse extends CommonResponse {
     /**
      * 案件id
      */
-    private String arbitralInfoId;
+    private String serviceId;
 }

@@ -16,6 +16,7 @@
         <module>future-sms</module>
         <module>future-gateway</module>
         <module>future-auth</module>
+        <module>future-dcs</module>
         <module>future-service-api</module>
     </modules>
 

@@ -1,4 +1,4 @@
-package top.goodz.future.assess.model;
+package top.goodz.future.assess.controller.model.request.user;
 
 import lombok.Data;
 

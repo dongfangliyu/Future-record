@@ -1,7 +1,7 @@
-package top.goodz.future.assess.controller.login;
+package top.goodz.future.assess.controller.user;
 
 import org.springframework.web.bind.annotation.*;
-import top.goodz.future.assess.model.UserLoginRequest;
+import top.goodz.future.assess.controller.model.request.user.UserLoginRequest;
 import top.goodz.future.response.CommonResponse;
 
 /**
@@ -11,7 +11,7 @@ import top.goodz.future.response.CommonResponse;
  */
 @RestController
 @RequestMapping("/api")
-public class LoginController {
+public class UserLoginController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)

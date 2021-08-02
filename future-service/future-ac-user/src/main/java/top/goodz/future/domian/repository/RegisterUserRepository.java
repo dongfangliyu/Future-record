@@ -12,4 +12,8 @@ import top.goodz.future.domian.model.user.UserEntity;
  */
 public interface RegisterUserRepository {
     void insert(UserEntity userEntity);
+
+    void update(UserEntity userEntity);
+
+    UserEntity loadByName(UserEntity userEntity);
 }

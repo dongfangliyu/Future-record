@@ -13,4 +13,6 @@ import top.goodz.future.domian.model.user.UserEntity;
 public interface RegisterUserService {
 
     UserEntity register(UserEntity convert2UserEntity);
+
+    void active(UserEntity userEntity);
 }

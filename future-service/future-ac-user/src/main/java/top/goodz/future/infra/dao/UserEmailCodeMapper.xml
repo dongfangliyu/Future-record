@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.goodz.future.infra.dao.UserEmailCodeMapper" >
+  <resultMap id="BaseResultMap" type="top.goodz.future.domian.model.secuiity.UserEmailCodeVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="email_auth_no" property="emailAuthNo" jdbcType="VARCHAR" />
+    <result column="email_code" property="emailCode" jdbcType="VARCHAR" />
+    <result column="expire_time" property="expireTime" jdbcType="BIGINT" />
+    <result column="sys_create_time" property="sysCreateTime" jdbcType="TIMESTAMP" />
+    <result column="sys_update_time" property="sysUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, email_auth_no, email_code, expire_time, sys_create_time, sys_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_email_code
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByEmailAuthNo" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from t_user_email_code
+    where email_auth_no = #{emailAuthNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user_email_code
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.goodz.future.domian.model.secuiity.UserEmailCodeVO" >
+    insert into t_user_email_code (id, email_auth_no, email_code, 
+      expire_time, sys_create_time, sys_update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{emailAuthNo,jdbcType=VARCHAR}, #{emailCode,jdbcType=VARCHAR}, 
+      #{expireTime,jdbcType=BIGINT}, #{sysCreateTime,jdbcType=TIMESTAMP}, #{sysUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.goodz.future.domian.model.secuiity.UserEmailCodeVO" >
+    insert into t_user_email_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="emailAuthNo != null" >
+        email_auth_no,
+      </if>
+      <if test="emailCode != null" >
+        email_code,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="sysCreateTime != null" >
+        sys_create_time,
+      </if>
+      <if test="sysUpdateTime != null" >
+        sys_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="emailAuthNo != null" >
+        #{emailAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailCode != null" >
+        #{emailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=BIGINT},
+      </if>
+      <if test="sysCreateTime != null" >
+        #{sysCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysUpdateTime != null" >
+        #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.goodz.future.domian.model.secuiity.UserEmailCodeVO" >
+    update t_user_email_code
+    <set >
+      <if test="emailAuthNo != null" >
+        email_auth_no = #{emailAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailCode != null" >
+        email_code = #{emailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=BIGINT},
+      </if>
+      <if test="sysCreateTime != null" >
+        sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysUpdateTime != null" >
+        sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.goodz.future.domian.model.secuiity.UserEmailCodeVO" >
+    update t_user_email_code
+    set email_auth_no = #{emailAuthNo,jdbcType=VARCHAR},
+      email_code = #{emailCode,jdbcType=VARCHAR},
+      expire_time = #{expireTime,jdbcType=BIGINT},
+      sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP},
+      sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

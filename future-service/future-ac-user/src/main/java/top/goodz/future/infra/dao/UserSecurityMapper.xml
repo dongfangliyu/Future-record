@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.goodz.future.infra.dao.UserSecurityMapper" >
+  <resultMap id="BaseResultMap" type="top.goodz.future.domian.model.secuiity.UserSecurity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_no" property="userNo" jdbcType="VARCHAR" />
+    <result column="security_no" property="securityNo" jdbcType="VARCHAR" />
+    <result column="email_auth_no" property="emailAuthNo" jdbcType="VARCHAR" />
+    <result column="sms_auth_no" property="smsAuthNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sys_update_time" property="sysUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="sys_create_time" property="sysCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_no, security_no, email_auth_no, sms_auth_no, status, sys_update_time, sys_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_security
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user_security
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.goodz.future.domian.model.secuiity.UserSecurity" >
+    insert into t_user_security (id, user_no, security_no, 
+      email_auth_no, sms_auth_no, status, 
+      sys_update_time, sys_create_time)
+    values (#{id,jdbcType=INTEGER}, #{userNo,jdbcType=VARCHAR}, #{securityNo,jdbcType=VARCHAR}, 
+      #{emailAuthNo,jdbcType=VARCHAR}, #{smsAuthNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{sysUpdateTime,jdbcType=TIMESTAMP}, #{sysCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="top.goodz.future.domian.model.secuiity.UserSecurity" >
+    insert into t_user_security
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userNo != null" >
+        user_no,
+      </if>
+      <if test="securityNo != null" >
+        security_no,
+      </if>
+      <if test="emailAuthNo != null" >
+        email_auth_no,
+      </if>
+      <if test="smsAuthNo != null" >
+        sms_auth_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sysUpdateTime != null" >
+        sys_update_time,
+      </if>
+      <if test="sysCreateTime != null" >
+        sys_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null" >
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="securityNo != null" >
+        #{securityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailAuthNo != null" >
+        #{emailAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="smsAuthNo != null" >
+        #{smsAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sysUpdateTime != null" >
+        #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCreateTime != null" >
+        #{sysCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.goodz.future.domian.model.secuiity.UserSecurity" >
+    update t_user_security
+    <set >
+      <if test="userNo != null" >
+        user_no = #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="securityNo != null" >
+        security_no = #{securityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailAuthNo != null" >
+        email_auth_no = #{emailAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="smsAuthNo != null" >
+        sms_auth_no = #{smsAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sysUpdateTime != null" >
+        sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCreateTime != null" >
+        sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.goodz.future.domian.model.secuiity.UserSecurity" >
+    update t_user_security
+    set user_no = #{userNo,jdbcType=VARCHAR},
+      security_no = #{securityNo,jdbcType=VARCHAR},
+      email_auth_no = #{emailAuthNo,jdbcType=VARCHAR},
+      sms_auth_no = #{smsAuthNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      sys_update_time = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      sys_create_time = #{sysCreateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectBySecurityNo" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from t_user_security
+    where security_no = #{securityNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

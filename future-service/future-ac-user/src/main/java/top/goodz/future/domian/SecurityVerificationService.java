@@ -1,6 +1,8 @@
 package top.goodz.future.domian;
 
+import top.goodz.future.domian.model.secuiity.SecurityCheckVO;
 import top.goodz.future.domian.model.secuiity.SecurityVO;
+import top.goodz.future.domian.model.secuiity.UserSecurity;
 
 /**
  * @Description SecurityVerificationService
@@ -10,6 +12,11 @@ import top.goodz.future.domian.model.secuiity.SecurityVO;
 
 public interface SecurityVerificationService {
 
-   void  createSecurity(SecurityVO  securityVO);
+   String  createSecurity(SecurityVO  securityVO);
 
+   UserSecurity load(String securityNo);
+
+   boolean check(SecurityCheckVO buildCheckSecurityEmailVO);
+
+   void updateStatus(UserSecurity entity);
 }

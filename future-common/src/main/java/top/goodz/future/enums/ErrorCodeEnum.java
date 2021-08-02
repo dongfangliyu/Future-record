@@ -12,13 +12,31 @@ import top.goodz.future.exception.CommonException;
  */
 public enum ErrorCodeEnum {
 
+    /**
+     * F01010001
+     * F 表示用户端可见
+     * 第一位 注册:01 登陆02 通用03
+     * 第二： 01 表示业务异常  02 表示 系统异常
+     * 第三：0001 异常编码
+     */
 
     SUCCESS("0", "成功"),
     ERROR("-1", "失败"),
 
-    SLIDE_CAPTCHA_ERROR("F2020112", "图形验证码异常"),
+    SLIDE_CAPTCHA_ERROR("F03020112", "图形验证码异常"),
 
-    EMAIL_SEND_PASSAGEWAY_CLOSED("107001", "邮箱发送通道关闭");
+    EMAIL_SEND_PASSAGEWAY_CLOSED("F03010001", "邮箱发送通道关闭"),
+
+    NOT_REPEAT_AUTHENTICATION("F03010002", "请勿重复认证"),
+    EMAIL_CODE_EXPIRE("F03010003", "邮箱验证码已过期"),
+    CODE_ERROR("F03010004", "验证码错误"),
+    SECURITY_FAILED("F03010005", "请重新发起验证"),
+    SECURITY_MFA_FAILED("F03010006", "MFA安全认证缺失"),
+
+    EMAIL_EXIST("F01010001", "该邮箱已经存在"),
+
+
+    ;
 
 
     private String code;

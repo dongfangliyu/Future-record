@@ -9,14 +9,14 @@ import top.goodz.future.infra.dao.UserDao;
 import javax.annotation.Resource;
 
 /**
- *  @Description TODO
- *  @Author Yajun.Zhang
- *  @Date 2021/7/4 21:11
+ * @Description TODO
+ * @Author Yajun.Zhang
+ * @Date 2021/7/4 21:11
  */
 
 
 @Repository
-public class RegisterUserRepositoryImpl   implements RegisterUserRepository {
+public class RegisterUserRepositoryImpl implements RegisterUserRepository {
 
     @Autowired
     private UserDao userDao;
@@ -24,5 +24,15 @@ public class RegisterUserRepositoryImpl   implements RegisterUserRepository {
     @Override
     public void insert(UserEntity userEntity) {
         userDao.insert(userEntity);
+    }
+
+    @Override
+    public void update(UserEntity userEntity) {
+        userDao.update(userEntity);
+    }
+
+    @Override
+    public UserEntity loadByName(UserEntity userEntity) {
+       return userDao.loadByName(userEntity);
     }
 }

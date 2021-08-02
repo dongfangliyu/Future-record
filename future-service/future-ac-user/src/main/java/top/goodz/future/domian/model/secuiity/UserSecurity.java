@@ -2,6 +2,8 @@ package top.goodz.future.domian.model.secuiity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @Description SecurityEntity
  * @Author Yajun.Zhang
@@ -9,15 +11,22 @@ import lombok.Data;
  */
 
 @Data
-public class SecurityEntity {
+public class UserSecurity {
 
-    private  String emailAuthNo;
+    private int id;
+
+    private String userNo;
+
+    private String emailAuthNo;
 
     private String smsAuthNo;
 
     private String securityNo;
 
-    private String status;
+    private int status;
 
+    private Date sysCreateTime;
+
+    private Date sysUpdateTime;
 
 }

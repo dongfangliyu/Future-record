@@ -64,4 +64,21 @@
         </trim>
     </insert>
 
+    <update id="update">
+        update t_user
+        <set>
+            status = #{entity.status}
+        </set>
+        <where>
+            user_no = #{entity.userNo}
+        </where>
+
+    </update>
+
+    <select id="loadByName" resultMap="BaseResultMap">
+        select  user_no,account_Name,status  from t_user
+
+        where account_Name = #{entity.accountName}
+
+    </select>
 </mapper>

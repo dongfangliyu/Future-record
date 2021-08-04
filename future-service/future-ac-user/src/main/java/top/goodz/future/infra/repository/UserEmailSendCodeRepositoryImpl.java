@@ -22,7 +22,7 @@ public class UserEmailSendCodeRepositoryImpl implements UserEmailSendCodeReposit
 
     @Override
     public void save(UserEmailCodeVO codeVO) {
-        userEmailCodeMapper.insert(codeVO);
+        userEmailCodeMapper.insertSelective(codeVO);
     }
 
     @Override

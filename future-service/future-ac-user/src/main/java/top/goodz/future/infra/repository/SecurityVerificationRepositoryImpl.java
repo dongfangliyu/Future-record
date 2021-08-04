@@ -21,7 +21,7 @@ public class SecurityVerificationRepositoryImpl  implements SecurityVerification
 
     @Override
     public void save(UserSecurity securityEntity) {
-        userSecurityMapper.insert(securityEntity);
+        userSecurityMapper.insertSelective(securityEntity);
     }
 
     @Override

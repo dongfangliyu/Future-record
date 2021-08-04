@@ -54,7 +54,7 @@ public class RegisterController {
         UserEntity entity = new UserEntity();
 
         entity.setAccountName(registerRequest.getAccountName());
-        entity.setPassword(registerRequest.getPassword());
+        entity.setPassWord(registerRequest.getPassWord());
         entity.setReferees(registerRequest.getReferees());
         return entity;
     }

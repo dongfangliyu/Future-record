@@ -29,7 +29,7 @@ public class RegisterUserServiceImpl  implements RegisterUserService {
     public UserEntity register(UserEntity userEntity) {
 
         // 二次加密
-        userEntity.setPassword( Md5Utils.EncoderByMd5(userEntity.getPassword()));
+        userEntity.setPassWord( Md5Utils.EncoderByMd5(userEntity.getPassWord()));
         userEntity.setUserNo(RandomUtil.randomCharString(32));
         userEntity.setStatus(FutureConstant.COMMONT_STATUS_SUCCESS);
         userEntity.setType(UserRegisterType.EMAIL.getCode());

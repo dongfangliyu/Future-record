@@ -17,7 +17,7 @@ public class UserEntity {
 
     private String accountName;
 
-    private String password;
+    private String passWord;
 
     private int type;
 

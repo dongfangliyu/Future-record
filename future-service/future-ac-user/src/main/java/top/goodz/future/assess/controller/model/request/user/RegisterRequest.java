@@ -13,7 +13,7 @@ public class RegisterRequest {
 
     private String accountName;
 
-    private String password;
+    private String passWord;
 
     private String confirmPassWord;
 

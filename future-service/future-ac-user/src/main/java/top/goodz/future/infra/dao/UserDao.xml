@@ -5,7 +5,7 @@
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="user_no" property="userNo" jdbcType="VARCHAR"/>
         <result column="account_Name" property="accountName" jdbcType="VARCHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="password" property="passWord" jdbcType="VARCHAR"/>
         <result column="referees" property="referees" jdbcType="VARCHAR"/>
         <result column="type" property="type" jdbcType="INTEGER"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
@@ -48,8 +48,8 @@
             <if test="accountName != null">
                 #{accountName,jdbcType=VARCHAR},
             </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
+            <if test="passWord != null">
+                #{passWord,jdbcType=VARCHAR},
             </if>
             <if test="referees != null">
                 #{referees,jdbcType=VARCHAR},

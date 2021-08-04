@@ -19,7 +19,7 @@ import java.util.List;
  *  
  */
 
-@FeignClient(value = "future-sms", url = "127.0.0.1:8086")
+@FeignClient(value = "future-sms")
 public interface IFutureSmsClient {
 
     @RequestMapping(value = "/api/email/batchSend", method = RequestMethod.POST)

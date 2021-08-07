@@ -38,7 +38,7 @@ public  abstract class SecurityVerificationSmsServiceImpl implements SecurityVer
     }
 
     @Override
-    public void updateStatus(UserSecurity entity) {
+    public void update(UserSecurity entity) {
 
     }
 

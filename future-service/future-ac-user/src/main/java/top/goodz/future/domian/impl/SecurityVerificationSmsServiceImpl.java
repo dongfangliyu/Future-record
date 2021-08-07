@@ -15,7 +15,7 @@ import top.goodz.future.domian.model.secuiity.UserSecurity;
 
 
 @Service("securityVerificationSmsServiceImpl")
-public  abstract class SecurityVerificationSmsServiceImpl implements SecurityVerificationService {
+public  abstract class SecurityVerificationSmsServiceImpl extends SecurityVerificationService {
 
 
     @Override

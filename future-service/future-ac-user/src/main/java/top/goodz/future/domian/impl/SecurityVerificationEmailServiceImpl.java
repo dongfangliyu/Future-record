@@ -26,7 +26,7 @@ import java.util.UUID;
 
 
 @Service("securityVerificationEmailServiceImpl")
-public abstract class SecurityVerificationEmailServiceImpl implements SecurityVerificationService {
+public class SecurityVerificationEmailServiceImpl extends SecurityVerificationService {
 
     @Resource
     private EmailValidationFacade emailValidationFacade;

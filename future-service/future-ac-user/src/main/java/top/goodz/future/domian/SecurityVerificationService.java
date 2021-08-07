@@ -10,15 +10,15 @@ import top.goodz.future.domian.model.secuiity.UserSecurity;
  * @Date 2021/7/11 12:54
  */
 
-public interface SecurityVerificationService {
+public abstract class SecurityVerificationService {
 
-   String  createSecurity(SecurityVO  securityVO);
+    public abstract String createSecurity(SecurityVO securityVO);
 
-   UserSecurity load(String securityNo);
+    public abstract UserSecurity load(String securityNo);
 
-   boolean check(SecurityCheckVO buildCheckSecurityEmailVO);
+    public abstract boolean check(SecurityCheckVO buildCheckSecurityEmailVO);
 
-   void update(UserSecurity entity);
+    public abstract void update(UserSecurity entity);
 
-   void sendEmailCode(SecurityVO securityVO);
+    public abstract void sendEmailCode(SecurityVO securityVO);
 }

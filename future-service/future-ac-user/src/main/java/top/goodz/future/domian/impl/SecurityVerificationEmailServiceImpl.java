@@ -26,7 +26,7 @@ import java.util.UUID;
 
 
 @Service("securityVerificationEmailServiceImpl")
-public class SecurityVerificationEmailServiceImpl implements SecurityVerificationService {
+public abstract class SecurityVerificationEmailServiceImpl implements SecurityVerificationService {
 
     @Resource
     private EmailValidationFacade emailValidationFacade;
@@ -78,8 +78,24 @@ public class SecurityVerificationEmailServiceImpl implements SecurityVerificatio
     }
 
     @Override
-    public void updateStatus(UserSecurity entity) {
+    public void update(UserSecurity entity) {
         securityVerificationRepository.update(entity);
+    }
+
+    @Override
+    public void sendEmailCode(SecurityVO securityVO) {
+
+        UserSecurity userSecurity = securityVerificationRepository.load(securityVO.getSecurityNo());
+
+        UserEmailCodeVO emailCodeVO = userEmailSendCodeRepository.load(userSecurity.getEmailAuthNo());
+
+        securityVO.setEmail(emailCodeVO.getToSend());
+
+        FutureEmailRequest emailRequest = buildSendEmailData(securityVO);
+
+        UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest);
+
+        userEmailSendCodeRepository.save(userEmailCodeVO);
     }
 
 
@@ -93,6 +109,10 @@ public class SecurityVerificationEmailServiceImpl implements SecurityVerificatio
         if (securityVO.isEmailFlag()) {
 
             FutureEmailRequest emailRequest = buildSendEmailData(securityVO);
+
+            if (securityVO.isSendEmailFlag()) {
+                return null;
+            }
 
             UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest);
 
@@ -116,6 +136,7 @@ public class SecurityVerificationEmailServiceImpl implements SecurityVerificatio
         String code = RandomUtil.randomString(6);
         emailRequest.getData().setContent(String.format(emailRequest.getData().getContent(), code));
         codeVO.setEmailCode(code);
+        codeVO.setToSend(emailRequest.getData().getToMail());
         codeVO.setExpireTime(System.currentTimeMillis() + 300);
 
         emailValidationFacade.send(emailRequest);
@@ -125,6 +146,7 @@ public class SecurityVerificationEmailServiceImpl implements SecurityVerificatio
     }
 
     private FutureEmailRequest buildSendEmailData(SecurityVO securityVO) {
+
         FutureEmailRequest request = new FutureEmailRequest();
         request.setChannelsName("SecurityVerificationServiceImpl");
         request.setCreator("devlops");

@@ -16,6 +16,7 @@ public class UserEmailCodeVO {
 
     private int id;
     private String emailAuthNo;
+    private String toSend;
     private String emailCode;
     private long expireTime;
     private Date sysCreateTime;

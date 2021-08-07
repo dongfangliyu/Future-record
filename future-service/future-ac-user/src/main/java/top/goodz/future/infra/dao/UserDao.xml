@@ -28,7 +28,7 @@
             </if>
             <if test="passWord != null">
                 password,
-            </if>
+            </if> 
             <if test="referees != null">
                 referees,
             </if>

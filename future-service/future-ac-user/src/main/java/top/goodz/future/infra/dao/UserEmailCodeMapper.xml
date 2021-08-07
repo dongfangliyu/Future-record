@@ -4,13 +4,14 @@
   <resultMap id="BaseResultMap" type="top.goodz.future.domian.model.secuiity.UserEmailCodeVO" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="email_auth_no" property="emailAuthNo" jdbcType="VARCHAR" />
+    <result column="to_send" property="toSend" jdbcType="VARCHAR" />
     <result column="email_code" property="emailCode" jdbcType="VARCHAR" />
     <result column="expire_time" property="expireTime" jdbcType="BIGINT" />
     <result column="sys_create_time" property="sysCreateTime" jdbcType="TIMESTAMP" />
     <result column="sys_update_time" property="sysUpdateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, email_auth_no, email_code, expire_time, sys_create_time, sys_update_time
+    id, email_auth_no, to_send,email_code, expire_time, sys_create_time, sys_update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,17 +23,17 @@
     select
     <include refid="Base_Column_List" />
     from t_user_email_code
-    where email_auth_no = #{emailAuthNo,jdbcType=INTEGER}
+    where email_auth_no = #{emailAuthNo,jdbcType=INTEGER} limit 1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_user_email_code
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="top.goodz.future.domian.model.secuiity.UserEmailCodeVO" >
-    insert into t_user_email_code (id, email_auth_no, email_code, 
+    insert into t_user_email_code (id, email_auth_no,to_send, email_code,
       expire_time, sys_create_time, sys_update_time
       )
-    values (#{id,jdbcType=INTEGER}, #{emailAuthNo,jdbcType=VARCHAR}, #{emailCode,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{emailAuthNo,jdbcType=VARCHAR}, #{toSend,jdbcType=VARCHAR},#{emailCode,jdbcType=VARCHAR},
       #{expireTime,jdbcType=BIGINT}, #{sysCreateTime,jdbcType=TIMESTAMP}, #{sysUpdateTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -44,6 +45,9 @@
       </if>
       <if test="emailAuthNo != null" >
         email_auth_no,
+      </if>
+      <if test="emailCode != null" >
+        to_send,
       </if>
       <if test="emailCode != null" >
         email_code,
@@ -64,6 +68,9 @@
       </if>
       <if test="emailAuthNo != null" >
         #{emailAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="toSend != null" >
+        #{toSend,jdbcType=VARCHAR},
       </if>
       <if test="emailCode != null" >
         #{emailCode,jdbcType=VARCHAR},

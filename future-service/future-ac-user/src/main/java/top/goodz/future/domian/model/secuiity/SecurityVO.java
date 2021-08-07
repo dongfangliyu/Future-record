@@ -2,6 +2,8 @@ package top.goodz.future.domian.model.secuiity;
 
 import lombok.Data;
 
+import java.util.PriorityQueue;
+
 /**
  * @Description SecurityEntity
  * @Author Yajun.Zhang
@@ -17,6 +19,12 @@ public class SecurityVO {
 
     private String userNo;
 
+    private String securityNo;
+
     private String email;
+
+    private  boolean sendEmailFlag;
+
+    private  boolean sendSmsFlag;
 
 }

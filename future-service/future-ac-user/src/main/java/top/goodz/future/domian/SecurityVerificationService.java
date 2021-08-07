@@ -18,5 +18,7 @@ public interface SecurityVerificationService {
 
    boolean check(SecurityCheckVO buildCheckSecurityEmailVO);
 
-   void updateStatus(UserSecurity entity);
+   void update(UserSecurity entity);
+
+   void sendEmailCode(SecurityVO securityVO);
 }

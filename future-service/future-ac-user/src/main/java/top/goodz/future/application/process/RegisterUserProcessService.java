@@ -47,6 +47,7 @@ public class RegisterUserProcessService {
         securityVO.setSmsFlag(false);
         securityVO.setUserNo(user.getUserNo());
         securityVO.setEmail(user.getAccountName());
+        securityVO.setSendEmailFlag(false);
 
         return securityVO;
     }
@@ -66,7 +67,8 @@ public class RegisterUserProcessService {
         userEntity.setStatus(UserStatusEnum.ACTIVE.getCode());
         registerUserService.active(userEntity);
 
-        securityVerificationService.updateStatus(entity);
+        entity.setStatus(SecurityStatusEnum.SUCCESS.getCode());
+        securityVerificationService.update(entity);
     }
 
     private SecurityCheckVO buildCheckSecurityEmailVO(UserSecurity entity, RegisterActiveVO convert2RegisterActiveVO) {

@@ -15,7 +15,7 @@ import top.goodz.future.domian.model.secuiity.UserSecurity;
 
 
 @Service("securityVerificationSmsServiceImpl")
-public  abstract class SecurityVerificationSmsServiceImpl extends SecurityVerificationService {
+public  class SecurityVerificationSmsServiceImpl extends SecurityVerificationService {
 
 
     @Override
@@ -39,6 +39,11 @@ public  abstract class SecurityVerificationSmsServiceImpl extends SecurityVerifi
 
     @Override
     public void update(UserSecurity entity) {
+
+    }
+
+    @Override
+    public void sendEmailCode(SecurityVO securityVO) {
 
     }
 

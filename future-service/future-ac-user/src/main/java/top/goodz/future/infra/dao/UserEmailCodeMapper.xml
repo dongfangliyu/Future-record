@@ -46,7 +46,7 @@
       <if test="emailAuthNo != null" >
         email_auth_no,
       </if>
-      <if test="emailCode != null" >
+      <if test="toSend != null" >
         to_send,
       </if>
       <if test="emailCode != null" >

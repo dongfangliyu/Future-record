@@ -79,6 +79,6 @@
         select  user_no,account_Name,status  from t_user
 
         where account_Name = #{entity.accountName}
-
+     LIMIT 1
     </select>
 </mapper>

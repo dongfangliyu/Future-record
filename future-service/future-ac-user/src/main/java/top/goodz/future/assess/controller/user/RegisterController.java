@@ -2,11 +2,13 @@ package top.goodz.future.assess.controller.user;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import top.goodz.future.application.process.RegisterUserProcessService;
 import top.goodz.future.assess.controller.model.request.user.RegisterActiveRequest;
 import top.goodz.future.assess.controller.model.request.user.RegisterRequest;
-import top.goodz.future.domian.RegisterUserService;
 import top.goodz.future.domian.model.user.RegisterActiveVO;
 import top.goodz.future.domian.model.user.UserEntity;
 import top.goodz.future.response.CommonResponse;

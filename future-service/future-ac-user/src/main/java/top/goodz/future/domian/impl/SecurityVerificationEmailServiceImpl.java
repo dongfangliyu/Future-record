@@ -111,14 +111,11 @@ public class SecurityVerificationEmailServiceImpl extends SecurityVerificationSe
             FutureEmailRequest emailRequest = buildSendEmailData(securityVO);
 
             if (securityVO.isSendEmailFlag()) {
-                return null;
+                UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest);
+                userEmailSendCodeRepository.save(userEmailCodeVO);
             }
 
-            UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest);
-
-            userEmailSendCodeRepository.save(userEmailCodeVO);
-
-            securityEntity.setEmailAuthNo(userEmailCodeVO.getEmailAuthNo());
+            securityEntity.setEmailAuthNo(emailRequest.getData().getServiceId());
         }
         if (securityVO.isSmsFlag()) {
             // TODO: 2021/7/11

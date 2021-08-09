@@ -44,6 +44,7 @@ public class AuthProvider {
         defaultSkipUrl.add("/js/**");
         defaultSkipUrl.add("/ruoyi/**");
         defaultSkipUrl.add("/ajax/**");
+        defaultSkipUrl.add("**/webjars/**");
     }
 
     /**

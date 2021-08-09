@@ -31,7 +31,7 @@ public class RegisterUserServiceImpl  implements RegisterUserService {
         // 二次加密
         userEntity.setPassWord( Md5Utils.EncoderByMd5(userEntity.getPassWord()));
         userEntity.setUserNo(RandomUtil.randomCharString(32));
-        userEntity.setStatus(FutureConstant.COMMONT_STATUS_SUCCESS);
+        userEntity.setStatus(UserStatusEnum.INIT.getCode());
         userEntity.setType(UserRegisterType.EMAIL.getCode());
 
         UserEntity entity = registerUserRepository.loadByName(userEntity);

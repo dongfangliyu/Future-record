@@ -1,6 +1,9 @@
 package top.goodz.future.enums;
 
 import top.goodz.future.exception.CommonException;
+import top.goodz.future.exception.ServiceException;
+
+import javax.sql.rowset.serial.SerialException;
 
 /**
  *  * @Description: 
@@ -56,9 +59,10 @@ public enum ErrorCodeEnum {
         return message;
     }
 
-    public void throwEcxeption() throws CommonException {
+    public void throwEcxeption() {
 
-        new RuntimeException();
+        throw new ServiceException(getCode(), getMessage());
+
     }
 
 }

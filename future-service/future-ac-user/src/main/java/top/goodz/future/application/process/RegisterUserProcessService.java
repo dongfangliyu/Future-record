@@ -13,6 +13,7 @@ import top.goodz.future.domian.model.secuiity.UserSecurity;
 import top.goodz.future.domian.model.user.RegisterActiveVO;
 import top.goodz.future.domian.model.user.UserEntity;
 import top.goodz.future.enums.ErrorCodeEnum;
+import top.goodz.future.exception.ServiceException;
 
 import javax.annotation.Resource;
 
@@ -56,7 +57,7 @@ public class RegisterUserProcessService {
         UserSecurity entity = securityVerificationService.load(convert2RegisterActiveVO.getSecurityNo());
 
         if (entity.getStatus() == SecurityStatusEnum.SUCCESS.getCode()) {
-            ErrorCodeEnum.NOT_REPEAT_AUTHENTICATION.throwEcxeption();
+            throw  new ServiceException(ErrorCodeEnum.NOT_REPEAT_AUTHENTICATION);
         }
 
 

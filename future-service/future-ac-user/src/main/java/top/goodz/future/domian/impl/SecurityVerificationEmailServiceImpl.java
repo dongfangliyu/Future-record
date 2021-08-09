@@ -93,9 +93,12 @@ public class SecurityVerificationEmailServiceImpl extends SecurityVerificationSe
 
         FutureEmailRequest emailRequest = buildSendEmailData(securityVO);
 
-        UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest);
+        UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest,securityVO);
 
         userEmailSendCodeRepository.save(userEmailCodeVO);
+
+        userSecurity.setEmailAuthNo(userEmailCodeVO.getEmailAuthNo());
+        securityVerificationRepository.update(userSecurity);
     }
 
 
@@ -110,10 +113,9 @@ public class SecurityVerificationEmailServiceImpl extends SecurityVerificationSe
 
             FutureEmailRequest emailRequest = buildSendEmailData(securityVO);
 
-            if (securityVO.isSendEmailFlag()) {
-                UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest);
-                userEmailSendCodeRepository.save(userEmailCodeVO);
-            }
+            UserEmailCodeVO userEmailCodeVO = sendEmailCode(emailRequest, securityVO);
+
+            userEmailSendCodeRepository.save(userEmailCodeVO);
 
             securityEntity.setEmailAuthNo(emailRequest.getData().getServiceId());
         }
@@ -125,7 +127,7 @@ public class SecurityVerificationEmailServiceImpl extends SecurityVerificationSe
 
     }
 
-    private UserEmailCodeVO sendEmailCode(FutureEmailRequest emailRequest) {
+    private UserEmailCodeVO sendEmailCode(FutureEmailRequest emailRequest, SecurityVO securityVO) {
 
         UserEmailCodeVO codeVO = new UserEmailCodeVO();
 
@@ -134,9 +136,11 @@ public class SecurityVerificationEmailServiceImpl extends SecurityVerificationSe
         emailRequest.getData().setContent(String.format(emailRequest.getData().getContent(), code));
         codeVO.setEmailCode(code);
         codeVO.setToSend(emailRequest.getData().getToMail());
-        codeVO.setExpireTime(System.currentTimeMillis() + 300);
+        codeVO.setExpireTime(System.currentTimeMillis() + 300 * 1000);
 
-        emailValidationFacade.send(emailRequest);
+        if (securityVO.isSendEmailFlag()) {
+            emailValidationFacade.send(emailRequest);
+        }
 
         return codeVO;
 

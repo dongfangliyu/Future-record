@@ -1,7 +1,5 @@
 package top.goodz.future.infra.facade;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import top.goodz.future.application.process.model.SysLoginRequest;
 import top.goodz.future.domian.facade.SysLoginFacade;

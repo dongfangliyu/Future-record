@@ -1,12 +1,6 @@
 package top.goodz.future.feigin;
 
-import feign.codec.Encoder;
-import feign.form.spring.SpringFormEncoder;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

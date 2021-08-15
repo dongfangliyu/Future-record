@@ -56,10 +56,15 @@ public class RegisterUserProcessService {
     public void active(RegisterActiveVO convert2RegisterActiveVO) {
         UserSecurity entity = securityVerificationService.load(convert2RegisterActiveVO.getSecurityNo());
 
-        if (entity.getStatus() == SecurityStatusEnum.SUCCESS.getCode()) {
-            throw  new ServiceException(ErrorCodeEnum.NOT_REPEAT_AUTHENTICATION);
+        if (null == entity) {
+            ErrorCodeEnum.NOT_REPEAT_AUTHENTICATION.throwEcxeption();
+
         }
 
+        if (entity.getStatus() == SecurityStatusEnum.SUCCESS.getCode()) {
+            throw new ServiceException(ErrorCodeEnum.NOT_REPEAT_AUTHENTICATION.getCode(), ErrorCodeEnum.NOT_REPEAT_AUTHENTICATION.getMessage());
+
+        }
 
         securityVerificationService.check(buildCheckSecurityEmailVO(entity, convert2RegisterActiveVO));
 

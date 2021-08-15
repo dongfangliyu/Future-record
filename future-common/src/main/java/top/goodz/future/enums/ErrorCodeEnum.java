@@ -61,7 +61,7 @@ public enum ErrorCodeEnum {
 
     public void throwEcxeption() {
 
-        throw new ServiceException(getCode(), getMessage());
+        throw new ServiceException(getCode(),getMessage());
 
     }
 

@@ -41,13 +41,13 @@ public class FutureConstant {
     public static final String OLAP_NP_EMAIL_PICTURE_ID = "image";
 
 
-    public static final String OLAP_BH_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") + "/" + "future1.png";
+    public static final String OLAP_BH_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") + "\\/" + "future1.png";
 
-    public static final String OLAP_BH_EMAIL_PICTURE_FILE = System.getProperty("user.dir") + "/" + "future2.png";
-    public static final String OLAP_BH_EMAIL_PICTURE_TITLE = System.getProperty("user.dir") +  "/" + "future3.png";
+    public static final String OLAP_BH_EMAIL_PICTURE_FILE = System.getProperty("user.dir") + "\\/" + "future2.png";
+    public static final String OLAP_BH_EMAIL_PICTURE_TITLE = System.getProperty("user.dir") +  "\\/" + "future3.png";
 
 
-    public static final String OLAP_NP_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") +  "/" + "future1.png";
+    public static final String OLAP_NP_EMAIL_PICTURE_ADDRESS = System.getProperty("user.dir") +  "\\/" + "future1.png";
 
 
     public static final String OLAP_FTP_PATH = "FUTURE/";

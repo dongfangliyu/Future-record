@@ -51,7 +51,7 @@
         <alibaba.cloud.version>2.1.0.RELEASE</alibaba.cloud.version>
         <docker.plugin.version>1.1.0</docker.plugin.version>
         <nacos.version>0.2.2.RELEASE</nacos.version>
-
+        <dubbo.version>2.7.11</dubbo.version>
 
         <pagehelper-spring-boot-starter.version>1.2.10</pagehelper-spring-boot-starter.version>
 

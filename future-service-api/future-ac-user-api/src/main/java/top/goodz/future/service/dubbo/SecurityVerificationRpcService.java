@@ -11,4 +11,6 @@ public interface SecurityVerificationRpcService {
 
     public  String createSecurity(String securityVO);
 
+    public  String createAbbitmqMessage(String securityVO);
+
 }

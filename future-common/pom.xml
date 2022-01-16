@@ -115,6 +115,11 @@
             <version>${dubbo.version}</version>
         </dependency>
         <!-- dubboa and nacos  -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
     </dependencies>
 
 

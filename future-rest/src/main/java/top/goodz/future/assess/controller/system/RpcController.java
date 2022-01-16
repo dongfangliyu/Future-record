@@ -23,11 +23,9 @@ public class RpcController {
     @GetMapping("/test")
     public CommonResponse test(@RequestParam String name){
 
-        ExtensionLoader<InvokerListener> extensionLoader = ExtensionLoader.getExtensionLoader(InvokerListener.class);
-        InvokerListener mytest = extensionLoader.getExtension("mytest");
+            String security = securityVerificationRpcService.createSecurity(name);
 
-        String security = securityVerificationRpcService.createSecurity(name);
+            return CommonResponse.responseOf(security);
 
-        return CommonResponse.responseOf(security);
     }
 }

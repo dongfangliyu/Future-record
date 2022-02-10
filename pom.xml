@@ -27,7 +27,7 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
         <java.version>1.8</java.version>
-        <bladex.tool.version>2.0.9.RELEASE</bladex.tool.version>
+        <bladex.tool.version>2.0.8.RELEASE</bladex.tool.version>
         <future.project.version>0.0.1-SNAPSHOT</future.project.version>
         <bladex.project.version>2.0.9.RELEASE</bladex.project.version>
         <swagger.version>2.9.2</swagger.version>
@@ -52,7 +52,7 @@
         <docker.plugin.version>1.1.0</docker.plugin.version>
         <nacos.version>0.2.2.RELEASE</nacos.version>
         <dubbo.version>2.7.11</dubbo.version>
-
+        <spring.security.version>2.3.0.RELEASE</spring.security.version>
         <pagehelper-spring-boot-starter.version>1.2.10</pagehelper-spring-boot-starter.version>
 
 
@@ -81,17 +81,11 @@
             <version>2.1.2.RELEASE</version>
         </dependency>
 
-        <!--   <dependency>
-               <groupId>org.springframework</groupId>
-               <artifactId>spring-context-support</artifactId>
-               <version>4.3.7.RELEASE</version>
-           </dependency>-->
-        <!--  <dependency>
-              <groupId>org.springframework.boot</groupId>
-              <artifactId>spring-boot-starter-test</artifactId>
-              <scope>test</scope>
-          </dependency>-->
-
+        <!--  热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

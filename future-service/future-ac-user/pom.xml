@@ -12,11 +12,6 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>top.goodz</groupId>
-            <artifactId>future-common</artifactId>
-            <version>${future.project.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>top.goodz</groupId>

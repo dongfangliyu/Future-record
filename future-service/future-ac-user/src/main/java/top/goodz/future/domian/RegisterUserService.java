@@ -1,6 +1,6 @@
 package top.goodz.future.domian;
 
-import top.goodz.future.domian.model.user.UserEntity;
+import top.goodz.future.domian.model.user.SysUserEntity;
 
 /**
  *  * @Description: 
@@ -12,7 +12,7 @@ import top.goodz.future.domian.model.user.UserEntity;
  */
 public interface RegisterUserService {
 
-    UserEntity register(UserEntity convert2UserEntity);
+    SysUserEntity register(SysUserEntity convert2UserEntity);
 
-    void active(UserEntity userEntity);
+    void active(SysUserEntity userEntity);
 }

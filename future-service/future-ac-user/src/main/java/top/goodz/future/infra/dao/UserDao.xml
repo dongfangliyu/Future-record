@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="top.goodz.future.infra.dao.UserDao">
-    <resultMap id="BaseResultMap" type="top.goodz.future.domian.model.user.UserEntity">
+    <resultMap id="BaseResultMap" type="top.goodz.future.domian.model.user.SysUserEntity">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="user_no" property="userNo" jdbcType="VARCHAR"/>
         <result column="account_Name" property="accountName" jdbcType="VARCHAR"/>
@@ -16,7 +16,7 @@
     </sql>
 
 
-    <insert id="insert" parameterType="top.goodz.future.domian.model.user.UserEntity">
+    <insert id="insert" parameterType="top.goodz.future.domian.model.user.SysUserEntity">
         insert into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
 

@@ -21,14 +21,14 @@ public class AutoCreateDataTask extends IJobHandler {
 
 
     @Override
-    @XxlJob("autoCreateJobHandler")
+ //   @XxlJob("autoCreateJobHandler")
     public ReturnT<String> execute(String s) throws Exception {
         dataClearProcessService.createData();
         return ReturnT.SUCCESS;
     }
 
 
-    @XxlJob("dataCleaningTask")
+  //  @XxlJob("dataCleaningTask")
     public ReturnT<String> dataCleaningTask(String s) {
         dataClearProcessService.dataCleaning();
         return ReturnT.SUCCESS;

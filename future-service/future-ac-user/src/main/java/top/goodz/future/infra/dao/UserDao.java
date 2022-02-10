@@ -1,7 +1,7 @@
 package top.goodz.future.infra.dao;
 
 import org.apache.ibatis.annotations.Param;
-import top.goodz.future.domian.model.user.UserEntity;
+import top.goodz.future.domian.model.user.SysUserEntity;
 
 /**
  *  * @Description: 
@@ -13,9 +13,9 @@ import top.goodz.future.domian.model.user.UserEntity;
  */
 
 public interface UserDao {
-    void insert(UserEntity userEntity);
+    void insert(SysUserEntity userEntity);
 
-    int update(@Param("entity") UserEntity userEntity);
+    int update(@Param("entity") SysUserEntity userEntity);
 
-    UserEntity loadByName (@Param("entity") UserEntity userEntity);
+    SysUserEntity loadByName (@Param("entity") SysUserEntity userEntity);
 }

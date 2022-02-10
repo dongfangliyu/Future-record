@@ -19,8 +19,8 @@
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://172.10.17.189:3306/future_user_db?useSSL=true" userId="root"
-                        password="123456">
+                        connectionURL="jdbc:mysql://172.10.17.189:3306/future_auth_db?useSSL=true" userId="root"
+                        password="admin">
         </jdbcConnection>
 
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
@@ -57,7 +57,7 @@
         domainObjectName：生成的domain类的名字,当表名和domain类的名字有差异时一定要设置，如果不设置，直接使用表名作为domain类的名字；
         可以设置为somepck.domainName，那么会自动把domainName类再放到somepck包里面；
         -->
-        <table tableName="t_user_email_code" domainObjectName="UserEmailCode"
+        <table tableName="oauth_client_details" domainObjectName="OauthClientDetails"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>

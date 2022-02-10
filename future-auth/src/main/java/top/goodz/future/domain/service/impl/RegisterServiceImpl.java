@@ -1,4 +1,4 @@
-package top.goodz.future.domain.service.register.impl;
+package top.goodz.future.domain.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,6 @@ import top.goodz.future.domain.service.register.RegisterService;
 
 import javax.annotation.Resource;
 import java.util.Map;
-import java.util.TimerTask;
 
 /**
  * @Description TODO

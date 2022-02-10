@@ -3,11 +3,10 @@ package top.goodz.future.domian.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import top.goodz.future.constants.FutureConstant;
 import top.goodz.future.domian.RegisterUserService;
 import top.goodz.future.domian.model.enums.UserRegisterType;
 import top.goodz.future.domian.model.enums.UserStatusEnum;
-import top.goodz.future.domian.model.user.UserEntity;
+import top.goodz.future.domian.model.user.SysUserEntity;
 import top.goodz.future.domian.repository.RegisterUserRepository;
 import top.goodz.future.enums.ErrorCodeEnum;
 import top.goodz.future.utils.Md5Utils;
@@ -26,15 +25,15 @@ public class RegisterUserServiceImpl  implements RegisterUserService {
     private RegisterUserRepository  registerUserRepository;
     @Override
     @Transactional
-    public UserEntity register(UserEntity userEntity) {
+    public SysUserEntity register(SysUserEntity userEntity) {
 
         // 二次加密
         userEntity.setPassWord( Md5Utils.EncoderByMd5(userEntity.getPassWord()));
         userEntity.setUserNo(RandomUtil.randomCharString(32));
         userEntity.setStatus(UserStatusEnum.INIT.getCode());
-        userEntity.setType(UserRegisterType.EMAIL.getCode());
+        userEntity.setUserType(UserRegisterType.EMAIL.getCode());
 
-        UserEntity entity = registerUserRepository.loadByName(userEntity);
+        SysUserEntity entity = registerUserRepository.loadByName(userEntity);
 
         if (null != entity && entity.getStatus() == UserStatusEnum.INIT.getCode()){
             return entity;
@@ -48,7 +47,7 @@ public class RegisterUserServiceImpl  implements RegisterUserService {
     }
 
     @Override
-    public void active(UserEntity userEntity) {
+    public void active(SysUserEntity userEntity) {
         registerUserRepository.update(userEntity);
     }
 }

@@ -1,6 +1,6 @@
 package top.goodz.future.domian.repository;
 
-import top.goodz.future.domian.model.user.UserEntity;
+import top.goodz.future.domian.model.user.SysUserEntity;
 
 /**
  *  * @Description: 
@@ -11,9 +11,9 @@ import top.goodz.future.domian.model.user.UserEntity;
  *  
  */
 public interface RegisterUserRepository {
-    void insert(UserEntity userEntity);
+    void insert(SysUserEntity userEntity);
 
-    void update(UserEntity userEntity);
+    void update(SysUserEntity userEntity);
 
-    UserEntity loadByName(UserEntity userEntity);
+    SysUserEntity loadByName(SysUserEntity userEntity);
 }

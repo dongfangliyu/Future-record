@@ -37,7 +37,9 @@ public enum ErrorCodeEnum {
     SECURITY_MFA_FAILED("F03010006", "MFA安全认证缺失"),
 
     EMAIL_EXIST("F01010001", "该邮箱已经存在"),
-
+    PASSWORD_FORMAT_ERROR("F01010002", "密码格式错误"),
+    PASSWORD_ERROR("F01010003", "密码错误"),
+    PASSWORD_OR_ACCOUNT_ERROR("F01010004", "账户或密码错误"),
 
     ;
 

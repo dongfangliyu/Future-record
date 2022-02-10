@@ -10,7 +10,7 @@ import top.goodz.future.application.process.RegisterUserProcessService;
 import top.goodz.future.assess.controller.model.request.user.RegisterActiveRequest;
 import top.goodz.future.assess.controller.model.request.user.RegisterRequest;
 import top.goodz.future.domian.model.user.RegisterActiveVO;
-import top.goodz.future.domian.model.user.UserEntity;
+import top.goodz.future.domian.model.user.SysUserEntity;
 import top.goodz.future.response.CommonResponse;
 
 /**
@@ -51,9 +51,9 @@ public class RegisterController {
     }
 
 
-    private UserEntity convert2UserEntity(RegisterRequest registerRequest) {
+    private SysUserEntity convert2UserEntity(RegisterRequest registerRequest) {
 
-        UserEntity entity = new UserEntity();
+        SysUserEntity entity = new SysUserEntity();
 
         entity.setAccountName(registerRequest.getAccountName());
         entity.setPassWord(registerRequest.getPassWord());

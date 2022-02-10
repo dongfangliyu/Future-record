@@ -2,11 +2,9 @@ package top.goodz.future.infra.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import top.goodz.future.domian.model.user.UserEntity;
+import top.goodz.future.domian.model.user.SysUserEntity;
 import top.goodz.future.domian.repository.RegisterUserRepository;
 import top.goodz.future.infra.dao.UserDao;
-
-import javax.annotation.Resource;
 
 /**
  * @Description TODO
@@ -22,17 +20,17 @@ public class RegisterUserRepositoryImpl implements RegisterUserRepository {
     private UserDao userDao;
 
     @Override
-    public void insert(UserEntity userEntity) {
+    public void insert(SysUserEntity userEntity) {
         userDao.insert(userEntity);
     }
 
     @Override
-    public void update(UserEntity userEntity) {
+    public void update(SysUserEntity userEntity) {
         userDao.update(userEntity);
     }
 
     @Override
-    public UserEntity loadByName(UserEntity userEntity) {
+    public SysUserEntity loadByName(SysUserEntity userEntity) {
        return userDao.loadByName(userEntity);
     }
 }

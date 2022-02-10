@@ -1,5 +1,7 @@
 package top.goodz.future.exception;
 
+import top.goodz.future.enums.ErrorCodeEnum;
+
 /**
  *  * @Description: 
  *  * @throws 
@@ -13,17 +15,24 @@ public class CommonException extends RuntimeException {
 
     private final int DEFAULT_STATUS_CODE = 500;
 
-    private final String errorId;
+    private String errorId;
 
-    private final String errorMessgee;
+    private String errorMessgee;
 
-    private final int statusCode;
+    private Object data;
 
-    public CommonException(String errorId, String errorMessgee, int statusCode) {
+    public CommonException(String errorId, String errorMessgee, Object object) {
         this.errorId = errorId;
         this.errorMessgee = errorMessgee;
-        this.statusCode = statusCode;
+        this.data = object;
     }
+
+    public CommonException(ErrorCodeEnum errorCodeEnum) {
+        this.errorId = errorCodeEnum.getCode();
+        this.errorMessgee = errorCodeEnum.getMessage();
+
+    }
+
 
     public String getErrorId() {
         return errorId;
@@ -34,8 +43,12 @@ public class CommonException extends RuntimeException {
         return errorMessgee;
     }
 
-    public int getStatusCode() {
-        return statusCode;
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 
     @Override
@@ -44,7 +57,7 @@ public class CommonException extends RuntimeException {
                 "DEFAULT_STATUS_CODE=" + DEFAULT_STATUS_CODE +
                 ", errorId='" + errorId + '\'' +
                 ", errorMessgee='" + errorMessgee + '\'' +
-                ", statusCode=" + statusCode +
+                ", statusCode=" + data +
                 '}';
     }
 

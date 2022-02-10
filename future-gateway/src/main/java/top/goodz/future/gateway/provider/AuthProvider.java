@@ -36,15 +36,13 @@ public class AuthProvider {
         defaultSkipUrl.add("/api/captcha/**");
         defaultSkipUrl.add("api/auth/api/login");
         defaultSkipUrl.add("api/file/api/verifyImage");
-        defaultSkipUrl.add("/swagger-ui.html");
-        defaultSkipUrl.add("/test/**");
         defaultSkipUrl.add("/actuator/**");
 
         defaultSkipUrl.add("/css/**");
         defaultSkipUrl.add("/js/**");
         defaultSkipUrl.add("/ruoyi/**");
         defaultSkipUrl.add("/ajax/**");
-        defaultSkipUrl.add("**/webjars/**");
+        defaultSkipUrl.add("/**/webjars/**");
     }
 
     /**
@@ -52,8 +50,11 @@ public class AuthProvider {
      */
     public static List<String> getDefaultSkipUrl() {
 
-
         return defaultSkipUrl;
+    }
+
+    private void test(){
+
     }
 
 }

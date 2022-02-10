@@ -1,0 +1,31 @@
+dn: ou=groups,dc=goodz,dc=top
+objectclass: top
+objectclass: domain
+ou: groups
+
+dn: ou=people,dc=baeldung,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: uid=u001,ou=people,dc=goodz,dc=top
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: zhangyajun
+sn: zhang
+uid: u001
+userPassword: 12345678
+
+dn: cn=admin,ou=groups,dc=goodz,dc=top
+objectclass: top
+objectclass: groupOfNames
+cn: admin
+member: uid=baeldung,ou=people,dc=baeldung,dc=com
+
+dn: cn=user,ou=groups,dc=goodz,dc=top
+objectclass: top
+objectclass: groupOfNames
+cn: user
+member: uid=u001,ou=people,dc=goodz,dc=top

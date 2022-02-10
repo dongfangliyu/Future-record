@@ -20,6 +20,6 @@ spring:
       #          group: DEFAULT_GROUP
       #          refresh: true
       discovery:
-        server-addr: 127.0.0.1 :8848
+        server-addr: 127.0.0.1:8848
         namespace: 21c528e9-c1e6-4384-b680-231490f60550
 

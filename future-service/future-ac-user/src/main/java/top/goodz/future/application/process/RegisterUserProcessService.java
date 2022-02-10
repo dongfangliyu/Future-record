@@ -11,7 +11,7 @@ import top.goodz.future.domian.model.secuiity.SecurityCheckVO;
 import top.goodz.future.domian.model.secuiity.SecurityVO;
 import top.goodz.future.domian.model.secuiity.UserSecurity;
 import top.goodz.future.domian.model.user.RegisterActiveVO;
-import top.goodz.future.domian.model.user.UserEntity;
+import top.goodz.future.domian.model.user.SysUserEntity;
 import top.goodz.future.enums.ErrorCodeEnum;
 import top.goodz.future.exception.ServiceException;
 
@@ -32,9 +32,9 @@ public class RegisterUserProcessService {
     @Resource(name = "securityVerificationEmailServiceImpl")
     private SecurityVerificationService securityVerificationService;
 
-    public String register(UserEntity convert2UserEntity) {
+    public String register(SysUserEntity convert2UserEntity) {
 
-        UserEntity userEntity = registerUserService.register(convert2UserEntity);
+        SysUserEntity userEntity = registerUserService.register(convert2UserEntity);
 
         //创建验证流程
         String securityNo = securityVerificationService.createSecurity(buildSecurity(userEntity));
@@ -42,7 +42,7 @@ public class RegisterUserProcessService {
         return securityNo;
     }
 
-    private SecurityVO buildSecurity(UserEntity user) {
+    private SecurityVO buildSecurity(SysUserEntity user) {
         SecurityVO securityVO = new SecurityVO();
         securityVO.setEmailFlag(true);
         securityVO.setSmsFlag(false);
@@ -68,7 +68,7 @@ public class RegisterUserProcessService {
 
         securityVerificationService.check(buildCheckSecurityEmailVO(entity, convert2RegisterActiveVO));
 
-        UserEntity userEntity = new UserEntity();
+        SysUserEntity userEntity = new SysUserEntity();
         userEntity.setUserNo(entity.getUserNo());
         userEntity.setStatus(UserStatusEnum.ACTIVE.getCode());
         registerUserService.active(userEntity);

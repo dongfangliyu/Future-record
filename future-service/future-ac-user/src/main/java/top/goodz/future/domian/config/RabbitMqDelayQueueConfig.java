@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  *
  *
- * 掩饰队列实现配置
+ * 延时队列实现配置
  */
 @Configuration
 public class RabbitMqDelayQueueConfig {

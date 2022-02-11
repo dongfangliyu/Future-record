@@ -25,7 +25,7 @@ import java.net.URISyntaxException;
  * 1. 对请求头中参数进行处理 from 参数进行清洗
  * 2. 重写StripPrefix = 1,支持全局
  *
- * @author lengleng
+ * @author zhangyajun
  */
 @Component
 public class PathFilter extends AbstractRouteFilter {

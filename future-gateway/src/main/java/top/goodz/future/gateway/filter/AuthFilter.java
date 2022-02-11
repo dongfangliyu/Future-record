@@ -38,7 +38,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * 鉴权认证
  *
- * @author Chill
+ * @author zhangyajun
  */
 
 @Slf4j

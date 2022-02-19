@@ -27,12 +27,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import top.goodz.future.gateway.dynamic.DynamicRouteService;
 import top.goodz.future.gateway.props.AuthProperties;
 import top.goodz.future.gateway.provider.AuthProvider;
 import top.goodz.future.gateway.provider.ResponseProvider;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -66,15 +70,15 @@ public class AuthFilter implements GlobalFilter, Ordered {
         if (StringUtils.isAllBlank(headerToken)) {
             return unAuth(resp, "缺失令牌,鉴权失败");
         }
-		/*String auth = StringUtils.isBlank(headerToken) ? paramToken : headerToken;
+	/*	String auth = StringUtils.isBlank(headerToken) ? paramToken : headerToken;
 		String token = JwtUtil.getToken(auth);
 		Claims claims = JwtUtil.parseJWT(token);
 		if (claims == null) {
 			return unAuth(resp, "请求未授权");
-		}*/
+		}
         Object tokenObject = null;
         try {
-			/*String usertype = String.valueOf(ChkUtI.isNotEmpty(claims.get(TokenUserInfo.USER_TYPE)) ? claims.get(TokenUserInfo.USER_TYPE) : "");
+			String usertype = String.valueOf(ChkUtil.isNotEmpty(claims.get(TokenUserInfo.USER_TYPE)) ? claims.get(TokenUserInfo.USER_TYPE) : "");
 			String username = String.valueOf(ChkUtil.isNotEmpty(claims.get(TokenUserInfo.USER_NAME)) ? claims.get(TokenUserInfo.USER_NAME) : "");
 			tokenObject = redisUtil.get(usertype + "|" + username);
 			LOGGER.info("查询出的token:" + tokenObject);
@@ -86,16 +90,19 @@ public class AuthFilter implements GlobalFilter, Ordered {
 			String ipAddress = RemoteUtil.getRemoteHost(exchange);
 			if (!ip.equals(ipAddress)) {
 				return unAuth(resp, "登录失效");
-			}*/
+			}
         } catch (Exception e) {
             LOGGER.info("拦截器获取token异常，{}", e.getMessage(), e);
-        }
+        }*/
         return chain.filter(exchange);
     }
 
     private boolean isSkip(String path) {
-        return AuthProvider.getDefaultSkipUrl().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(path::startsWith)
-                || authProperties.getSkipUrlList().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(path::startsWith);
+       // 路径前两部分为系统服务路由  不属于api 所以屏蔽截取掉
+        String apiPath =AuthProvider.PREFIX +  Arrays.stream(path.split(AuthProvider.PREFIX)).skip(3).collect(Collectors.joining(AuthProvider.PREFIX));
+
+        return AuthProvider.getDefaultSkipUrl().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(apiPath::startsWith)
+                || authProperties.getSkipUrlList().stream().map(url -> url.replace(AuthProvider.TARGET, AuthProvider.REPLACEMENT)).anyMatch(apiPath::startsWith);
     }
 
     private Mono<Void> unAuth(ServerHttpResponse resp, String msg) {

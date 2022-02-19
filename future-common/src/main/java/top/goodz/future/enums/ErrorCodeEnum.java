@@ -6,12 +6,7 @@ import top.goodz.future.exception.ServiceException;
 import javax.sql.rowset.serial.SerialException;
 
 /**
- *  * @Description: 
- *  * @throws 
- *  * @author Yajun.Zhang
- *  * @createTime： 
- *  * @version： 1.0
- *  
+   异常枚举类
  */
 public enum ErrorCodeEnum {
 
@@ -35,6 +30,7 @@ public enum ErrorCodeEnum {
     CODE_ERROR("F03010004", "验证码错误"),
     SECURITY_FAILED("F03010005", "请重新发起验证"),
     SECURITY_MFA_FAILED("F03010006", "MFA安全认证缺失"),
+    PARAMS_MISSING("F03010007","参数缺失"),
 
     EMAIL_EXIST("F01010001", "该邮箱已经存在"),
     PASSWORD_FORMAT_ERROR("F01010002", "密码格式错误"),

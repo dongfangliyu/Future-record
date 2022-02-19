@@ -13,16 +13,13 @@ public class AuthProvider {
 
     public static String TARGET = "/**";
     public static String REPLACEMENT = "";
-    public static String OLAP_AUTH_KEY = "olap-Auth";
+    public static String PREFIX = "/";
     public static String AUTH_KEY = "Authorization";
     private static List<String> defaultSkipUrl = new ArrayList<>();
 
     static {
-        defaultSkipUrl.add("/api/captcha/**");
-        defaultSkipUrl.add("api/auth/api/login");
-        defaultSkipUrl.add("api/file/api/verifyImage");
+        defaultSkipUrl.add("/oauth/**"); // oauth2默认端点 需要放行
         defaultSkipUrl.add("/actuator/**");
-
         defaultSkipUrl.add("/css/**");
         defaultSkipUrl.add("/js/**");
         defaultSkipUrl.add("/ruoyi/**");
@@ -36,10 +33,6 @@ public class AuthProvider {
     public static List<String> getDefaultSkipUrl() {
 
         return defaultSkipUrl;
-    }
-
-    private void test(){
-
     }
 
 }

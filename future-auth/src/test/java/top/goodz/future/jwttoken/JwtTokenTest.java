@@ -5,12 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.goodz.future.AuthTestApplication;
-import top.goodz.future.domain.model.token.TokenTemplate;
+import top.goodz.future.domain.model.vo.token.TokenTemplate;
 import top.goodz.future.domain.utils.JwtUtil;
-import top.goodz.future.domain.utils.TokenUtil;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -54,7 +52,7 @@ public class JwtTokenTest {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 
-        String encode = bCryptPasswordEncoder.encode("future_eyJhbGciOiJIUzUxMiJ9");
+        String encode = bCryptPasswordEncoder.encode("Aa123qwe!");
         System.out.printf(":" + encode);
         boolean matches = bCryptPasswordEncoder.matches("123465678","$2a$10$vv07mIozWoEfvGwHPf2XT.fTamvsh39yk9HW/j1Gw752ylbydWPAW" );
 

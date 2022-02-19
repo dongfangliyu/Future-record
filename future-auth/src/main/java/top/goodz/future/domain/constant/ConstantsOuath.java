@@ -65,6 +65,14 @@ public class ConstantsOuath {
 	 */
 	public static final String FUTURE_RESOURCE_ID = "api";
 
+	/**
+	 * 重新定义端点路径前缀
+	 */
+	public static final String URLPREFIX = "/future/oauth";
 
+	/**
+	 * future 系统自由用户登录标识
+	 */
+	public static final String FUTURE_USER = "future-user";
 
 }

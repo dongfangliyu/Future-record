@@ -5,19 +5,18 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import top.goodz.future.domain.config.support.*;
+import top.goodz.future.domain.config.support.UserPasswordUpdateHandler;
+import top.goodz.future.domain.config.support.UsernamePasswordFilter;
+import top.goodz.future.domain.constant.ConstantsOuath;
 import top.goodz.future.domain.filter.SecurityTokenFilter;
 import top.goodz.future.domain.repository.ldap.LDAPUserDetailsRepository;
 import top.goodz.future.domain.service.SysUserService;
@@ -29,7 +28,6 @@ import top.goodz.future.domain.service.impl.LDAPDetailServiceProvider;
 @Order(2)
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -38,6 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityTokenFilter securityTokenFilter;
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+ //   private PwdAuthenticationProvider adminPwdAuthenticationProvider;
 
     /**
      * 设置给认证管理器  在内存中进行注册公开内存的身份验证
@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.authenticationProvider(daoAuthenticationProvider());
+    //            .authenticationProvider(adminPwdAuthenticationProvider);
            //     .authenticationProvider(ldapDetailServiceProvider());
     }
 
@@ -115,10 +116,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //所有资源必须授权后访问
         httpSecurity
         .requestMatchers()
-                .antMatchers("/oauth/**","/login/**")
+                .antMatchers(ConstantsOuath.URLPREFIX + "/**","/api/oauth/**")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/*","/login/**")
+                .antMatchers(ConstantsOuath.URLPREFIX + "/**","/api/oauth/**")
                 .permitAll();
         httpSecurity.httpBasic().and().csrf().disable();
 

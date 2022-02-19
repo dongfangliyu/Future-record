@@ -1,11 +1,4 @@
 package top.goodz.future.gateway.dynamic;/**
- *  * @Description: 
- *  * @throws 
- *  * @author $
- *  * @createTime： $ $ 
- *  * @version： 2.1
- *  
- */
 
 /**
  * @Description TODO

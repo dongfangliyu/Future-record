@@ -331,7 +331,7 @@ public class HttpCloseableUtils {
 	 * @return
 	 * @throws IOException 
 	 * @throws 
-	 * @author zhuliang 
+	 * @author yajun.Zhang 
 	 * @createTime： 2019年8月22日 上午11:10:48
 	 */
 	public static String doPut(String url, List<NameValuePair> list, String headerKey, String headerValue) throws IOException {
@@ -635,7 +635,7 @@ public class HttpCloseableUtils {
 	 * @return
 	 * @throws IOException 
 	 * @throws 
-	 * @author zhuliang 
+	 * @author yajun.Zhang 
 	 * @createTime： 2019年8月22日 上午11:24:45
 	 */
 	public static String doDeleteAddHeader(String apiUrl, String headerKey, String headerValue)
@@ -675,7 +675,7 @@ public class HttpCloseableUtils {
 	 * @return
 	 * @throws IOException 
 	 * @throws 
-	 * @author zhuliang 
+	 * @author yajun.Zhang 
 	 * @createTime： 2019年8月22日 下午2:48:01
 	 */
 	public static String doPostFormddHeader(String apiUrl, Object json, String headerKey, String headerValue)

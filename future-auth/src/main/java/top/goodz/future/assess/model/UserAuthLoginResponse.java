@@ -12,9 +12,7 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class UserAuthLoginResponse implements Serializable {
-	
-	/**
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@ApiModelProperty(value = "token",required = true)

@@ -37,7 +37,7 @@ public class CommonResponse<T> implements Serializable {
         private boolean success;
         private String msg;
         private String code;
-        private T data;
+        private T data ;
 
         public Builder(boolean success, String msg, String code, T data) {
             this.success = success;

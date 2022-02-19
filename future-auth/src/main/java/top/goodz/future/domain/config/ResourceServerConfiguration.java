@@ -43,11 +43,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	public void configure(HttpSecurity httpSecurity) {
 		httpSecurity
 				.antMatcher("/**").authorizeRequests()
-				.antMatchers("/swagger-ui.html","/swagger-resources/**")
+				.antMatchers("/swagger-ui.html","/swagger-resources/**","/api/oauth/**")
 				.permitAll()
 				.anyRequest().authenticated()
 				//指定不同请求方式访问资源所需要的权限，一般查询是read，其余是write。
-				.antMatchers("/**").access("#oauth2.hasScope('all')")
+				.antMatchers("/api/**").access("#oauth2.hasScope('all')")
 
 			/*	.antMatchers(HttpMethod.GET, "/**").access("#oauth2.hasScope('read')")
 				.antMatchers(HttpMethod.POST, "/**").access("#oauth2.hasScope('write')")

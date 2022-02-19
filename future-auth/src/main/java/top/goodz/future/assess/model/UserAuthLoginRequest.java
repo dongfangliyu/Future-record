@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 @ApiModel(value = "统一登录-请求参数")
-public class UserAuthLogin {
+public class UserAuthLoginRequest {
 
 
     @ApiModelProperty(value = "用户名",required = true)

@@ -24,7 +24,7 @@ import java.util.*;
 /**
  * 功能说明：HTTP操作类 典型用法： 特殊用法：
  *
- * @author panye 修改人: 修改原因： 修改时间： 修改内容： 创建日期：2015-6-10 Copyright zzl-apt
+ * @author yajun.Zhang
  */
 @SuppressWarnings("deprecation")
 public class HttpClientUtil {
@@ -32,9 +32,8 @@ public class HttpClientUtil {
     private static Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
 
     /**
-     *  功能说明：POST 请求得到数据  panye  2015-6-10  @param   @return
-     *   返回得到的结果集，如果出现异常或者连接超时 则返回空  @throws  该方法可能抛出的异常，异常的类型、含义。 最后修改时间：
-     * 修改人：panye 修改内容： 修改注意点：
+     * 该方法可能抛出的异常，异常的类型、含义
+     *
      */
     public static String sendPost(String url, Map<String, Object> paramMap) {
         HttpPost httpRequset = null;

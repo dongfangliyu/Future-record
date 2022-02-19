@@ -1,4 +1,4 @@
-package top.goodz.future.domain.model.token;
+package top.goodz.future.domain.model.vo.token;
 
 import lombok.Builder;
 import lombok.Data;

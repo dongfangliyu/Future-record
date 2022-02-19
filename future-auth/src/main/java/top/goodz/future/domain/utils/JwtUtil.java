@@ -4,10 +4,8 @@ package top.goodz.future.domain.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Component;
-import top.goodz.future.domain.model.token.TokenTemplate;
+import top.goodz.future.domain.model.vo.token.TokenTemplate;
 
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;

@@ -56,19 +56,18 @@ public class DynamicRouteServiceListener implements CommandLineRunner {
             properties.put(PropertyKeyConst.NAMESPACE, "");
             ConfigService configService = NacosFactory.createConfigService(properties);
             String config = configService.getConfig(dataId, group, 5000);
-            System.out.println(config);
             configService.addListener(dataId, group, new Listener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
                     try {
                         List<RouteDefinition> routeDefinitions = JSON.parseArray(configInfo, RouteDefinition.class);
-                        System.out.println(routeDefinitions);
+                        log.info("-------future-gateway-routes loading success  config info:{} ",config);
                         for (RouteDefinition rote : routeDefinitions) {
                             dynamicRouteService.save(rote);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        System.out.println(e.getMessage());
+                        log.error("保存Nacos下发的动态路由配置 error {}",e.getMessage());
                     }
                 }
 
@@ -78,7 +77,7 @@ public class DynamicRouteServiceListener implements CommandLineRunner {
                 }
             });
         } catch (NacosException ignored) {
-
+            log.error("监听Nacos下发的动态路由配置 error {}",ignored.getMessage());
         }
     }
 

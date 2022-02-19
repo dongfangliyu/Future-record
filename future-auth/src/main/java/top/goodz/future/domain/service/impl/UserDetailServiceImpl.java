@@ -48,7 +48,7 @@ public class UserDetailServiceImpl implements SysUserService {
             ErrorCodeEnum.ERROR.throwEcxeption();
         }
 
-        return new FutureUserDetails(user.getUserNo(), user.getUserName(), user.getPassWord(), user.getEmail(),
+        return new FutureUserDetails(user.getUserNo(), user.getUserName(), user.getRealName(), user.getEmail(),
                 user.getUserType(), user.getUserSource(), user.getChannelSource(), user.getReferees(), user.getReferees(), new Date(),
                 user.getAuthStatus(), user.getAuthStatus(), user.getStatus(), user.getPassWord(),
                 Func.join(user.getList()), true, true, true, true,

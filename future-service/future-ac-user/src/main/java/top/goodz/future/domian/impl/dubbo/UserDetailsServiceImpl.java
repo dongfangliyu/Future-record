@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsRpcService {
         target.setUserSource("web");
         target.setChannelSource("share");
         target.setAccountName("user");
-        target.setPassWord("$2a$10$KSfjSy1/i28LTBK68OFEaeZKwBB351fMwKzk22zfp0i2JarbfkxUu");
+        target.setPassWord("$2a$10$M5Gnwu57hpKO6CYY2v3Ry.K7EhKbKJboC5rVxxFBi/SQce8idqg6S");
         target.setLastLoginTime(DateUtil.getCurrentTime());
         target.setUserType(1);
         target.setStatus(1);
@@ -59,7 +59,7 @@ public class UserDetailsServiceImpl implements UserDetailsRpcService {
         targe.setUserSource("web");
         targe.setChannelSource("share1");
         targe.setAccountName("adminUser");
-        targe.setPassWord("$2a$10$KSfjSy1/i28LTBK68OFEaeZKwBB351fMwKzk22zfp0i2JarbfkxUu");
+        targe.setPassWord("$2a$10$M5Gnwu57hpKO6CYY2v3Ry.K7EhKbKJboC5rVxxFBi/SQce8idqg6S");
         targe.setLastLoginTime(DateUtil.getCurrentTime());
         targe.setUserType(1);
         targe.setStatus(1);
@@ -77,7 +77,7 @@ public class UserDetailsServiceImpl implements UserDetailsRpcService {
         targe1.setUserSource("web");
         targe1.setChannelSource("share2");
         targe1.setAccountName("adminUser");
-        targe1.setPassWord("$2a$10$KSfjSy1/i28LTBK68OFEaeZKwBB351fMwKzk22zfp0i2JarbfkxUu");
+        targe1.setPassWord("$2a$10$M5Gnwu57hpKO6CYY2v3Ry.K7EhKbKJboC5rVxxFBi/SQce8idqg6S");
         targe1.setLastLoginTime(DateUtil.getCurrentTime());
         targe1.setUserType(1);
         targe1.setStatus(1);

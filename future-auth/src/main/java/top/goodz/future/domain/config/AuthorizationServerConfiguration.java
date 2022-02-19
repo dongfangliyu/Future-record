@@ -71,6 +71,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private TokenEnhancer jwtTokenEnhancer;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
     /**
      * 对请求授权的客户端进行配置
      *
@@ -107,7 +110,15 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authenticationManager(authenticationManager)
                 .authorizationCodeServices(authorizationCodeServices)
                 .tokenServices(authorizationServerTokenServices())
+                .userDetailsService(userDetailsService)
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
+                // 修改默认端点api
+                .pathMapping("/oauth/authorize", ConstantsOuath.URLPREFIX+"/authorize")
+                .pathMapping("/oauth/token", ConstantsOuath.URLPREFIX+"/login")//替换路径
+                .pathMapping("/oauth/confirm_access", ConstantsOuath.URLPREFIX+"/confirm_access")
+                .pathMapping("/oauth/error", ConstantsOuath.URLPREFIX+"/error")
+                .pathMapping("/oauth/check_token", ConstantsOuath.URLPREFIX+"/check_token")
+                .pathMapping("/oauth/token_key", ConstantsOuath.URLPREFIX+"/token_key")
         ;
 
     }

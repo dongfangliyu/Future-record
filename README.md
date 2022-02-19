@@ -1,19 +1,18 @@
-
 <hr><h1>关于项目信息</h1><hr>
-<h3>future record 铭记.未来</h3><hr>
+<h3>Future-Record 铭记.未来</h3><hr>
 
 <h2>项目托管</h2>
-- gitLab官网，git@gitlab.com:zhangyajun/future-record.git 
+
+- gitLab官网，git@gitlab.com:zhangyajun/future-record.git
 - gitee官网 https://gitee.com/DongFangLiYu/future-record.git
 
 项目建于 2020.4.15
 
-开发团队负责人： DongFangLiYu 
+开发团队负责人： DongFangLiYu
 
 <h2>项目背景</h2><hr>
-   利用自己的技能，空闲时间不断学习新技术，应用开发于future-record开源项目。future-record项目是一个聚合性的项目，
- 分前后端架构，多模化划分，旨在解耦业务，提高开发效率；内部划分网关治理服务，鉴权管理服务，文件管理服务，任务管理服务，对接外部rest api 服务等
-
+利用自己的技能，空闲时间不断学习新技术，应用开发于future-record开源项目。future-record项目是一个聚合性的项目，
+分前后端架构，多模化划分，旨在解耦业务，提高开发效率；内部划分网关治理服务，鉴权管理服务，文件管理服务，任务管理服务，对接外部rest api 服务等
 
 <h2>服务信息清单</h2>
 <table border="1">
@@ -57,6 +56,12 @@
      <td>任务服务</td>
      <td>future-task</td>
      <td>8086</td>
+     <td></td>
+   </tr>
+<tr>
+     <td>数据服务</td>
+     <td>future-task</td>
+     <td>8087</td>
      <td></td>
    </tr>
 </table>
@@ -104,6 +109,29 @@
           <th>开始搭建websocket的服务</th>
           <th></th>
       </tr>
+      <tr>
+          <th>2022-01-9</th>
+          <th>v1.0.8</th>
+          <th>集成 Dubbo,rabbitmq</th>
+          <th>Rabbitmq 集成 以及何种消息模式的简单使用，topic,direct,fanout  以及延时队列，1.搭建oauth2 认证授权服务
+           2.在future-auth 服务中通过dubbo 调用future-ac-user服务获取用户
+            3.支持提示与异常国际化
+             4.网关鉴权支持（开发中</th>
+      </tr>
+       <tr>
+          <th>2022-01-17</th>
+          <th>v1.0.9</th>
+          <th>Outh2 集成完成</th>
+          <th>1.auth 鉴权服务基本功能开发完成
+          2.增加可依赖 tools Starter 模块
+             3.网关服务调整完成</th>
+      </tr>
 </table>
 
-有兴趣的同行可以联系dongfangliyu@gmail.com 留言，谢谢！
+## 开发
+
+#### Author: 东方鲤鱼
+
+#### Email: 1339811979@qq.com
+
+#### 如有不妥之处 请与本人联系，万分感谢！
